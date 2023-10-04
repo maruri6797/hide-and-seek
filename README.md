@@ -20,8 +20,7 @@ SNSを見ていると、「○○○○の人見たことない」「どこ」�
 - 同じ・異なるMBTIの人と関わりたい時
 ​
 ## 設計書
-後ほど作成予定
-​
+
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL

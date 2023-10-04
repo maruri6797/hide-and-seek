@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <h3>ユーザー詳細</h3>
+      <table>
+        <tr>
+          <th class="col-4">ユーザーID</th>
+          <td><%= @user.id %></td>
+        </tr>
+        <tr>
+          <th class="col-4">ユーザー名</th>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <th class="col-4">メールアドレス</th>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <th class="col-4">ステータス</th>
+          <% @user.is_deleted == false %>
+            <td class="text-success">有効</td>
+          <% else %>
+            <td class="text-secondary">退会</td>
+          <% end %>
+        </tr>
+      </table>
+      <%= link_to "編集する", edit_admin_user_path(@user), class: 'btn btn-success' %>
+      <%= link_to "投稿一覧を見る", posts_admin_user_path(@user), class: 'btn btn-primary' 
+    </div>
+  </div>
+</div>
