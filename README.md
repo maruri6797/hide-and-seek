@@ -21,7 +21,7 @@ SNSを見ていると、「○○○○の人見たことない」「どこ」�
 ​
 ## 設計書
 - ER図
-https://github.com/maruri6797/hide-and-seek/assets/138319041/6fc2a716-ba1a-488c-bf06-7adba15f2631
+https://github.com/maruri6797/hide-and-seek/assets/138319041/880a3e1e-10ff-4e66-92d8-3636eaf97788
 - テーブル定義書
 https://docs.google.com/spreadsheets/d/17zVII5Fdr3-kIFR8LzUxDSPwUxkFt0CxL_dkVkRIOp4/edit?usp=sharing
 - アプリケーション詳細設計書

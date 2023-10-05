@@ -1,0 +1,28 @@
+ja:
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      short: "%m/%d %H:%M"
+  activerecord:
+    attributes:
+      user:
+        name: "ユーザー名"
+        introduction: "自己紹介"
+        mbti: "MBTI"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード確認"
+      post:
+        title: "タイトル"
+        text: "テキスト"
+      tag: 
+        name: "タグ名"
+      post_comment:
+        comment: "コメント"
+      chat: 
+        message: "メッセージ"
+    errors:
+      messages:
+        invalid: "%{attribute}が正しくありません。"
+        blank: "必須項目です。"
+        too_short: "%{attribute}は%{count}文字以上で入力して下さい。"

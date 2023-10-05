@@ -1,21 +1,22 @@
 Rails.application.routes.draw do
   get 'search' => "searches#search"
   get 'result' => "searches#result"
-  
+
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
-  
+
   namespace :admin do
-    root to: "admin#top"
+    root to: "homes#top"
     resources :tags, only: [:index, :create, :destroy]
     resources :users, only: [:show, :edit, :update] do
       member do
         get 'posts'
       end
     end
-    resources :posts, only: [:index, :show, :destroy]
-    resources :post_comments, only: [:destroy]
+    resources :posts, only: [:index, :show, :destroy] do
+      resources :post_comments, only: [:destroy]
+    end
   end
 
   devise_for :users, controllers: {
@@ -43,7 +44,7 @@ Rails.application.routes.draw do
     resources :chats, only: [:show, :create]
     resources :notifications, only: [:index]
     devise_scope :user do
-      post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
+      post "users/guest_sign_in", to: "sessions#guest_sign_in"
     end
   end
 

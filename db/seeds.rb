@@ -15,19 +15,19 @@ Admin.create!(
 
 # ＝＝＝＝＝＝＝＝＝＝＝初期Userの追加＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
-10.times do |n|
-  User.create!(
-    name: "#{n + 1}郎",
-    mbti: [User.mbtis].sample,
-    email: "test#{n + 1}@test.com",
-    is_deleted: false,
-    password: "password"
-    )
-end
+# 10.times do |n|
+#   User.create!(
+#     name: "#{n + 1}郎",
+#     mbti: [User.mbtis].sample,
+#     email: "test#{n + 1}@test.com",
+#     is_deleted: false,
+#     password: "password"
+#     )
+# end
 
 # ＝＝＝＝＝＝＝＝＝＝＝初期Tagの追加＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
-['User.mbtis', 'あるある', '恋愛', '繋がりたい', '心理機能', 'ソシオニクス', '有名人', 'その他']
+['INTJ', 'INTP', 'ENTJ', 'ENTP', 'INFJ', 'INFP', 'ENFP', 'ISTJ', 'ISFJ', 'ESTJ', 'ESFJ', 'ISTP', 'ISFP', 'ESTP', 'ESFP', 'あるある', '恋愛', '繋がりたい', '心理機能', 'ソシオニクス', '有名人', 'その他']
 .each do |name|
   Tag.create!(
     { name: name }

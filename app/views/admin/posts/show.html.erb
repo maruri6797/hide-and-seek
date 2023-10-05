@@ -1,2 +1,41 @@
-<h1>Admin::Posts#show</h1>
-<p>Find me in app/views/admin/posts/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 col-md-8">
+      <h3>投稿詳細</h3>
+      <%= link_to "削除する", admin_post_path(@post), method: :delete, class: 'btn btn-danger', data: {confirm: "削除してもよろしいですか？" } 
+      <div class="group">
+        <p>ユーザー名</p>
+        <%= link_to @post.user.name, admin_user_path(@post.user) %>
+      </div>
+      <div class="group">
+        <p>タイトル</p>
+        <%= @post.title %>
+      </div>
+      <div class="group">
+        <p>テキスト</p>
+        <%= simple_format(h(@post.text)) %>
+      </div>
+      <div class="group">
+        <% if @post.images.attached? %>
+          <% @post.images.each do |image| %>
+            <%= image_tag image.variant(resize: '375x667') %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="group">
+        <p>閲覧数</p>
+        <%= @post.view_count.count %>回<br>
+        <p>いいね数</p>
+        ♡<%= @post.favorites.count %>
+      </div>
+      <% if @post_comments.present? %>
+        <% @post_comments.each do |post_comment| %>
+          <%= post_comment.comment %>
+          <%= link_to "", admin_post_post_comment_path(@post, post_comment), method: :delete, class: 'fa-solid fa-trash-can' %>
+        <% end %>
+      <% else %>
+        <p>コメントはありません</p>
+      <% end %>
+    </div>
+  </div>
+</div>

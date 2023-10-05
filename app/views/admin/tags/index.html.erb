@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-lg-10 col-md-8">
       <%= form_with model: @tag, url: admin_tags_path, method: :post do |f| %>
         <div class="form-group">
           <%= f.label :name, "タグ", class: 'col-4' %>
@@ -8,11 +8,14 @@
           <%= f.submit "登録", class: 'btn btn-success' %>
         </div>
       <% end %>
-      
-      <% @tags.each do |tag| %>
-        <%= tag.name %>
-        <%= link_to "", admin_tag_path(tag), method: :delete, class: 'fa-solid fa-trash-can' %>
-      <% end %>
+      <ul class="d-flex flex-row flex-wrap list-group border-top">
+        <% @tags.each do |tag| %>
+          <li class="list-group-item col-3">
+            <%= tag.name %>
+            <%= link_to "", admin_tag_path(tag), method: :delete, class: 'fa-solid fa-trash-can', data: {confirm: "削除してもよろしいですか？" } %>
+          </li>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>

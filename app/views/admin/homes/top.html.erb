@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-lg-12 col-md-10">
       <h3>ユーザー一覧</h3>
       <table class="table table-bordered">
         <thead>
@@ -15,9 +15,9 @@
           <% @users.each do |user| %>
             <tr>
               <td><%= user.id %></td>
-              <td><%= user.name %></td>
+              <td><%= link_to user.name, admin_user_path(user) %></td>
               <td><%= user.email %></td>
-              <% user.is_deleted == false %>
+              <% if user.is_deleted == false %>
                 <td class="text-success">有効</td>
               <% else %>
                 <td class="text-secondary">退会</td>

@@ -1,0 +1,29 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>投稿日時</th>
+    <%- if controller_name != 'users' %>
+      <th>ユーザー名</th>
+    <% end %>
+      <th>タイトル</th>
+      <th>閲覧数</th>
+      <th>いいね数</th>
+      <th>コメント数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% posts.each do |po| %>
+      <tr>
+        <td><%= l po.creatd_at %></td>
+      <%- if controller_name != 'users' %>
+        <td><%= link_to po.user.name, admin_user_path(po.user) %></td>
+      <% end %>
+        <td><%= link_to po.title, admin_post_path(po) %></td>
+        <td><%= po.view_count.count %>回</td>
+        <td>♡<%= po.favorite.count %></td>
+        <td><%= po.post_comment.count %>コメント</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate posts %>

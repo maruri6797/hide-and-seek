@@ -1,2 +1,32 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 col-md-8">
+      <h3><%= @user.name %>さんのユーザー情報編集</h3>
+      <%= form_with model: @user, url: admin_user_path, method: :patch do |f| %>
+        <div class="form-group">
+          <%= f.label :id, "ユーザーID", class: 'col-4' %>
+          <%= f.text_field :id, readonly: true %>
+        </div>
+        <div class="form-group">
+          <%= f.label :name, "ユーザー名", class: 'col-4' %>
+          <%= f.text_field :name %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email, "メールアドレス", class: 'col-4' %>
+          <%= f.text_field :email %>
+        </div>
+        <div class="form-group">
+          <%= f.label :is_deleted, "ステータス", class: 'col-4' %>
+
+          <%= f.redio_button :is_deleted, false %>
+          <%= f.label :is_deleted, "有効" %>
+          <%= f.radio_button :is_deleted, true %>
+          <%= f.label :is_deleted, "退会" %>
+        </div>
+        <div class="action text-center">
+          <%= f.submit "変更を保存", class: 'btn btn-success' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
