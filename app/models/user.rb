@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  has_many :rooms, through: :user_room, dependent: :destroy
   has_many :user_rooms, dependent: :destroy
   has_many :chats, dependent: :destroy
   # フォロー機能
@@ -31,6 +32,18 @@ class User < ApplicationRecord
       profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
+  end
+  
+  def follow(user_id)
+    relationships.create(followed_id: user_id)
+  end
+  
+  def unfollow(user_id)
+    relationships.find_by(followed_id: user_id)
+  end
+  
+  def following?(user)
+    followers.include?(user)
   end
 
   GUEST_USER_EMAIL = "guest@example.com"

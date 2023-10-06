@@ -1,0 +1,27 @@
+<% posts.each do |pos| %>
+  <div class="card">
+    <div class="card-body">
+      <%= link_to user_path(pos.user) do %>
+        <%= pos.user.get_profile_image(150, 150), class: 'rounded-circle' %>
+      <% end %>
+      <%= link_to pos.user.name, user_path(pos.user) %>
+      <h5 class="card-title"><%= pos.title %></h5>
+      <p class="card-text"><%= truncate(pos.text) %></p>
+      <p class="card-text"><small class="text-body-secondary"><%= l pos.created_at %></small></p>
+    </div>
+    <% if pos.images.attached? %>
+      <%= image_tag pos.images[0], size: "600x300", class: 'card-img-bottom' %>
+    <% end %>
+    <div class="tag">
+      <i class="fa-solid fa-tag"></i>
+      <%= pos.tags.pluck(:name).join('/') %>
+    </div>
+    <i class="fa-solid fa-eye"><%= pos.view_count.count %></i>
+    <div id="favorite<%= pos.id %>">
+      <%= render 'public/favorites/favorite', put: pos %>
+    </div>
+    <div id="comment_count">
+      <%= render 'public/post_comments/comment_count', pos: pos %>
+    </div>
+  </div>
+<% end %>

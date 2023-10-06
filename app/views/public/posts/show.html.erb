@@ -1,2 +1,39 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 col-md-8">
+      <div class="row">
+        <%= link_to user_path(@post.user) do %>
+          <%= @post.user.get_profile_image(150, 150), class: 'rounded-circle' %>
+        <% end %>
+        <%= link_to @post.user.name, user_path(@post.user) %>
+      </div>
+      <%= @post.title, class: 'fw-bold' %>
+      <%= simple_format(h(@post.text)) %>
+      <% if @post.images.attached? %>
+        <% @post.images.each do |image| %>
+          <%= image_tag image.variant(resize: '375x667') %>
+        <% end %>
+      <% end %>
+      <div class="tag">
+        <i class="fa-solid fa-tag"></i>
+        <%= @post.tags.pluck(:name).join('/') %>
+      </div>
+      <%= l @post.create_at %>
+      <i class="fa-solid fa-eye"><%= @post.view_count.count %></i>
+      <div id="favorite">
+        <%= render 'public/favorites/favorite', put: @post %>
+      </div>
+      <!--コメント機能-->
+      <div id="comment_count">
+        <%= render 'public/post_comments/comment_count', pos: @post %>
+      </div>
+      <div id="post_comments">
+        <%= render 'public/post_comments/comment', pos: @post %>
+      </div>
+      <%= form_with model: [@post, @post_comment], url: post_post_comments_path, method: :post, local: false do |f| %>
+        <%= f.text_area :comment, class: 'form-control', size: "20x10"%>
+        <%= f.submit '', class: 'fa-regular fa-paper-plane' %>
+      <% end %>
+    </div>
+  </div>
+</div>

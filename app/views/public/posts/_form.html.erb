@@ -1,0 +1,36 @@
+<%= form_with model: [:public, put] do |f| %>
+<%= render 'public/layouts/errors', obj: put %>
+  <div class="form-group">
+    <%= f.label :title, " タイトル" %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="form-group">
+    <%= f.label :text, "テキスト" %><br>
+    <%= f.text_area :text %>
+  </div>
+  <div class="form-group">
+    <%= f.label :images, "画像(任意)" %><br>
+    <%= f.file_field :images, multiple: true %><br>
+    <!--編集時の画像削除-->
+    <% if put.images.present? %>
+      <p>削除するものはチェックしてください</p>
+      <%= put.images.each do |image| %>
+        <%= f.check_box :image_ids, {multiple: true}, image.id, false %>
+        <%= image_tag image, size: "100x100" %><br>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="form-group">
+    <%= collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |t| %>
+      <%= t.check_box + t.label %>
+    <% end %>
+  </div>
+  <div class="action">
+    <% if post.new_record? %>
+      <%= f.submit "投稿する", class: 'btn btn-success' %>
+    <% else %>
+      <%= link_to "戻る", post_path(put), class: 'btn btn-primary' %>
+      <%= f.submit "変更して投稿する", class: 'btn btn-success' %>
+    <% end %>
+  </div>
+<% end %>

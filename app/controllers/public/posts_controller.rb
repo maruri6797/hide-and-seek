@@ -20,7 +20,14 @@ class Public::PostsController < ApplicationController
   
   def update
     @post = Post.find(params[:id])
-    if @post.save(post_params)
+    # 画像の削除
+    if params[:post][:image_ids]
+      params[:post][:image_ids].each do |image_id|
+        image = @post.images.find(image_id)
+        image.purge
+      end
+    end
+    if @post.update(post_params)
       redirect_to posts_path, notice: "投稿を編集しました。"
     else
       flash.now[:alert] = "編集に失敗しました。"
@@ -34,6 +41,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @post_comment = PostComment.new
   end
   
   def destroy
@@ -44,6 +52,6 @@ class Public::PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:title, :text, images: [])
+    params.require(:post).permit(:title, :text, images: [], tag_ids: [])
   end
 end

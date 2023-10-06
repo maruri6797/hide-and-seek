@@ -1,28 +1,45 @@
 class Public::UsersController < ApplicationController
-  before_action :ensure_guest_user, only: [:edit, :check]
+  before_action :ensure_user, only: [:edit, :update, :check]
 
   def index
+    @users = current_user.rooms
   end
 
   def show
+    @user = User.find(params[:id])
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def followings
+    user = User.find(params[:id])
+    @users = user.followers
   end
 
   def followers
+    user = User.find(params[:id])
+    @users = user.followeds
   end
 
   def favorites
+    user = User.find(params[:id])
+    @favorites = user.favorites
   end
 
   def check
+    @user = User.find(params[:id])
   end
 
   def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: "ユーザー情報を編集しました。"
+    else
+      flash.now[:alert] = "ユーザー情報の更新に失敗しました。"
+      render :edit
+    end
   end
 
   def leave
@@ -38,10 +55,10 @@ class Public::UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :mbti, :introduction, :is_deleted, :profile_image)
   end
 
-  def ensure_guest_user
+  def ensure_user
     @user = User.find(params[:id])
-    if @user.guest_user?
-      redirect_to user_path(current_user), notice: "ゲストユーザーでは画面遷移できません。"
+    if @user.guest_user? || @user.id != current_user.id
+      redirect_to user_path(current_user), notice: "このユーザーでは画面遷移できません。"
     end
   end
 end

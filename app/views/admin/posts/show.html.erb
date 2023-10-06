@@ -23,6 +23,8 @@
         <% end %>
       </div>
       <div class="group">
+        <p>投稿日時</p>
+        <%= l @post.created_at %><br>
         <p>閲覧数</p>
         <%= @post.view_count.count %>回<br>
         <p>いいね数</p>

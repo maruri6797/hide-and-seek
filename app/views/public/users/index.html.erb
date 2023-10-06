@@ -1,2 +1,13 @@
-<h1>Public::Users#index</h1>
-<p>Find me in app/views/public/users/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 col-md-8">
+      <% users.each do |user| %>
+        <%= link_to user_path(pos.user) do %>
+          <%= user.get_profile_image(100, 100), class: 'rounded-circle' %>
+        <% end %>
+        <%= link_to user.name, user_path(user) %>
+        
+      <% end %>
+    </div>
+  </div>
+</div>
