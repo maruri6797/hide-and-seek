@@ -24,7 +24,7 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
 
-  enum mbti: { INTJ:1, INTP:2, ENTJ:3, ENTP:4, INFJ:5, INFP:6, ENFJ:7, ENFP:8, ISTJ:9, ISFJ:10, ESTJ:11, ESFJ:12, ISTP:13, ISFP:14, ESTP:15, ESFP:16 }
+  enum mbti: { INTJ:1, INTP:2, ENTJ:3, ENTP:4, INFJ:5, INFP:6, ENFJ:7, ENFP:8, ISTJ:9, ISFJ:10, ESTJ:11, ESFJ:12, ISTP:13, ISFP:14, ESTP:15, ESFP:16, unknown: 17 }
 
   def get_profile_image(width, height)
     unless profile_image.attached?
@@ -33,15 +33,15 @@ class User < ApplicationRecord
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
-  
+
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end
-  
+
   def unfollow(user_id)
     relationships.find_by(followed_id: user_id)
   end
-  
+
   def following?(user)
     followers.include?(user)
   end

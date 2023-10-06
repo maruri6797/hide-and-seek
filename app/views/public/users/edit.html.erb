@@ -1,7 +1,33 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-10 col-md-8">
-      
+      <h3>編集</h3>
+      <%= link_to "退会", check_user_path(@user), class: 'btn btn-danger' %>
+      <%= form_with model: @user, url: user_path, method: :patch do |f| %>
+        <div class="form-group row">
+          <%= f.label :profile_image, "プロフィール画像" %>
+          <%= f.file_field :profile_image, accept: 'image/*' %>
+        </div>
+        <div class="form-group row">
+          <%= f.label :name, "ユーザー名" %>
+          <%= f.text_field :name %>
+        </div>
+        <div class="form-group row">
+          <%= f.label :mbti, "MBTI", class: 'col-4' %>
+          <div class="col-5">
+            <%= f.collection_radio_buttons(:mbti, User.mbtis, :first, :first) do |b| %>
+              <%= b.radio_button + "\s" + b.label %>
+            <% end %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :introduction, "自己紹介" %>
+          <%= f.text_area :introduction, class: 'form-control',size: "20x10" %>
+        </div>
+        <div class="actions">
+          <%= f.submit "保存", class: 'btn btn-success' %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

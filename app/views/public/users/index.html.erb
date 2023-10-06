@@ -6,7 +6,7 @@
           <%= user.get_profile_image(100, 100), class: 'rounded-circle' %>
         <% end %>
         <%= link_to user.name, user_path(user) %>
-        
+        <%= link_to "chat",chat_path(user) %>
       <% end %>
     </div>
   </div>
