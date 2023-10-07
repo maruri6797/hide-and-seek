@@ -1,0 +1,21 @@
+<% visitor = notification.visitor %>
+<% visited = notification.visited %>
+
+<%= link_to user_path(visitor) do %>
+  <%= image_tag visitor.get_profile_image(100, 100), class: 'rounded-circle' %>
+  <%= visitor.name %>さんが
+<% end %>
+
+<% case notification.action %>
+<% when 'follow' then %>
+  <p>あなたをフォローしました</p>
+<% when 'like' then %>
+  <%= link_to "あなたの投稿", post_path(visited) %>にいいねしました
+<% when 'comment' then %>
+  <%= link_to "あなたの投稿", post_path(visited) %>にコメントしました
+<% when 'dm' then %>
+  あなたに<%= link_to "メッセージ", chat_path(visited) %>を送りました
+<% end %>
+<div class="small text-muted text-right">
+  <%= time_ago_in_words(notification.created_at).upcase %>
+</div>

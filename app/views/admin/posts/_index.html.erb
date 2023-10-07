@@ -19,9 +19,9 @@
         <td><%= link_to po.user.name, admin_user_path(po.user) %></td>
       <% end %>
         <td><%= link_to po.title, admin_post_path(po) %></td>
-        <td><%= po.view_count.count %>回</td>
-        <td>♡<%= po.favorite.count %></td>
-        <td><%= po.post_comment.count %>コメント</td>
+        <td><%= po.view_counts.count %>回</td>
+        <td>♡<%= po.favorites.count %></td>
+        <td><%= po.post_comments.count %>コメント</td>
       </tr>
     <% end %>
   </tbody>

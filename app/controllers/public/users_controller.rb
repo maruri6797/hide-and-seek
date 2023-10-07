@@ -26,7 +26,8 @@ class Public::UsersController < ApplicationController
 
   def favorites
     user = User.find(params[:id])
-    @favorites = user.favorites
+    favorites = Favorite.where(user_id: user.id).pluck(:post_id)
+    @posts = Post.find(favorites)
   end
 
   def check
@@ -51,7 +52,7 @@ class Public::UsersController < ApplicationController
   end
 
   private
-  
+
   def user_params
     params.require(:user).permit(:name, :email, :mbti, :introduction, :is_deleted, :profile_image)
   end

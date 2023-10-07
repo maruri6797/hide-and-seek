@@ -14,7 +14,7 @@
           <% end %>
         <% end %>
       </div>
-      
+      <%= render 'layouts/errors', obj: @chat %>
       <%= form_with model: @chat, url: chats_path, method: :post |f| %>
         <%= f.text_area :message %>
         <%= f.hidden_field :room_id %>

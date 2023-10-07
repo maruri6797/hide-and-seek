@@ -1,17 +1,20 @@
 class Public::PostCommentsController < ApplicationController
   def create
-    po = Post.find(params[:post_id])
+    @post = Post.find(params[:post_id])
     comment = current_user.post_comments.new(post_comment_params)
-    comment.post_id = po.id
+    comment.post_id = @post.id
     comment.save
+    @post.create_notification_comment(current_user, comment.id, po.user.id)
   end
-  
+
   def destroy
-    PostComment.find(params[:id]).destroy
+    @post = Post.find(params[:post_id])
+    comment = current_user.post_comments.find_by(post_id: @post.id)
+    comment.destroy
   end
-  
+
   private
-  
+
   def post_comment_params
     params.require(:post_comment).permit(:comment)
   end

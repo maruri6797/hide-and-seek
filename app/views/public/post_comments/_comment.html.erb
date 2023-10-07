@@ -5,6 +5,6 @@
   <%= link_to post_comment.user.name, user_path(post_comment.user) %>
   <%= post_comment.comment %><%= l post_comment.created_at, format: :short %>
   <% if post_comment.user == current_user %>
-    <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: false, class: 'btn btn-danger', data: {confirm: "削除してもよろしいですか？" } %>
+    <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true, class: 'btn btn-danger', data: {confirm: "削除してもよろしいですか？" } %>
   <% end %>
 <% end %>

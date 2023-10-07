@@ -3,11 +3,12 @@
     <div class="col-lg-10 col-md-8">
       <div class="row">
         <%= link_to user_path(@post.user) do %>
-          <%= @post.user.get_profile_image(150, 150), class: 'rounded-circle' %>
+          <%= image_tag @post.user.get_profile_image(150, 150), class: 'rounded-circle' %>
         <% end %>
         <%= link_to @post.user.name, user_path(@post.user) %>
       </div>
-      <%= @post.title, class: 'fw-bold' %>
+      <%= @post.title %>
+      <%= link_to "編集する", edit_post_path(@post), class: 'btn btn-primary' %>
       <%= simple_format(h(@post.text)) %>
       <% if @post.images.attached? %>
         <% @post.images.each do |image| %>
@@ -18,21 +19,23 @@
         <i class="fa-solid fa-tag"></i>
         <%= @post.tags.pluck(:name).join('/') %>
       </div>
-      <%= l @post.create_at %>
-      <i class="fa-solid fa-eye"><%= @post.view_count.count %></i>
-      <div id="favorite">
+      <%= l @post.created_at %>
+      <i class="fa-solid fa-eye"><%= @post.view_counts.count %></i>
+      <div class="favorite<%= @post.id %>">
         <%= render 'public/favorites/favorite', put: @post %>
       </div>
       <!--コメント機能-->
-      <div id="comment_count">
+      <div class="comment_count">
         <%= render 'public/post_comments/comment_count', pos: @post %>
       </div>
-      <div id="post_comments">
+      <div class="post_comments">
         <%= render 'public/post_comments/comment', pos: @post %>
       </div>
-      <%= form_with model: [@post, @post_comment], url: post_post_comments_path, method: :post, local: false do |f| %>
+      <%= form_with model: [@post, @post_comment], method: :post, local: false do |f| %>
         <%= f.text_area :comment, class: 'form-control', size: "20x10"%>
-        <%= f.submit '', class: 'fa-regular fa-paper-plane' %>
+        <%= button_tag type: "submit", class: 'btn btn-default' do %>
+          <i class="fa-regular fa-paper-plane"></i>
+        <% end %>
       <% end %>
     </div>
   </div>

@@ -2,10 +2,10 @@
   <div class="card">
     <div class="card-body">
       <%= link_to user_path(pos.user) do %>
-        <%= pos.user.get_profile_image(150, 150), class: 'rounded-circle' %>
+        <%= image_tag pos.user.get_profile_image(150, 150), class: 'rounded-circle' %>
       <% end %>
       <%= link_to pos.user.name, user_path(pos.user) %>
-      <h5 class="card-title"><%= pos.title %></h5>
+      <h5 class="card-title"><%= link_to pos.title, post_path(pos) %></h5>
       <p class="card-text"><%= truncate(pos.text) %></p>
       <p class="card-text"><small class="text-body-secondary"><%= l pos.created_at %></small></p>
     </div>
@@ -16,11 +16,11 @@
       <i class="fa-solid fa-tag"></i>
       <%= pos.tags.pluck(:name).join('/') %>
     </div>
-    <i class="fa-solid fa-eye"><%= pos.view_count.count %></i>
-    <div id="favorite<%= pos.id %>">
+    <i class="fa-solid fa-eye"><%= pos.view_counts.count %></i>
+    <div class="favorite<%= pos.id %>">
       <%= render 'public/favorites/favorite', put: pos %>
     </div>
-    <div id="comment_count">
+    <div class="comment_count">
       <%= render 'public/post_comments/comment_count', pos: pos %>
     </div>
   </div>

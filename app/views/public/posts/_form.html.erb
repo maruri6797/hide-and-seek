@@ -1,5 +1,5 @@
-<%= form_with model: [:public, put] do |f| %>
-<%= render 'public/layouts/errors', obj: put %>
+<%= form_with model: put do |f| %>
+<%= render 'layouts/errors', obj: put %>
   <div class="form-group">
     <%= f.label :title, " タイトル" %><br>
     <%= f.text_field :title %>
@@ -14,19 +14,20 @@
     <!--編集時の画像削除-->
     <% if put.images.present? %>
       <p>削除するものはチェックしてください</p>
-      <%= put.images.each do |image| %>
+      <% put.images.each do |image| %>
         <%= f.check_box :image_ids, {multiple: true}, image.id, false %>
         <%= image_tag image, size: "100x100" %><br>
       <% end %>
     <% end %>
   </div>
   <div class="form-group">
-    <%= collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |t| %>
+    <%= f.label :tag_ids, "タグ" %><br>
+    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name do |t| %>
       <%= t.check_box + t.label %>
     <% end %>
   </div>
   <div class="action">
-    <% if post.new_record? %>
+    <% if put.new_record? %>
       <%= f.submit "投稿する", class: 'btn btn-success' %>
     <% else %>
       <%= link_to "戻る", post_path(put), class: 'btn btn-primary' %>

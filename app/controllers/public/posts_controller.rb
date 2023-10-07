@@ -41,6 +41,9 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    unless ViewCount.find_by(user_id: current_user.id, post_id: @post.id)
+      current_user.view_count.create(post_id: @post.id)
+    end
     @post_comment = PostComment.new
   end
   

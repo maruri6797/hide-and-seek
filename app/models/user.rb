@@ -13,10 +13,11 @@ class User < ApplicationRecord
   has_many :rooms, through: :user_room, dependent: :destroy
   has_many :user_rooms, dependent: :destroy
   has_many :chats, dependent: :destroy
+  has_many :view_count, dependent: :destroy
   # フォロー機能
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :followers, through: :relationships, source: :followed
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :followers, through: :relationships, source: :followed
   has_many :followeds, through: :reverse_of_relationships, source: :follower
   # 通知機能
   has_many :active_notifications, class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy
@@ -46,10 +47,35 @@ class User < ApplicationRecord
     followers.include?(user)
   end
 
+  # フォロー通知
+  def create_notification_follow(current_user)
+    record = Notification.where(["visitor_id = ?, visited_id = ?, action = ?", current_user.id, id, 'follow'])
+    if record.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid
+    end
+  end
+
+  # DM通知
+  def create_notification_message(current_user, chat_id, visited_id)
+    notification = current_user.active_notifications.new(
+      room_id: room_id,
+      chat_id: chat_id,
+      visited_id: id,
+      visitor_id: current_user.id,
+      action: 'dm'
+    )
+    notification.save if notification.valid?
+  end
+
   GUEST_USER_EMAIL = "guest@example.com"
+  GUEST_USER_MBTI = "unknown"
 
   def self.guest
-    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
+    find_or_create_by!(email: GUEST_USER_EMAIL, mbti: GUEST_USER_MBTI) do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲストユーザー"
     end
