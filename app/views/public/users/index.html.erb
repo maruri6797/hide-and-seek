@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-10 col-md-8">
-      <% users.each do |user| %>
+      <% @users.each do |user| %>
         <%= link_to user_path(pos.user) do %>
-          <%= user.get_profile_image(100, 100), class: 'rounded-circle' %>
+          <%= image_tag user.get_profile_image(100, 100), class: 'rounded-circle' %>
         <% end %>
         <%= link_to user.name, user_path(user) %>
         <%= link_to "chat",chat_path(user) %>

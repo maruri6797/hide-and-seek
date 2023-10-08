@@ -4,25 +4,24 @@
       <h3><%= @user.name %>さんのユーザー情報編集</h3>
       <%= render 'layouts/errors', obj: @user %>
       <%= form_with model: @user, url: admin_user_path, method: :patch do |f| %>
-        <div class="form-group">
-          <%= f.label :id, "ユーザーID", class: 'col-4' %>
-          <%= f.text_field :id, readonly: true %>
+        <div class="form-group row">
+          <p class="col-4">ユーザーID</p>
+          <%= @user.id %>
         </div>
-        <div class="form-group">
+        <div class="form-group row">
           <%= f.label :name, "ユーザー名", class: 'col-4' %>
           <%= f.text_field :name %>
         </div>
-        <div class="form-group">
+        <div class="form-group row">
           <%= f.label :email, "メールアドレス", class: 'col-4' %>
           <%= f.text_field :email %>
         </div>
-        <div class="form-group">
+        <div class="form-group row">
           <%= f.label :is_deleted, "ステータス", class: 'col-4' %>
-
-          <%= f.redio_button :is_deleted, false %>
-          <%= f.label :is_deleted, "有効" %>
+          <%= f.radio_button :is_deleted, false %>
+          <%= f.label :is_deleted_false, "有効", class: 'col-2' %>
           <%= f.radio_button :is_deleted, true %>
-          <%= f.label :is_deleted, "退会" %>
+          <%= f.label :is_deleted_true, "退会", class: 'col-2' %>
         </div>
         <div class="action text-center">
           <%= f.submit "変更を保存", class: 'btn btn-success' %>

@@ -4,5 +4,5 @@ class Chat < ApplicationRecord
   has_many :notifications, dependent: :destroy
 
 
-  validates :message, length: { maximum: 200 }
+  validates :message, presence: true, length: { maximum: 200 }
 end

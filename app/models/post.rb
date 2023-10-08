@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
-  validates :text, length: { maximum: 500 }
+  validates :title, presence: true
+  validates :text, presence: true, length: { maximum: 500 }
 
   belongs_to :user
   has_many :favorites, dependent: :destroy
@@ -17,7 +18,7 @@ class Post < ApplicationRecord
 
   # いいね通知
   def create_notification_favorite(current_user)
-    record = Notification.where(["visitor_id = ?, visited_id = ?, post_id = ?, action = ?", current_user.id, user_id, id, 'like'])
+    record = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ?", current_user.id, user_id, id, 'like'])
     if record.blank?
       notification = current_user.active_notifications.new(
         visited_id: user_id,

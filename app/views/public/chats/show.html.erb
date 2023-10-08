@@ -8,9 +8,19 @@
       <div class="message">
         <% @chats.each do |chat| %>
           <% if chat.user_id == current_user.id %>
-            <p class="text-end"><%= chat.message %></p>
+            <div class="row justify-content-end">
+              <div class="ballon-right">
+                <p class="text-right"><%= chat.message %></p>
+              </div>
+              <p class="text-right"><small><%= l chat.created_at, format: :short %></small></p>
+            </div>
           <% else %>
-            <p class="text-start"><%= chat.message %></p>
+            <div class="row justify-content-start">
+              <div class="ballon-left">
+                <%= chat.message %>
+              </div>
+              <p class="text-right"><small><%= l chat.created_at, format: :short %></small></p>
+            </div>
           <% end %>
         <% end %>
       </div>

@@ -2,7 +2,11 @@
   <div class="row">
     <div class="col-lg-10 col-md-8">
       <h3>いいね</h3>
-      <%= render 'public/posts/index', posts: @posts %>
+      <% if @posts.present? %>
+        <%= render 'public/posts/index', posts: @posts %>
+      <% else %>
+        <p>いいねした投稿は</p>
+      <% end %>
     </div>
   </div>
 </div>

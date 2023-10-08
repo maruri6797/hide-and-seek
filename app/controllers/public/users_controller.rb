@@ -1,8 +1,9 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :ensure_user, only: [:edit, :update, :check]
 
   def index
-    @users = current_user.rooms
+    @users = current_user.user_rooms
   end
 
   def show

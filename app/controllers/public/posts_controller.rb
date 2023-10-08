@@ -1,8 +1,11 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_user, only: [:edit, :update]
+
   def new
     @post = Post.new
   end
-  
+
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
@@ -17,7 +20,7 @@ class Public::PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
   end
-  
+
   def update
     @post = Post.find(params[:id])
     # 画像の削除
@@ -46,15 +49,22 @@ class Public::PostsController < ApplicationController
     end
     @post_comment = PostComment.new
   end
-  
+
   def destroy
     Post.find(params[:id]).destroy
     redirect_to posts_path, notice: "投稿を削除しました。"
   end
-  
+
   private
-  
+
   def post_params
     params.require(:post).permit(:title, :text, images: [], tag_ids: [])
+  end
+
+  def ensure_user
+    @post = Post.find(params[:id])
+    if @post.user != current_user
+      redirect_to posts_path, notice: "このユーザーでは画面遷移できません。"
+    end
   end
 end

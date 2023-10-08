@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :name, uniqueness: true, length: { in: 1..20 }
+  validates :name, presence: true, uniqueness: true, length: { in: 1..20 }
   validates :introduction, length: { maximum: 200 }
 
   has_many :favorites, dependent: :destroy
@@ -29,8 +29,59 @@ class User < ApplicationRecord
 
   def get_profile_image(width, height)
     unless profile_image.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpg')
-      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      case mbti
+      when "INTJ" then
+        file_path = Rails.root.join('app/assets/images/INTJ.jpg')
+        profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      when "INTP" then
+        file_path = Rails.root.join('app/assets/images/INTP.jpg')
+        profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      when "ENTJ" then
+        file_path = Rails.root.join('app/assets/images/ENTJ.jpg')
+        profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      when "ENTP" then
+        file_path = Rails.root.join('app/assets/images/ENTP.jpg')
+        profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      when "INFJ" then
+        file_path = Rails.root.join('app/assets/images/INFJ.jpg')
+        profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      when "INFP" then
+        file_path = Rails.root.join('app/assets/images/INFP.jpg')
+        profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      when "ENFJ" then
+        file_path = Rails.root.join('app/assets/images/ENTJ.jpg')
+        profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      when "ENFP" then
+        file_path = Rails.root.join('app/assets/images/ENFP.jpg')
+        profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      when "ISTJ" then
+        file_path = Rails.root.join('app/assets/images/ISTJ.jpg')
+        profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      when "ISFJ" then
+        file_path = Rails.root.join('app/assets/images/ISFJ.jpg')
+        profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      when "ESTJ" then
+        file_path = Rails.root.join('app/assets/images/ESTJ.jpg')
+        profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      when "ESFJ" then
+        file_path = Rails.root.join('app/assets/images/ESFJ.jpg')
+        profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      when "ISTP" then
+        file_path = Rails.root.join('app/assets/images/ISTP.jpg')
+        profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      when "ISFP" then
+        file_path = Rails.root.join('app/assets/images/ISFP.jpg')
+        profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      when "ESTP" then
+        file_path = Rails.root.join('app/assets/images/ESTP.jpg')
+        profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      when "ESFP" then
+        file_path = Rails.root.join('app/assets/images/ESFP.jpg')
+        profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      when "unknown" then
+        file_path = Rails.root.join('app/assets/images/no_image.jpg')
+        profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      end
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
@@ -49,13 +100,13 @@ class User < ApplicationRecord
 
   # フォロー通知
   def create_notification_follow(current_user)
-    record = Notification.where(["visitor_id = ?, visited_id = ?, action = ?", current_user.id, id, 'follow'])
+    record = Notification.where(["visitor_id = ? and visited_id = ? and action = ?", current_user.id, id, 'follow'])
     if record.blank?
       notification = current_user.active_notifications.new(
         visited_id: id,
         action: 'follow'
       )
-      notification.save if notification.valid
+      notification.save if notification.valid?
     end
   end
 

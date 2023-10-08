@@ -14,7 +14,7 @@
   <tbody>
     <% posts.each do |po| %>
       <tr>
-        <td><%= l po.creatd_at %></td>
+        <td><%= l po.created_at %></td>
       <%- if controller_name != 'users' %>
         <td><%= link_to po.user.name, admin_user_path(po.user) %></td>
       <% end %>
