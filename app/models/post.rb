@@ -10,6 +10,8 @@ class Post < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :view_counts, dependent: :destroy
 
+  enum status: { active: 0, edited: 1, deleted: 2 }
+
   has_many_attached :images
 
   def favorited_by?(user)

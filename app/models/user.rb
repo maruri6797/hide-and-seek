@@ -25,7 +25,7 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
 
-  enum mbti: { INTJ:1, INTP:2, ENTJ:3, ENTP:4, INFJ:5, INFP:6, ENFJ:7, ENFP:8, ISTJ:9, ISFJ:10, ESTJ:11, ESFJ:12, ISTP:13, ISFP:14, ESTP:15, ESFP:16, unknown: 17 }
+  enum mbti: { INTJ:0, INTP:1, ENTJ:2, ENTP:3, INFJ:4, INFP:5, ENFJ:6, ENFP:7, ISTJ:8, ISFJ:9, ESTJ:10, ESFJ:11, ISTP:12, ISFP:13, ESTP:14, ESFP:15, unknown: 16 }
 
   def get_profile_image(width, height)
     unless profile_image.attached?

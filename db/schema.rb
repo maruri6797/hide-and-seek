@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(version: 2023_10_07_063650) do
     t.integer "user_id", null: false
     t.string "title", null: false
     t.text "text", null: false
+    t.integer "status", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
@@ -126,10 +127,8 @@ ActiveRecord::Schema.define(version: 2023_10_07_063650) do
   end
 
   create_table "rooms", force: :cascade do |t|
-    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -184,7 +183,6 @@ ActiveRecord::Schema.define(version: 2023_10_07_063650) do
   add_foreign_key "post_tags", "posts"
   add_foreign_key "post_tags", "tags"
   add_foreign_key "posts", "users"
-  add_foreign_key "rooms", "users"
   add_foreign_key "user_rooms", "users"
   add_foreign_key "view_counts", "posts"
   add_foreign_key "view_counts", "users"

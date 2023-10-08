@@ -36,7 +36,7 @@ Rails.application.routes.draw do
         get 'check'
         patch 'leave'
       end
-      resources :relationships, only: [:create, :destroy]
+      resource :relationships, only: [:create, :destroy]
     end
     resources :posts do
       resource :favorites, only: [:create, :destroy]

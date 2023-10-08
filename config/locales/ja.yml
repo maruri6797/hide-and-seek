@@ -1,4 +1,11 @@
 ja:
+  enum:
+    post:
+      status:
+        active: "公開中"
+        edited: "編集済み"
+        deleted: "削除済み"
+
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
@@ -15,11 +22,11 @@ ja:
       post:
         title: "タイトル"
         text: "テキスト"
-      tag: 
+      tag:
         name: "タグ名"
       post_comment:
         comment: "コメント"
-      chat: 
+      chat:
         message: "メッセージ"
     errors:
       messages:
