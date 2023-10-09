@@ -1,15 +1,16 @@
 class SearchesController < ApplicationController
   def search
-
+    @tags = Tag.all
   end
 
   def result
     @tag = Tag.find(params[:tag_id])
-    @posts = @tag.posts.page(params[:page])
-    if params[:word] == ""
-      redirect_to search_path
+    @keyword = params[:keyword]
+    if @tag.present?
+      @posts = @tag.posts.page(params[:page])
     else
-      @posts = Post.looks(params[:word]).page(params[:page])
+      redirect_to search_path if @keyword == ""
+      @posts = Post.where("title like :word or text like :word", word: "%#{@keyword}%")
     end
   end
 end

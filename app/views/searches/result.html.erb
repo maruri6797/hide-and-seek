@@ -1,7 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-10 col-md-8">
-      <%= @tag.name %>の投稿一覧
+      <% if @tag.present? %>
+        "<%= @tag.name %>"の投稿一覧
+      <% else %>
+        "<%= @keyword %>"の投稿一覧
+      <% end %>
+      <%= render 'public/posts/index', posts: @posts %>
+      <%= paginate @posts %>
     </div>
   </div>
 </div>

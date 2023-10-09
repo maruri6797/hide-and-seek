@@ -1,5 +1,5 @@
 <% posts.each do |pos| %>
-  <div class="card">
+  <div class="card my-3">
     <div class="card-body">
       <%= link_to user_path(pos.user) do %>
         <%= image_tag pos.user.get_profile_image(130, 130), class: 'rounded-circle' %>

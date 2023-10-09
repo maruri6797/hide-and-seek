@@ -9,9 +9,13 @@
       </div>
       <div class="row m-3">
         <p class="h3"><%= @post.title %></p>
-        <% if @post.user.id == current_user.id %>
-          <%= link_to "編集する", edit_post_path(@post), class: 'btn btn-primary ml-auto' %>
-        <% end %>
+        <p class="three-point h3 ml-auto">⋮</p>
+        <div class="three-point-content is-active">
+          <% if @post.user.id == current_user.id %>
+            <%= link_to "編集する", edit_post_path(@post), class: 'btn btn-default' %><br>
+            <%= link_to "削除する", delete_post_path(@post), class: 'btn btn-default', data: {confirm: "削除してもよろしいですか？"} %>
+          <% end %>
+        </div>
       </div>
       <%= simple_format(h(@post.text)) %>
       <% if @post.images.attached? %>
@@ -50,3 +54,10 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).on('click', '.three-point', function(event) {
+    $('.three-point-content').toggleClass('is-active');
+    event.preventDefault();
+  });
+</script>

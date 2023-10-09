@@ -1,42 +1,57 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-10 col-md-8">
-      <h3>投稿詳細</h3>
-      <%= link_to "削除する", admin_post_path(@post), method: :delete, class: 'btn btn-danger', data: {confirm: "削除してもよろしいですか？" } 
-      <div class="group">
-        <p>ユーザー名</p>
+      <div class="d-flex">
+        <h3>投稿詳細</h3>
+        <%= link_to "削除する", admin_post_path(@post), method: :delete, class: 'btn btn-danger ml-auto', data: {confirm: "削除してもよろしいですか？" } %>
+      </div>
+      <% if @post.images.attached? %>
+        <% @post.images.each do |image| %>
+          <%= image_tag image.variant(resize: '375x667') %>
+        <% end %>
+      <% end %>
+      <div class="row">
+        <p class="col-4">ユーザー名</p>
         <%= link_to @post.user.name, admin_user_path(@post.user) %>
       </div>
-      <div class="group">
-        <p>タイトル</p>
+      <div class="row">
+        <p class="col-4">タイトル</p>
         <%= @post.title %>
       </div>
-      <div class="group">
-        <p>テキスト</p>
+      <div class="row">
+        <p class="col-4">ステータス</p>
+        <p class="text-danger"><%= @post.status_i18n %></p>
+      </div>
+      <div class="row">
+        <p class="col-4">テキスト</p>
         <%= simple_format(h(@post.text)) %>
       </div>
-      <div class="group">
-        <% if @post.images.attached? %>
-          <% @post.images.each do |image| %>
-            <%= image_tag image.variant(resize: '375x667') %>
-          <% end %>
+      <div class="row">
+        <p class="col-4">タグ</p>
+        <% @post.tags.each do |tag| %>
+          <%= tag.name %>
         <% end %>
       </div>
-      <div class="group">
-        <p>投稿日時</p>
-        <%= l @post.created_at %><br>
-        <p>閲覧数</p>
-        <%= @post.view_count.count %>回<br>
-        <p>いいね数</p>
-        ♡<%= @post.favorites.count %>
+      <div class="row">
+        <p class="col-4">投稿日時</p>
+        <%= l @post.created_at %>
+      </div>
+      <div class="row">
+        <p class="col-4">閲覧数</p>
+        <%= @post.view_counts.count %>回
+      </div>
+      <div class="row">
+        <p class="col-4">いいね数</p>
+        <i class="fa-regular fa-heart"></i><%= @post.favorites.count %>
       </div>
       <% if @post_comments.present? %>
         <% @post_comments.each do |post_comment| %>
+          <%= post_comment.user.name %>
           <%= post_comment.comment %>
           <%= link_to "", admin_post_post_comment_path(@post, post_comment), method: :delete, class: 'fa-solid fa-trash-can' %>
         <% end %>
       <% else %>
-        <p>コメントはありません</p>
+        <p class="col-4">コメントはありません</p>
       <% end %>
     </div>
   </div>

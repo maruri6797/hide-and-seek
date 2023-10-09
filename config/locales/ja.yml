@@ -1,5 +1,5 @@
 ja:
-  enum:
+  enums:
     post:
       status:
         active: "公開中"
@@ -32,4 +32,4 @@ ja:
       messages:
         invalid: "%{attribute}が正しくありません。"
         blank: "必須項目です。"
-        too_short: "%{attribute}は%{count}文字以上で入力して下さい。"
+        too_short: "は%{count}文字以上で入力して下さい。"

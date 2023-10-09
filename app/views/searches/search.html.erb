@@ -1,2 +1,21 @@
-<h1>Searches#search</h1>
-<p>Find me in app/views/searches/search.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 col-md-8">
+      <%= form_with url: result_path, method: :get do |f| %>
+        <%= f.text_field :keyword, placeholder: "検索" %>
+        <%= button_tag type: "submit", class: 'btn btn-default' do %>
+          <i class="fa-solid fa-magnifying-glass"></i>
+        <% end %>
+      <% end %>
+      <h3 class="my-5">タグ</h3>
+      <ul class="d-flex flex-row flex-wrap list-group border-top">
+        <% @tags.each do |tag| %>
+          <li class="list-group-item col-3">
+            <i class="fa-solid fa-tag"></i>
+            <%= link_to tag.name, result_path(tag_id: tag.id) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

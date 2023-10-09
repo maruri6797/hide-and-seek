@@ -28,7 +28,9 @@
       <%= form_with model: @chat, url: chats_path, method: :post |f| %>
         <%= f.text_area :message %>
         <%= f.hidden_field :room_id %>
-        <%= f.submit "", class: 'fa-regular fa-paper-plane' %>
+        <%= button_tag type: "submit", class: 'btn btn-default' do %>
+          <i class="fa-regular fa-paper-plane"></i>
+        <% end %>
       <% end %>
     </div>
   </div>

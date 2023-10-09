@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!
+  before_action :delete_post, only: [:show, :edit, :index]
   before_action :ensure_user, only: [:edit, :update]
 
   def new
@@ -18,11 +19,10 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+    @post = @posts.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
     # 画像の削除
     if params[:post][:image_ids]
       params[:post][:image_ids].each do |image_id|
@@ -31,6 +31,7 @@ class Public::PostsController < ApplicationController
       end
     end
     if @post.update(post_params)
+      @post.update(status: 1)
       redirect_to posts_path, notice: "投稿を編集しました。"
     else
       flash.now[:alert] = "編集に失敗しました。"
@@ -39,32 +40,39 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts.order(created_at: :desc).page(params[:page])
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = @posts.find(params[:id])
     unless ViewCount.find_by(user_id: current_user.id, post_id: @post.id)
       current_user.view_count.create(post_id: @post.id)
     end
     @post_comment = PostComment.new
   end
 
-  def destroy
-    Post.find(params[:id]).destroy
+  def delete
+    pos = Post.find(params[:id])
+    pos.update(status: 2)
     redirect_to posts_path, notice: "投稿を削除しました。"
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:title, :text, images: [], tag_ids: [])
+    params.require(:post).permit(:title, :text, :status, images: [], tag_ids: [])
   end
 
   def ensure_user
     @post = Post.find(params[:id])
     if @post.user != current_user
       redirect_to posts_path, notice: "このユーザーでは画面遷移できません。"
+    elsif @post.status == "edited"
+      redirect_to post_path(@post), notice: "編集済みのため画面遷移できません。"
     end
+  end
+
+  def delete_post
+    @posts = Post.where.not(status: 2)
   end
 end

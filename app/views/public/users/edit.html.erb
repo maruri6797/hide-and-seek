@@ -1,21 +1,23 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-10 col-md-8">
-      <h3>編集</h3>
-      <%= link_to "退会", check_user_path(@user), class: 'btn btn-danger' %>
+      <div class="d-flex">
+        <h3>編集</h3>
+        <%= link_to "退会", check_user_path(@user), class: 'btn btn-danger ml-auto' %>
+      </div>
       <%= render 'layouts/errors', obj: @user %>
       <%= form_with model: @user, url: user_path, method: :patch do |f| %>
-        <div class="form-group row">
-          <%= f.label :profile_image, "プロフィール画像" %>
+        <div class="form-group">
+          <%= f.label :profile_image, "プロフィール画像", class: 'col-4' %>
           <%= f.file_field :profile_image, accept: 'image/*' %>
         </div>
-        <div class="form-group row">
-          <%= f.label :name, "ユーザー名" %>
+        <div class="form-group">
+          <%= f.label :name, "ユーザー名", class: 'col-4' %>
           <%= f.text_field :name %>
         </div>
-        <div class="form-group row">
+        <div class="form-group">
           <%= f.label :mbti, "MBTI", class: 'col-4' %>
-          <div class="col-5">
+          <div>
             <%= f.collection_radio_buttons(:mbti, User.mbtis, :first, :first) do |b| %>
               <%= b.radio_button + "\s" + b.label %>
             <% end %>
@@ -23,9 +25,9 @@
         </div>
         <div class="form-group">
           <%= f.label :introduction, "自己紹介" %>
-          <%= f.text_area :introduction, class: 'form-control',size: "20x10" %>
+          <%= f.text_area :introduction, class: 'form-control' %>
         </div>
-        <div class="actions">
+        <div class="actions text-center">
           <%= f.submit "保存", class: 'btn btn-success' %>
         </div>
       <% end %>

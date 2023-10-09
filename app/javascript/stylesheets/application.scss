@@ -56,3 +56,16 @@
   border-right: 15px solid #e0edff;
 }
 
+.three-point{
+  position: relative;
+}
+
+.three-point-content{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.is-active{
+  display: none;
+}

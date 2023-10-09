@@ -38,7 +38,10 @@ Rails.application.routes.draw do
       end
       resource :relationships, only: [:create, :destroy]
     end
-    resources :posts do
+    resources :posts, except: [:destroy] do
+      member do
+        patch 'delete'
+      end
       resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
