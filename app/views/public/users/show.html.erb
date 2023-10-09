@@ -9,12 +9,12 @@
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn btn-secondary col-3' %>
         <% else %>
           <% if current_user.following?(@user) %>
-            <%= link_to "フォロー解除", user_relationship_path(@user), method: :delete, class: 'btn btn-danger col-3' %>
+            <%= link_to "フォロー解除", user_relationships_path(@user), method: :delete, class: 'btn btn-danger col-3' %>
           <% else %>
             <%= link_to "フォローする", user_relationships_path(@user), method: :post, class: 'btn btn-primary col-3' %>
           <% end %>
           <% if current_user.following?(@user) && @user.following?(current_user) %>
-            <%= link_to "", chat_path(@user), class: 'fa-solid fa-envelope' %>
+            <%= link_to "", chat_path(@user), class: 'fa-solid fa-envelope h2' %>
           <% end %>
         <% end %>
       </div>

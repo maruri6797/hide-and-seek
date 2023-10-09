@@ -16,15 +16,13 @@ class Public::ChatsController < ApplicationController
       UserRoom.create(user_id: @user.id, room_id: @room.id)
     end
     @chats = @room.chats
-    @chat = Chat.new(room_id: @room_id)
+    @chat = Chat.new(room_id: @room.id)
   end
 
   def create
     @chat = current_user.chats.new(chat_params)
     @chat.save
-    room = @chat.room
-    room.create_notification_message(current_user.id, @chat.id, room.user.id)
-    redirect_to requiest.referer
+    redirect_to request.referer
   end
 
   private

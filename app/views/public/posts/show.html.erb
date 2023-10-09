@@ -10,10 +10,10 @@
       <div class="row m-3">
         <p class="h3"><%= @post.title %></p>
         <p class="three-point h3 ml-auto">⋮</p>
-        <div class="three-point-content is-active">
+        <div class="border three-point-content is-active">
           <% if @post.user.id == current_user.id %>
-            <%= link_to "編集する", edit_post_path(@post), class: 'btn btn-default' %><br>
-            <%= link_to "削除する", delete_post_path(@post), class: 'btn btn-default', data: {confirm: "削除してもよろしいですか？"} %>
+            <%= link_to "編集する", edit_post_path(@post), class: 'btn btn-default border-bottom' %><br>
+            <%= link_to "削除する", delete_post_path(@post), method: :patch, class: 'btn btn-default', data: {confirm: "削除してもよろしいですか？"} %>
           <% end %>
         </div>
       </div>
@@ -29,7 +29,12 @@
           <%= link_to tag.name, result_path(tag_id: tag.id) %>
         <% end %>
       </div>
-      <p class="text-right"><%= l @post.created_at %></p>
+      <p class="text-right">
+        <%= l @post.created_at %>
+        <% if @post.status == "edited" %>
+          <%= @post.status_i18n %>
+        <% end %>
+      </p>
       <div class="d-flex justify-content-around">
         <i class="fa-solid fa-eye"><%= @post.view_counts.count %></i>
         <div class="favorite<%= @post.id %>">
@@ -54,6 +59,7 @@
     </div>
   </div>
 </div>
+
 
 <script>
   $(document).on('click', '.three-point', function(event) {

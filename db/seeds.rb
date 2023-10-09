@@ -192,3 +192,23 @@ post3 = Post.new(
 post3.images.attach(io: File.open(Rails.root.join('app/assets/images/ENTJ.jpg')), filename: 'ENTJ.jpg')
 post3.save!
 
+post4 = Post.new(
+  user_id: 4,
+  title: "討論者",
+  text: "討論者は頭の回転が速い上に大胆な気質の持ち主で、迷わず現状に異議を唱えるタイプの人たちです。
+  それどころか相手が誰であっても、またどんな内容であっても、反対意見を述べることに躊躇しません。
+  議論することが何よりも大好きで、賛否の分かれるトピックに会話が進めば進むほど、面白いと感じるタイプです。",
+  tag_ids: 4,
+  status: 0
+)
+post4.save!
+
+post5 = Post.new(
+  user_id: 5,
+  title: "提唱者",
+  text: "物静かで神秘的だが、人々を非常に勇気づける飽くなき理想主義者",
+  tag_ids: [5, 19],
+  status: 0
+)
+post5.save!
+

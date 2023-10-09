@@ -2,13 +2,9 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_user, only: [:edit, :update, :check]
 
-  def index
-    @users = current_user.user_rooms
-  end
-
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.where.not(status: 2)
   end
 
   def edit
@@ -28,7 +24,7 @@ class Public::UsersController < ApplicationController
   def favorites
     user = User.find(params[:id])
     favorites = Favorite.where(user_id: user.id).pluck(:post_id)
-    @posts = Post.find(favorites)
+    @posts = Post.find(favorites).where.not(status: 2)
   end
 
   def check

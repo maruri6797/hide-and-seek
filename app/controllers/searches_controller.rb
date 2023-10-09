@@ -4,8 +4,8 @@ class SearchesController < ApplicationController
   end
 
   def result
-    @tag = Tag.find(params[:tag_id])
     @keyword = params[:keyword]
+    @tag = Tag.find(params[:tag_id])
     if @tag.present?
       @posts = @tag.posts.page(params[:page])
     else

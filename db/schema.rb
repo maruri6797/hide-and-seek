@@ -139,10 +139,10 @@ ActiveRecord::Schema.define(version: 2023_10_07_063650) do
 
   create_table "user_rooms", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "room"
-    t.string "references"
+    t.integer "room_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_user_rooms_on_room_id"
     t.index ["user_id"], name: "index_user_rooms_on_user_id"
   end
 
@@ -183,6 +183,7 @@ ActiveRecord::Schema.define(version: 2023_10_07_063650) do
   add_foreign_key "post_tags", "posts"
   add_foreign_key "post_tags", "tags"
   add_foreign_key "posts", "users"
+  add_foreign_key "user_rooms", "rooms"
   add_foreign_key "user_rooms", "users"
   add_foreign_key "view_counts", "posts"
   add_foreign_key "view_counts", "users"

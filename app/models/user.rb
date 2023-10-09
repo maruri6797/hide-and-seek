@@ -10,8 +10,8 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
-  has_many :rooms, through: :user_room, dependent: :destroy
   has_many :user_rooms, dependent: :destroy
+  has_many :rooms, through: :user_rooms, dependent: :destroy
   has_many :chats, dependent: :destroy
   has_many :view_count, dependent: :destroy
   # フォロー機能
@@ -116,7 +116,6 @@ class User < ApplicationRecord
       room_id: room_id,
       chat_id: chat_id,
       visited_id: id,
-      visitor_id: current_user.id,
       action: 'dm'
     )
     notification.save if notification.valid?

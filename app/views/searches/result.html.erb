@@ -7,7 +7,9 @@
         "<%= @keyword %>"の投稿一覧
       <% end %>
       <%= render 'public/posts/index', posts: @posts %>
-      <%= paginate @posts %>
+      <% if @posts.count > 10 %>
+        <%= paginate @posts %>
+      <% end %>
     </div>
   </div>
 </div>

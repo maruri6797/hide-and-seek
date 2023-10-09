@@ -45,11 +45,16 @@
         <i class="fa-regular fa-heart"></i><%= @post.favorites.count %>
       </div>
       <% if @post_comments.present? %>
+      <h4>コメント<%= @post_comments.count %>件</h4>
+      <table>
         <% @post_comments.each do |post_comment| %>
-          <%= post_comment.user.name %>
-          <%= post_comment.comment %>
-          <%= link_to "", admin_post_post_comment_path(@post, post_comment), method: :delete, class: 'fa-solid fa-trash-can' %>
+          <tr>
+            <td class="col-3"><%= post_comment.user.name %></td>
+            <td class="col-8"><%= post_comment.comment %></td>
+            <td class="col"><%= link_to "", admin_post_post_comment_path(@post, post_comment), method: :delete, class: 'fa-solid fa-trash-can', data: {confirm: "削除してもよろしいですか？" } %></td>
+          </tr>
         <% end %>
+      </table>
       <% else %>
         <p class="col-4">コメントはありません</p>
       <% end %>

@@ -69,6 +69,8 @@ class Public::PostsController < ApplicationController
       redirect_to posts_path, notice: "このユーザーでは画面遷移できません。"
     elsif @post.status == "edited"
       redirect_to post_path(@post), notice: "編集済みのため画面遷移できません。"
+    elsif @post.status == "deleted"
+      redirect_to posts_path, notice: "削除済みです。"
     end
   end
 

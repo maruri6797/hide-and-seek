@@ -28,21 +28,20 @@ class Post < ApplicationRecord
         action: 'like'
       )
       if notification.visitor_id == notification.visited_id
-        notification.checked = true
+        notification.is_checked = true
       end
       notification.save if notification.valid?
     end
   end
   # コメント通知
-  def create_notification_comment(current_user, comment_id, visited_id)
+  def create_notification_comment(current_user)
     notification = current_user.active_notifications.new(
-      visited_id: visited_id,
+      visited_id: user_id,
       post_id: id,
-      comment_id: comment_id,
       action: 'comment'
     )
     if notification.visitor_id == notification.visited_id
-      notification.checked = true
+      notification.is_checked = true
     end
     notification.save if notification.valid?
   end

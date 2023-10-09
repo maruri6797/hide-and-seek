@@ -1,15 +1,17 @@
 <% users.each do |user| %>
-  <%= link_to user_path(user) do %>
-    <%= image_tag user.get_profile_image(100, 100), class: 'rounded-circle' %>
-  <% end %>
-  <%= link_to user.name, user_path(user), class: 'col-3' %>
-  <%= user.mbti %>
-  <%= truncate(user.introduction) %>
-  <% if current_user != user %>
-    <% if current_user.following?(user) %>
-      <%= link_to "フォロー解除", user_relationships_path(user), method: :delete, class: 'btn btn-danger' %>
-    <% else %>
-      <%= link_to "フォローする", user_relationships_path(user), method: :post, class: 'btn btn-primary' %>
+  <div>
+    <%= link_to user_path(user) do %>
+      <%= image_tag user.get_profile_image(100, 100), class: 'rounded-circle' %>
     <% end %>
-  <% end %>
+    <%= link_to user.name, user_path(user), class: 'col-3' %>
+    <%= user.mbti %>
+    <%= truncate(user.introduction) %>
+    <% if current_user != user %>
+      <% if current_user.following?(user) %>
+        <%= link_to "フォロー解除", user_relationships_path(user), method: :delete, class: 'btn btn-danger' %>
+      <% else %>
+        <%= link_to "フォローする", user_relationships_path(user), method: :post, class: 'btn btn-primary' %>
+      <% end %>
+    <% end %>
+  </div>
 <% end %>
