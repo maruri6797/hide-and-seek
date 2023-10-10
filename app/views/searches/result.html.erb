@@ -6,10 +6,8 @@
       <% else %>
         "<%= @keyword %>"の投稿一覧
       <% end %>
+      (<%= @posts.count %>件)
       <%= render 'public/posts/index', posts: @posts %>
-      <% if @posts.count > 10 %>
-        <%= paginate @posts %>
-      <% end %>
     </div>
   </div>
 </div>

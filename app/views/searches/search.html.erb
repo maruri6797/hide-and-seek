@@ -1,18 +1,26 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-10 col-md-8">
+    <div class="col-lg-8 col-md-9">
       <%= form_with url: result_path, method: :get do |f| %>
         <%= f.text_field :keyword, placeholder: "検索" %>
         <%= button_tag type: "submit", class: 'btn btn-default' do %>
           <i class="fa-solid fa-magnifying-glass"></i>
         <% end %>
       <% end %>
-      <h3 class="my-5">タグ</h3>
-      <ul class="d-flex flex-row flex-wrap list-group border-top">
+      <%= render 'public/posts/index', posts: @posts %>
+      <% if @posts.count > 10 %>
+        <%= paginate @posts %>
+      <% end %>
+    </div>
+    <div class="col-lg-4 col-md-3">
+      <h4>タグ</h4>
+      <ul class="d-flex flex-row flex-wrap list-group">
         <% @tags.each do |tag| %>
-          <li class="list-group-item col-3">
+          <li class="list-group-item col-8">
             <i class="fa-solid fa-tag"></i>
             <%= link_to tag.name, result_path(tag_id: tag.id) %>
+            <% @tags_posts = tag.posts %>
+            (<%= @tags_posts.count { |tags_posts| tags_posts.status != "deleted" } %>)
           </li>
         <% end %>
       </ul>

@@ -17,7 +17,8 @@
             </div>
             <p class="text-right"><small><%= l chat.created_at, format: :short %></small></p>
           <% else %>
-            <div class="row justify-content-start">
+            <div class="row">
+              <%= image_tag @user.get_profile_image(50, 50), class: 'rounded-circle' %>
               <div class="ballon-left">
                 <%= chat.message %>
               </div>

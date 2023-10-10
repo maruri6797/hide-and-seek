@@ -7,4 +7,8 @@ class Notification < ApplicationRecord
 
   belongs_to :visitor, class_name: "User", foreign_key: "visitor_id"
   belongs_to :visited, class_name: "User", foreign_key: "visited_id"
+
+  def time_ago_in_words(from_time)
+    distance_of_time_in_words(from_time, Time.now)
+  end
 end

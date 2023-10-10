@@ -1,6 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :delete_post, only: [:show, :edit, :index]
+  before_action :delete_post, only: [:show, :edit]
   before_action :ensure_user, only: [:edit, :update]
 
   def new
@@ -40,7 +40,8 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts.order(created_at: :desc).page(params[:page])
+    @posts = Post.where.not(status: 2).page(params[:page]).order(created_at: :desc)
+    @follow_posts = @posts.where(user_id: [*current_user.follower_ids])
   end
 
   def show

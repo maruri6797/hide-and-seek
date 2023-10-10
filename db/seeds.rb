@@ -153,7 +153,7 @@ User.create!(
 
 # ＝＝＝＝＝＝＝＝＝＝＝初期Tagの追加＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
-['INTJ', 'INTP', 'ENTJ', 'ENTP', 'INFJ', 'INFP', 'ENFP', 'ISTJ', 'ISFJ', 'ESTJ', 'ESFJ', 'ISTP', 'ISFP', 'ESTP', 'ESFP', 'あるある', '恋愛', '繋がりたい', '心理機能', 'ソシオニクス', '有名人', '偏見', 'その他']
+['INTJ', 'INTP', 'ENTJ', 'ENTP', 'INFJ', 'INFP', 'ENFJ', 'ENFP', 'ISTJ', 'ISFJ', 'ESTJ', 'ESFJ', 'ISTP', 'ISFP', 'ESTP', 'ESFP', 'あるある', '恋愛', '繋がりたい', '心理機能', 'ソシオニクス', '有名人', '偏見', 'その他']
 .each do |name|
   Tag.create!(
     { name: name }
@@ -167,7 +167,7 @@ post1 = Post.new(
   title: "建築家",
   text: "想像力が豊かで、戦略的な思考の持ち主。あらゆる物事に対して計画を立てる。",
   tag_ids: [1, 17],
-  status: 0
+  status: 1
 )
 post1.images.attach(io: File.open(Rails.root.join('app/assets/images/INTJ.jpg')), filename: 'INTJ.jpg')
 post1.save!
@@ -177,7 +177,6 @@ post2 = Post.new(
   title: "論理学者",
   text: "論理学者は持ち前の“ユニークな視野”と“活発な知力”に誇りを持っていて、宇宙のあらゆる謎について色々と考えざるにはいられない人たちです。歴史上、影響力のある多くの哲学者や科学者たちの中に論理学者がいるのも納得でしょう。この性格タイプの人たちはかなりまれなのですが、独創性と創作力を備えていることもあり、周りから注目を浴びるのも恐れません。",
   tag_ids: [2, 20, 22],
-  status: 1
 )
 post2.images.attach(io: File.open(Rails.root.join('app/assets/images/INTP.jpg')), filename: 'INTP.jpg')
 post2.save!
@@ -199,7 +198,6 @@ post4 = Post.new(
   それどころか相手が誰であっても、またどんな内容であっても、反対意見を述べることに躊躇しません。
   議論することが何よりも大好きで、賛否の分かれるトピックに会話が進めば進むほど、面白いと感じるタイプです。",
   tag_ids: 4,
-  status: 0
 )
 post4.save!
 
@@ -208,7 +206,6 @@ post5 = Post.new(
   title: "提唱者",
   text: "物静かで神秘的だが、人々を非常に勇気づける飽くなき理想主義者",
   tag_ids: [5, 19],
-  status: 0
 )
 post5.save!
 

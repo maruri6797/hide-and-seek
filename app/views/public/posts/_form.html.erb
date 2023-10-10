@@ -8,7 +8,7 @@
     <%= f.text_area :text %>
   </div>
   <div class="form-group">
-    <%= f.label :images, "画像(任意)" %><br>
+    <%= f.label :images, "※任意　画像(複数選択可)" %><br>
     <%= f.file_field :images, multiple: true %><br>
     <!--編集時の画像削除-->
     <% if put.images.present? %>
@@ -21,9 +21,12 @@
   </div>
   <div class="form-group">
     <%= f.label :tag_ids, "タグ" %><br>
-    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name do |t| %>
+    <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |t| %>
       <%= t.check_box + t.label %>
     <% end %>
+  </div>
+  <div class="form-group">
+    <%= f.hidden_field :status %>
   </div>
   <div class="action">
     <% if put.new_record? %>

@@ -45,12 +45,16 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
+    resources :rooms, only: [:index] do
+      collection do
+         get 'lists'
+      end
+    end
     resources :chats, only: [:show, :create]
     resources :notifications, only: [:index]
     devise_scope :user do
       post "users/guest_sign_in", to: "sessions#guest_sign_in"
     end
-    resources :rooms, only: [:index]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

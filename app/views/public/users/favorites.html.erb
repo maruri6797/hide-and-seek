@@ -4,8 +4,11 @@
       <h3>いいね</h3>
       <% if @posts.present? %>
         <%= render 'public/posts/index', posts: @posts %>
+        <% if @posts.count > 10 %>
+          <%= paginate @posts %>
+        <% end %>
       <% else %>
-        <p>いいねした投稿は</p>
+        <p>いいねした投稿はありません</p>
       <% end %>
     </div>
   </div>

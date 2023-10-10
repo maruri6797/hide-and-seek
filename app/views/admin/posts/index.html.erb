@@ -3,6 +3,9 @@
     <div class="col-lg-10 col-md-8">
       <h3>投稿一覧</h3>
       <%= render 'admin/posts/index', posts: @posts %>
+      <% if @posts.count > 10 %>
+        <%= paginate @posts %>
+      <% end %>
     </div>
   </div>
 </div>

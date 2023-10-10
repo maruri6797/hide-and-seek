@@ -1,36 +1,38 @@
 <% posts.each do |pos| %>
-  <div class="card my-3">
-    <div class="card-body">
-      <%= link_to user_path(pos.user) do %>
-        <%= image_tag pos.user.get_profile_image(130, 130), class: 'rounded-circle' %>
-      <% end %>
-      <%= link_to pos.user.name, user_path(pos.user), class: 'h4' %>
-      <h3 class="card-title m-3"><%= link_to pos.title, post_path(pos) %></h3>
-      <p class="card-text"><%= truncate(pos.text) %></p>
-      <p class="card-text text-right"><small>
-        <%= l pos.created_at %>
-        <% if pos.status == "edited" %>
-          <%= pos.status_i18n %>
+  <% if pos.status != "deleted" %>
+    <div class="card my-3">
+      <div class="card-body">
+        <%= link_to user_path(pos.user) do %>
+          <%= image_tag pos.user.get_profile_image(130, 130), class: 'rounded-circle' %>
         <% end %>
-      </small></p>
-    </div>
-    <% if pos.images.attached? %>
-      <%= image_tag pos.images[0], size: "600x300", class: 'card-img-bottom' %>
-    <% end %>
-    <div class="tag">
-      <i class="fa-solid fa-tag"></i>
-      <% pos.tags.each do |tag| %>
-        <%= link_to tag.name, result_path(tag_id: tag.id) %>
+        <%= link_to pos.user.name, user_path(pos.user), class: 'h4' %>
+        <h3 class="card-title m-3"><%= link_to pos.title, post_path(pos) %></h3>
+        <p class="card-text"><%= truncate(pos.text) %></p>
+        <p class="card-text text-right"><small>
+          <%= l pos.created_at %>
+          <% if pos.status == "edited" %>
+            <%= pos.status_i18n %>
+          <% end %>
+        </small></p>
+      </div>
+      <% if pos.images.attached? %>
+        <%= image_tag pos.images[0], size: "600x300", class: 'card-img-bottom' %>
       <% end %>
-    </div>
-    <div class="d-flex justify-content-around">
-      <i class="fa-solid fa-eye"><%= pos.view_counts.count %></i>
-      <div class="favorite<%= pos.id %>">
-        <%= render 'public/favorites/favorite', put: pos %>
+      <div class="tag">
+        <i class="fa-solid fa-tag"></i>
+        <% pos.tags.each do |tag| %>
+          <%= link_to tag.name, result_path(tag_id: tag.id) %>
+        <% end %>
       </div>
-      <div class="comment_count">
-        <%= render 'public/post_comments/comment_count', pos: pos %>
+      <div class="d-flex justify-content-around">
+        <i class="fa-solid fa-eye"><%= pos.view_counts.count %></i>
+        <div class="favorite<%= pos.id %>">
+          <%= render 'public/favorites/favorite', put: pos %>
+        </div>
+        <div class="comment_count">
+          <%= render 'public/post_comments/comment_count', pos: pos %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 <% end %>

@@ -7,7 +7,7 @@ class Admin::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post_comments = @post.post_comments
   end
-  
+
   def destroy
     @post = Post.find(params[:id])
     @post.destroy

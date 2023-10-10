@@ -110,16 +110,6 @@ class User < ApplicationRecord
     end
   end
 
-  # DM通知
-  def create_notification_message(current_user, chat_id, visited_id)
-    notification = current_user.active_notifications.new(
-      room_id: room_id,
-      chat_id: chat_id,
-      visited_id: id,
-      action: 'dm'
-    )
-    notification.save if notification.valid?
-  end
 
   GUEST_USER_EMAIL = "guest@example.com"
   GUEST_USER_MBTI = "unknown"
