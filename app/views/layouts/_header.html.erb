@@ -6,22 +6,30 @@
     <%= link_to "About", about_path, class: 'col-md-4 ml-auto' %>
   </div>
 </div>
-  <div class="sticky-top d-flex text-center">
-    <% if admin_signed_in? %><!--管理者用-->
-      <%= link_to "ユーザー一覧", admin_root_path, class: 'flex-fill' %>
-      <%= link_to "投稿一覧", admin_posts_path, class: 'flex-fill' %>
-      <%= link_to "タグ一覧", admin_tags_path, class: 'flex-fill' %>
-      <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'flex-fill' %>
-    <% elsif user_signed_in? %><!--ユーザー用-->
-      <%= link_to '', posts_path, class: 'fa-solid fa-house flex-fill' %>
-      <%= link_to '', search_path, class: 'fa-solid fa-magnifying-glass flex-fill' %>
-      <%= link_to '', user_path(current_user), class: 'fa-solid fa-user flex-fill' %>
-      <%= link_to '', notifications_path, class: 'fa-solid fa-bell flex-fill' %>
-      <%= link_to '', rooms_path, class: 'fa-solid fa-envelope flex-fill' %>
-    <% else %>
-      <%= link_to '', posts_path, class: 'fa-solid fa-house flex-fill' %>
-      <%= link_to '', search_path, class: 'fa-solid fa-magnifying-glass flex-fill' %>
-      <%= link_to '', new_user_registration_path, class: 'fa-solid fa-user-plus flex-fill' %>
-      <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'fa-solid fa-house-user flex-fill' %>
+<div class="sticky-top d-flex text-center">
+  <% if admin_signed_in? %><!--管理者用-->
+    <%= link_to "ユーザー一覧", admin_root_path, class: 'flex-fill' %>
+    <%= link_to "投稿一覧", admin_posts_path, class: 'flex-fill' %>
+    <%= link_to "タグ一覧", admin_tags_path, class: 'flex-fill' %>
+    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'flex-fill' %>
+  <% elsif user_signed_in? %><!--ユーザー用-->
+    <%= link_to '', posts_path, class: 'fa-solid fa-house flex-fill' %>
+    <%= link_to '', search_path, class: 'fa-solid fa-magnifying-glass flex-fill' %>
+    <%= link_to '', user_path(current_user), class: 'fa-solid fa-user flex-fill' %>
+    <%= link_to notifications_path, class: 'flex-fill' do %>
+      <% if unchecked_notifications.any? %>
+        <i class="fa-solid fa-bell position-relative">
+          <span class="position-absolute top-0 end-100 translate-middle badge border border-light rounded-circle bg-danger p-1"><span class="visually-hidden"></span></span>
+        </i>
+      <% else %>
+        <i class="fa-solid fa-bell"></i>
+      <% end %>
     <% end %>
-  </div>
+    <%= link_to '', rooms_path, class: 'fa-solid fa-envelope flex-fill' %>
+  <% else %>
+    <%= link_to '', posts_path, class: 'fa-solid fa-house flex-fill' %>
+    <%= link_to '', search_path, class: 'fa-solid fa-magnifying-glass flex-fill' %>
+    <%= link_to '', new_user_registration_path, class: 'fa-solid fa-user-plus flex-fill' %>
+    <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'fa-solid fa-house-user flex-fill' %>
+  <% end %>
+</div>

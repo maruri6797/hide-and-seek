@@ -171,6 +171,9 @@ post1 = Post.new(
 )
 post1.images.attach(io: File.open(Rails.root.join('app/assets/images/INTJ.jpg')), filename: 'INTJ.jpg')
 post1.save!
+post1.images.attach(io: File.open(Rails.root.join('app/assets/images/analyst.png')), filename: 'analyst.png')
+post1.save!
+
 
 post2 = Post.new(
   user_id: 2,
