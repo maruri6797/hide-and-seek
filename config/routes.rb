@@ -33,6 +33,7 @@ Rails.application.routes.draw do
         get 'followings'
         get 'followers'
         get 'favorites'
+        get 'stars'
         get 'check'
         patch 'leave'
       end
@@ -43,6 +44,7 @@ Rails.application.routes.draw do
         patch 'delete'
       end
       resource :favorites, only: [:create, :destroy]
+      resource :stars, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
     resources :rooms, only: [:index] do
@@ -54,6 +56,13 @@ Rails.application.routes.draw do
     resources :notifications, only: [:index]
     devise_scope :user do
       post "users/guest_sign_in", to: "sessions#guest_sign_in"
+    end
+    resources :contacts, only: [:new, :create] do
+      collection do
+        post 'confirm'
+        post 'back'
+        get 'done'
+      end
     end
   end
 

@@ -29,6 +29,9 @@
         <div class="favorite<%= pos.id %>">
           <%= render 'public/favorites/favorite', put: pos %>
         </div>
+        <div class="star<%= pos.id %>">
+          <%= render 'public/stars/star', put: pos %>
+        </div>
         <div class="comment_count">
           <%= render 'public/post_comments/comment_count', pos: pos %>
         </div>

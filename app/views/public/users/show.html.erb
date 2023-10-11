@@ -26,7 +26,10 @@
       <div class="d-flex">
         <div class="mr-3"><%= link_to @user.followers.count, followings_user_path(@user) %>フォロー中</div>
         <div class="mr-3"><%= link_to @user.followeds.count, followers_user_path(@user) %>フォロワー</div>
-        <%= link_to @favorite_posts.count { |favorite_posts| favorite_posts.status != "deleted" }, favorites_user_path(@user) %>いいね
+        <div class="mr-3"><%= link_to @favorite_posts.count { |favorite_posts| favorite_posts.status != "deleted" }, favorites_user_path(@user) %>いいね</div>
+        <% if @user == current_user %>
+          <%= link_to @star_posts.count { |star_posts| star_posts.status != "deleted" }, stars_user_path(@user) %>お気に入り
+        <% end %>
       </div>
 
       <div class="posts m-5">

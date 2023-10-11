@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :rooms, through: :user_rooms, dependent: :destroy
   has_many :chats, dependent: :destroy
   has_many :view_count, dependent: :destroy
+  has_many :stars, dependent: :destroy
   # フォロー機能
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy

@@ -1,12 +1,14 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_user, only: [:edit, :update, :check]
+  before_action :ensure_user, only: [:edit, :update, :check, :stars]
 
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.where.not(status: 2)
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
     @favorite_posts = Post.find(favorites)
+    stars = Star.where(user_id: @user.id).pluck(:post_id)
+    @star_posts = Post.find(stars)
   end
 
   def edit
@@ -27,6 +29,12 @@ class Public::UsersController < ApplicationController
     user = User.find(params[:id])
     favorites = Favorite.where(user_id: user.id).pluck(:post_id)
     @posts = Post.find(favorites)
+  end
+
+  def stars
+    user = User.find(params[:id])
+    stars = Star.where(user_id: user.id).pluck(:post_id)
+    @posts = Post.find(stars)
   end
 
   def check

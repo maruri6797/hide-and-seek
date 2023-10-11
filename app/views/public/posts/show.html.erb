@@ -40,6 +40,9 @@
         <div class="favorite<%= @post.id %>">
           <%= render 'public/favorites/favorite', put: @post %>
         </div>
+        <div class="star<%= @post.id %>">
+          <%= render 'public/stars/star', put: @post %>
+        </div>
         <div class="comment_count">
           <%= render 'public/post_comments/comment_count', pos: @post %>
         </div>

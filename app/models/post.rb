@@ -9,6 +9,7 @@ class Post < ApplicationRecord
   has_many :tags, through: :post_tags
   has_many :notifications, dependent: :destroy
   has_many :view_counts, dependent: :destroy
+  has_many :stars, dependent: :destroy
 
   enum status: { active: 0, edited: 1, deleted: 2 }
 
@@ -16,6 +17,10 @@ class Post < ApplicationRecord
 
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
+  end
+  
+  def stared_by?(user)
+    stars.exists?(user_id: user.id)
   end
 
   # いいね通知

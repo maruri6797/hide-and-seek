@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_07_063650) do
+ActiveRecord::Schema.define(version: 2023_10_11_064300) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -60,6 +60,15 @@ ActiveRecord::Schema.define(version: 2023_10_07_063650) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["room_id"], name: "index_chats_on_room_id"
     t.index ["user_id"], name: "index_chats_on_user_id"
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "subject", null: false
+    t.text "content", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -131,6 +140,15 @@ ActiveRecord::Schema.define(version: 2023_10_07_063650) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "stars", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_stars_on_post_id"
+    t.index ["user_id"], name: "index_stars_on_user_id"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -183,6 +201,8 @@ ActiveRecord::Schema.define(version: 2023_10_07_063650) do
   add_foreign_key "post_tags", "posts"
   add_foreign_key "post_tags", "tags"
   add_foreign_key "posts", "users"
+  add_foreign_key "stars", "posts"
+  add_foreign_key "stars", "users"
   add_foreign_key "user_rooms", "rooms"
   add_foreign_key "user_rooms", "users"
   add_foreign_key "view_counts", "posts"
