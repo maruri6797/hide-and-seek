@@ -1,33 +1,38 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-10 col-md-8">
-      <h3 class="text-center">入力内容確認</h3>
+      <h3>入力内容確認</h3>
       <div class="row">
-        <p class="col-4 fw-bold">お名前</p>
+        <p class="col-4">お名前</p>
         <%= @contact.name %>
       </div>
       <div class="row">
-        <p class="col-4 fw-bold">メールアドレス</p>
+        <p class="col-4">メールアドレス</p>
         <%= @contact.email %>
       </div>
       <div class="row">
-        <p class="col-4 fw-bold">件名</p>
+        <p class="col-4">件名</p>
         <%= @contact.subject %>
       </div>
-      <div>
-        <p class="fw-bold">内容</p>
+      <div class="mb-5">
+        <p>内容</p>
         <%= @contact.content %>
       </div>
       <div class="row">
-        <div class="send">
-          <%= form_with model: @contact do |f| %>
-            <%= f.hidden_field :name %>
-            <%= f.hidden_field :email %>
-            
-          <% end %>
-        </div>
-
-
+        <%= form_with model: @contact, url: back_contacts_path do |f| %>
+          <%= f.hidden_field :name %>
+          <%= f.hidden_field :email %>
+          <%= f.hidden_field :subject %>
+          <%= f.hidden_field :content %>
+          <%= f.submit '入力画面に戻る', class: 'btn btn-primary mx-5' %>
+        <% end %>
+        <%= form_with model: @contact do |f| %>
+          <%= f.hidden_field :name %>
+          <%= f.hidden_field :email %>
+          <%= f.hidden_field :subject %>
+          <%= f.hidden_field :content %>
+          <%= f.submit "送信", class: 'btn btn-success' %>
+        <% end %>
       </div>
     </div>
   </div>

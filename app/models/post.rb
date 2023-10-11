@@ -18,7 +18,7 @@ class Post < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
-  
+
   def stared_by?(user)
     stars.exists?(user_id: user.id)
   end
@@ -49,5 +49,18 @@ class Post < ApplicationRecord
       notification.is_checked = true
     end
     notification.save if notification.valid?
+  end
+
+  # adminのpost検索
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @post = Post.where("title like or text like", "#{word}")
+    elsif search == "forward_match"
+      @post = Post.where("title like or text like", "#{word}%")
+    elsif search == "backward_match"
+      @post = Post.where("title like or text like", "%#{word}")
+    elsif search == "partical_match"
+      @post = Post.where("title like or text like", "%#{word}%")
+    end
   end
 end

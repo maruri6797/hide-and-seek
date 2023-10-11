@@ -111,6 +111,18 @@ class User < ApplicationRecord
     end
   end
 
+  # adminのuser検索
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @user = User.where("name like or id like", "#{@word}")
+    elsif search == "forward_match"
+      @user = User.where("name like", "#{word}%")
+    elsif search == "backward_match"
+      @user = User.where("name like", "%#{word}")
+    elsif search == "partical_match"
+      @user = User.where("name like", "%#{word}%")
+    end
+  end
 
   GUEST_USER_EMAIL = "guest@example.com"
   GUEST_USER_MBTI = "unknown"

@@ -1,14 +1,16 @@
 <div class="container-fulid">
-  <div class="row">
+  <div class="d-flex justify-content-between">
     <%= link_to root_path do %>
-      <%= image_tag 'logo.jpg', class: 'col-md-4' %>
+      <%= image_tag 'logo.jpg', class: 'col-md-3' %>
     <% end %>
-    <%= link_to "About", about_path, class: 'col-md-4 ml-auto' %>
+    <%= link_to "About", about_path, class: 'text-decoration-none text-dark' %>
+    <%= link_to "お問い合わせ", new_contact_path, class: 'btn btn-secondary' %>
   </div>
 </div>
-<div class="sticky-top d-flex text-center">
+<div class="sticky-top d-flex text-center mt-3">
   <% if admin_signed_in? %><!--管理者用-->
     <%= link_to "ユーザー一覧", admin_root_path, class: 'flex-fill' %>
+    <%= link_to "検索", admin_search_path, class: 'flex-fill' %>
     <%= link_to "投稿一覧", admin_posts_path, class: 'flex-fill' %>
     <%= link_to "タグ一覧", admin_tags_path, class: 'flex-fill' %>
     <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'flex-fill' %>

@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :show, :destroy] do
       resources :post_comments, only: [:destroy]
     end
+    get 'search' => 'searches#search'
+    get 'result' => 'searches#result'
   end
 
   devise_for :users, controllers: {

@@ -28,6 +28,11 @@ ja:
         comment: "コメント"
       chat:
         message: "メッセージ"
+      contact:
+        name: "名前"
+        email: "メールアドレス"
+        subject: "件名"
+        content: "内容"
     errors:
       messages:
         invalid: "%{attribute}が正しくありません。"

@@ -1,20 +1,20 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-10 col-md-8">
-      <h3 class="text-center">お問い合わせ</h3>
+      <h3 class="text-center">お問い合わせ（ご意見・ご感想）</h3>
       <%= form_with model: @contact, url: confirm_contacts_path, method: :post do |f| %>
       <%= render 'layouts/errors', obj: @contact %>
         <div class="form-group">
-          <%= f.label :name, "お名前" %><br>
-          <%= f.text_field :name %>
+          <%= f.label :name, "お名前" %>
+          <%= f.text_field :name, class: 'form-control' %>
         </div>
         <div class="form-group">
-          <%= f.label :email, "メールアドレス" %><br>
-          <%= f.text_field :email %>
+          <%= f.label :email, "メールアドレス" %>
+          <%= f.text_field :email, class: 'form-control' %>
         </div>
         <div class="form-group">
-          <%= f.label :subject, "件名" %><br>
-          <%= f.text_field :subject %>
+          <%= f.label :subject, "件名" %>
+          <%= f.text_field :subject, class: 'form-control' %>
         </div>
         <div class="form-group">
           <%= f.label :content, "内容" %>
