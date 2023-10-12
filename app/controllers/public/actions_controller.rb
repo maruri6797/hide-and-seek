@@ -3,7 +3,7 @@ class Public::ActionsController < ApplicationController
 
   def create
     @post_comment = PostComment.find(params[:post_comment_id])
-    @action = current_user.actions.new(post_comment_id: @post_comment)
+    @action = current_user.actions.new
     @action.post_comment_id = @post_comment.id
     @action.save
     redirect_to request.referer

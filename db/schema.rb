@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 2023_10_12_070552) do
   create_table "actions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "post_comment_id", null: false
-    t.integer "face"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_comment_id"], name: "index_actions_on_post_comment_id"

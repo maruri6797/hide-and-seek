@@ -50,7 +50,7 @@ class Public::PostsController < ApplicationController
       current_user.view_count.create(post_id: @post.id)
     end
     @post_comment = PostComment.new
-    @actions = Action.all
+    @action = current_user.actions.new
   end
 
   def delete

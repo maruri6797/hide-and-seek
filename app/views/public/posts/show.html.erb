@@ -52,7 +52,7 @@
       </div>
       <!--コメント機能-->
       <div class="post_comments my-5">
-        <%= render 'public/post_comments/comment', pos: @post %>
+        <%= render 'public/post_comments/comment', pos: @post, action: @acction %>
       </div>
       <%= form_with model: [@post, @post_comment], method: :post, local: false do |f| %>
         <div class="form-group">

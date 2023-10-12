@@ -3,7 +3,6 @@ class CreateActions < ActiveRecord::Migration[6.1]
     create_table :actions do |t|
       t.references :user, null: false, foreign_key: true
       t.references :post_comment, null: false, foreign_key: true
-      t.integer :face, unique: true
       t.timestamps
     end
   end

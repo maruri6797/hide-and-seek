@@ -1,3 +1,13 @@
+<%= form_with model: action, url: post_post_comment_actions_path(pos, post_comment), method: :post do |f| %>
+  <%= f.button name: 'a' do %>
+    <i class="fa-regular fa-face-smile"></i>
+  <% end %>
+
+<% end %>
+
+
+
+<%= link_to "", post_post_comment_actions_path(pos, post_comment), method: :post, class: 'fa-regular fa-face-smile' %>
 <%= link_to "", post_post_comment_actions_path(pos, post_comment), method: :post, class: 'fa-regular fa-face-laugh' %>
 <%= link_to "", post_post_comment_actions_path(pos, post_comment), method: :post, class: 'fa-regular fa-face-laugh-beam' %>
 <%= link_to "", post_post_comment_actions_path(pos, post_comment), method: :post, class: 'fa-regular fa-face-grin-wide' %>
@@ -33,4 +43,3 @@
 <%= link_to "", post_post_comment_actions_path(pos, post_comment), method: :post, class: 'fa-regular fa-face-kiss' %>
 <%= link_to "", post_post_comment_actions_path(pos, post_comment), method: :post, class: 'fa-regular fa-face-kiss-beam' %>
 <%= link_to "", post_post_comment_actions_path(pos, post_comment), method: :post, class: 'fa-regular fa-face-kiss-wink-heart' %>
-<%= link_to "", post_post_comment_actions_path(pos, post_comment), method: :post, class: 'fa-regular fa-face-smile' %>

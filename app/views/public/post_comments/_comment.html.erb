@@ -32,14 +32,14 @@
         <p class="text-right"><small><%= l post_comment.created_at, format: :short %></small></p>
         <% post_comment.actions.each do |action| %>
           <%= link_to post_post_comment_action_path(pos, post_comment), method: :delete do %>
-            <%= action %>
+            <%= stamp(action) %>
           <% end %>
         <% end %>
         <div class="modal-open text-right"><i class="fa-solid fa-heart-circle-plus"></i></div>
       </div>
 
       <section id="info" class="is-active">
-        <%= render 'public/posts/action', pos: pos, post_comment: post_comment %>
+        <%= render 'public/posts/action', action: action, pos: pos, post_comment: post_comment %>
       </section>
     </div>
   <% end %>
