@@ -8,9 +8,7 @@
         <% end %>
       <% else %>
         <%= render 'public/posts/index', posts: @posts %>
-        <% if @posts.count > 10 %>
-          <%= paginate @posts %>
-        <% end %>
+        <%= paginate @posts %>
       <% end %>
       <%= render 'public/posts/post_button' %>
     </div>

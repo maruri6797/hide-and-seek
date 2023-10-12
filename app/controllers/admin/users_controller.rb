@@ -1,11 +1,12 @@
 class Admin::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+
   end
 
   def posts
     @user = User.find(params[:id])
-    @posts = @user.posts.order(created_at: :desc).page(params[:page])
+    @posts = @user.posts.page(params[:page]).per(10).order(created_at: :desc)
   end
 
   def edit
@@ -24,6 +25,6 @@ class Admin::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :is_deleted)
+    params.require(:user).permit(:name, :email, :is_deleted, :is_license)
   end
 end

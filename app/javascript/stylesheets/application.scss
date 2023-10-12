@@ -82,3 +82,43 @@
 footer{
   margin-top: auto;
 }
+
+.search-text{
+  -webkit-appearance: none;
+  width: 80px;
+  height: 60px;
+  padding: 20px;
+  border: none;
+  background: #fff;
+  background-size: 25px 25px;
+  transition: all 0.5s;
+  outline: none;
+  cursor: pointer;
+}
+
+.search-text:focus{
+  width: 250px;
+  padding: 20px 0 20px 60px;
+  box-shadow: 0 2px rgba(6,0,1,.26);
+}
+
+#back {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  font-size: 20px;
+}
+
+#info{
+}
+
+.modal-container{
+  max-width: 600px;
+}
+
+.modal-close:focus:after,
+.modal-close:focus:before,
+.modal-close:hover:after,
+.modal-close:hover:before{
+  background:#666;
+}

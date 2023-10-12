@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-10 col-md-8">
       <h3 class="text-center">お問い合わせ（ご意見・ご感想）</h3>
-      <%= form_with model: @contact, url: confirm_contacts_path, method: :post do |f| %>
+      <%= form_with model: @contact, url: contacts_path, method: :post do |f| %>
       <%= render 'layouts/errors', obj: @contact %>
         <div class="form-group">
           <%= f.label :name, "お名前" %>
@@ -21,7 +21,7 @@
           <%= f.text_area :content, class: 'form-control' %>
         </div>
         <div class="action text-center">
-          <%= f.submit "入力内容確認", class: 'btn btn-primary' %>
+          <%= f.submit "送信", class: 'btn btn-primary' %>
         </div>
       <% end %>
     </div>

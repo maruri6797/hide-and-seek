@@ -4,22 +4,28 @@
       <div class="d-flex align-items-center justify-content-between">
         <%= image_tag @user.get_profile_image(150, 150), class: 'rounded-circle' %>
         <p class="h3"><%= @user.name %></p>
-        <div class="three-point h3 ml-auto">⋮</div>
+        <% if @user.is_license == true %>
+          <i class="fa-solid fa-award text-warning"></i>
+        <% end %>
         <% if @user == current_user %>
           <div class="border three-point-contents is-active">
             <%= link_to "編集", edit_user_path(@user), class: 'btn btn-default' %><br>
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn btn-default border-top' %>
           </div>
         <% else %>
+          <div class="border three-point-contents is-active">
+            通報する
+          </div>
           <% if current_user.following?(@user) %>
-            <%= link_to "フォロー解除", user_relationships_path(@user), method: :delete, class: 'btn btn-danger col-3' %>
+            <%= link_to "フォロー解除", user_relationships_path(@user), method: :delete, class: 'btn btn-danger ml-auto' %>
           <% else %>
-            <%= link_to "フォローする", user_relationships_path(@user), method: :post, class: 'btn btn-success col-3' %>
+            <%= link_to "フォローする", user_relationships_path(@user), method: :post, class: 'btn btn-success ml-auto' %>
           <% end %>
           <% if current_user.following?(@user) && @user.following?(current_user) %>
             <%= link_to "", chat_path(@user), class: 'fa-solid fa-envelope h2' %>
           <% end %>
         <% end %>
+        <div class="three-point h3 ml-auto">⋮</div>
       </div>
       <p class="m-1">MBTI: <strong><%= @user.mbti %></strong></p>
       <%= simple_format(h(@user.introduction)) %>
@@ -34,9 +40,6 @@
 
       <div class="posts m-5">
         <%= render 'public/posts/index', posts: @posts %>
-        <% if @posts.count > 10 %>
-          <%= paginate @posts %>
-        <% end %>
       </div>
       <%= render 'public/posts/post_button' %>
     </div>

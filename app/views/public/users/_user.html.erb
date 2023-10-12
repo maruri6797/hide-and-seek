@@ -1,9 +1,12 @@
 <% users.each do |user| %>
-  <div class="d-flex justify-content-between">
+  <div class="d-flex">
     <%= link_to user_path(user) do %>
       <%= image_tag user.get_profile_image(100, 100), class: 'rounded-circle' %>
     <% end %>
-    <%= link_to user.name, user_path(user), class: 'col-3 h3' %>
+    <%= link_to user.name, user_path(user), class: 'h3' %>
+    <% if user.is_license == true %>
+      <i class="fa-solid fa-award text-warning mr-5"></i>
+    <% end %>
     <%- if controller_name != 'rooms' %>
       <%= user.mbti %>
       <%= truncate(user.introduction) %>

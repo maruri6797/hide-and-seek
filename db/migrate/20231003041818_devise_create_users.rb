@@ -36,6 +36,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.text :introduction
       t.integer :mbti, null: false
       t.boolean :is_deleted, null: false, default: false
+      t.boolean :is_license, null: false, default: false
       t.timestamps null: false
     end
     add_index :users, :name, unique: true

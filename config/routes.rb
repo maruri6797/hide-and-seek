@@ -47,7 +47,9 @@ Rails.application.routes.draw do
       end
       resource :favorites, only: [:create, :destroy]
       resource :stars, only: [:create, :destroy]
-      resources :post_comments, only: [:create, :destroy]
+      resources :post_comments, only: [:create, :destroy] do
+        resources :actions, only: [:create, :destroy]
+      end
     end
     resources :rooms, only: [:index] do
       collection do
@@ -61,8 +63,6 @@ Rails.application.routes.draw do
     end
     resources :contacts, only: [:new, :create] do
       collection do
-        post 'confirm'
-        post 'back'
         get 'done'
       end
     end

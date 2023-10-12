@@ -14,6 +14,9 @@
         <%= image_tag post_comment.user.get_profile_image(100, 100), class: 'rounded-circle' %>
       <% end %>
       <%= link_to post_comment.user.name, user_path(post_comment.user) %>
+      <% if post_comment.user.is_license == true %>
+        <i class="fa-solid fa-award text-warning"></i>
+      <% end %>
     </div>
   <% else %>
     <div class="row justify-content-start">
@@ -21,10 +24,32 @@
         <%= image_tag post_comment.user.get_profile_image(100, 100), class: 'rounded-circle' %>
       <% end %>
       <%= link_to post_comment.user.name, user_path(post_comment.user) %>
+      <% if post_comment.user.is_license == true %>
+        <i class="fa-solid fa-award text-warning"></i>
+      <% end %>
       <div class="ballon-left">
         <%= simple_format(h(post_comment.comment)) %>
         <p class="text-right"><small><%= l post_comment.created_at, format: :short %></small></p>
+        <% post_comment.actions.each do |action| %>
+          <%= link_to post_post_comment_action_path(pos, post_comment), method: :delete do %>
+            <%= action %>
+          <% end %>
+        <% end %>
+        <div class="modal-open text-right"><i class="fa-solid fa-heart-circle-plus"></i></div>
       </div>
+
+      <section id="info" class="is-active">
+        <%= render 'public/posts/action', pos: pos, post_comment: post_comment %>
+      </section>
     </div>
   <% end %>
 <% end %>
+
+<script>
+  $(document).on('turbolinks:load', function(){
+    $('.modal-open').on('click', function(event) {
+      $('#info').toggleClass('is-active');
+      event.preventDefault();
+    });
+  });
+</script>

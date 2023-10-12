@@ -1,10 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-10 col-md-8">
-      <% if @range == "User" %>
+      <% if @tag.present? %>
+        "<%= @tag.name %>"の投稿一覧
+        <%= render 'admin/posts/index', posts: @posts %>
+      <% elsif @range == "User" %>
         "<%= @word %>"のユーザー一覧
         <%= render 'admin/homes/index', users: @users %>
-      <% else %>
+      <% elsif @range == "Post" %>
         "<%= @word %>"の投稿一覧
         <%= render 'admin/posts/index', posts: @posts %>
       <% end %>

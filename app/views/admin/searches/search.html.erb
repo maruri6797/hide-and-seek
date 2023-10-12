@@ -6,14 +6,13 @@
           <%= f.text_field :word %>
           <%= f.select :range, options_for_select([['User'], ['Post']]) %>
           <%= f.select :search, options_for_select([["完全一致", "perfect_match"], ["前方一致", "forward_match"], ["後方一致", "backward_match"], ["部分一致", "partical_match"]]) %>
-          <%= f.submit "検索" %>
+          <%= f.submit "検索", class: 'btn btn-secondary' %>
         <% end %>
       </div>
-      <h4>タグ</h4>
+      <h4 class="mt-5">タグ</h4>
       <ul class="d-flex flex-row flex-wrap list-group">
         <% @tags.each do |tag| %>
-          <li class="list-group-item">
-            <i class="fa-solid fa-tag"></i>
+          <li class="list-group-item border-top">
             <%= link_to tag.name, admin_result_path(tag_id: tag.id) %>
             (<%= tag.posts.count %>)
           </li>

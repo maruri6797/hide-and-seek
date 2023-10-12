@@ -6,6 +6,9 @@
           <%= image_tag pos.user.get_profile_image(130, 130), class: 'rounded-circle' %>
         <% end %>
         <%= link_to pos.user.name, user_path(pos.user), class: 'h4' %>
+        <% if pos.user.is_license == true %>
+          <i class="fa-solid fa-award text-warning"></i>
+        <% end %>
         <h3 class="card-title m-3"><%= link_to pos.title, post_path(pos) %></h3>
         <p class="card-text"><%= truncate(pos.text) %></p>
         <p class="card-text text-right"><small>

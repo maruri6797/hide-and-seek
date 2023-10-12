@@ -20,6 +20,7 @@ User.create!(
   mbti: "INTJ",
   email: "test1@test.com",
   is_deleted: false,
+  is_license: false,
   password: "test01"
 )
 
@@ -28,6 +29,7 @@ User.create!(
   mbti: "INTP",
   email: "test2@test.com",
   is_deleted: false,
+  is_license: false,
   password: "test02"
 )
 
@@ -36,6 +38,7 @@ User.create!(
   mbti: "ENTJ",
   email: "test3@test.com",
   is_deleted: false,
+  is_license: false,
   password: "test03"
 )
 
@@ -44,6 +47,7 @@ User.create!(
   mbti: "ENTP",
   email: "test4@test.com",
   is_deleted: false,
+  is_license: false,
   password: "test04"
 )
 
@@ -52,6 +56,7 @@ User.create!(
   mbti: "INFJ",
   email: "test5@test.com",
   is_deleted: false,
+  is_license: true,
   password: "test05"
 )
 
@@ -60,6 +65,7 @@ User.create!(
   mbti: "INFP",
   email: "test6@test.com",
   is_deleted: false,
+  is_license: false,
   password: "test06"
 )
 
@@ -68,6 +74,7 @@ User.create!(
   mbti: "ENFJ",
   email: "test7@test.com",
   is_deleted: false,
+  is_license: false,
   password: "test07"
 )
 
@@ -76,6 +83,7 @@ User.create!(
   mbti: "ENFP",
   email: "test8@test.com",
   is_deleted: false,
+  is_license: false,
   password: "test08"
 )
 
@@ -84,6 +92,7 @@ User.create!(
   mbti: "ISTJ",
   email: "test9@test.com",
   is_deleted: false,
+  is_license: false,
   password: "test09"
 )
 
@@ -92,6 +101,7 @@ User.create!(
   mbti: "ISFJ",
   email: "test10@test.com",
   is_deleted: false,
+  is_license: false,
   password: "test10"
 )
 
@@ -100,6 +110,7 @@ User.create!(
   mbti: "ESTJ",
   email: "test11@test.com",
   is_deleted: false,
+  is_license: false,
   password: "test11"
 )
 
@@ -108,6 +119,7 @@ User.create!(
   mbti: "ESFJ",
   email: "test12@test.com",
   is_deleted: false,
+  is_license: false,
   password: "test12"
 )
 
@@ -116,6 +128,7 @@ User.create!(
   mbti: "ISTP",
   email: "test13@test.com",
   is_deleted: false,
+  is_license: false,
   password: "test13"
 )
 
@@ -124,6 +137,7 @@ User.create!(
   mbti: "ISFP",
   email: "test14@test.com",
   is_deleted: false,
+  is_license: false,
   password: "test14"
 )
 
@@ -132,6 +146,7 @@ User.create!(
   mbti: "ESTP",
   email: "test15@test.com",
   is_deleted: false,
+  is_license: false,
   password: "test15"
 )
 
@@ -140,6 +155,7 @@ User.create!(
   mbti: "ESFP",
   email: "test16@test.com",
   is_deleted: false,
+  is_license: false,
   password: "test16"
 )
 
@@ -147,7 +163,8 @@ User.create!(
   name: "unknown",
   mbti: "unknown",
   email: "test17@test.com",
-  is_deleted: false,
+  is_deleted: true,
+  is_license: false,
   password: "test17"
 )
 

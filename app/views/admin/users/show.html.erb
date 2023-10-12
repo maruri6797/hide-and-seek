@@ -16,6 +16,14 @@
           <td><%= @user.email %></td>
         </tr>
         <tr>
+          <th class="col-4">ライセンス</th>
+          <% if @user.is_license == false %>
+            <td>なし</td>
+          <% else %>
+            <td>認証済み</td>
+          <% end %>
+        </tr>
+        <tr>
           <th class="col-4">ステータス</th>
           <% if @user.is_deleted == false %>
             <td class="text-success">有効</td>

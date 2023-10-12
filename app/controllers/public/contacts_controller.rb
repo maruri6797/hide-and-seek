@@ -13,18 +13,6 @@ class Public::ContactsController < ApplicationController
     end
   end
 
-  def confirm
-    @contact = Contact.new(contact_params)
-    if @contact.invalid?
-      render :new
-    end
-  end
-
-  def back
-    @contact = Contact.new(contact_params)
-    render :new
-  end
-
   def done
   end
 

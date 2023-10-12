@@ -1,5 +1,21 @@
 <footer class="footer mt-auto">
   <div class="container-fluid bg-dark d-flex align-items-center justify-content-center" style="height: 50px;">
     <span class="text-light">Copyright © maruri</span>
+    <span id="back">
+      <a href="#">
+        <i class="fa-solid fa-circle-arrow-up"></i>
+      </a>
+    </span>
   </div>
 </footer>
+
+<script>
+  $(function() {
+    $('#back a').on('click',function(event){
+      $('body, html').animate({
+        scrollTop:0
+      }, 800);
+      event.preventDefault();
+    });
+  });
+</script>

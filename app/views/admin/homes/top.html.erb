@@ -3,9 +3,7 @@
     <div class="col-lg-12 col-md-10">
       <h3>ユーザー一覧</h3>
       <%= render 'admin/homes/index', users: @users %>
-      <% if @users.count > 10 %>
-        <%= paginate @users %>
-      <% end %>
+      <%= paginate @users %>
     </div>
   </div>
 </div>

@@ -40,7 +40,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.where.not(status: 2).page(params[:page]).order(created_at: :desc)
+    @posts = Post.where.not(status: 2).page(params[:page]).per(10).order(created_at: :desc)
     @follow_posts = @posts.where(user_id: [*current_user.follower_ids])
   end
 
@@ -50,6 +50,7 @@ class Public::PostsController < ApplicationController
       current_user.view_count.create(post_id: @post.id)
     end
     @post_comment = PostComment.new
+    @actions = Action.all
   end
 
   def delete

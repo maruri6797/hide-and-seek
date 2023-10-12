@@ -17,6 +17,13 @@
           <%= f.text_field :email %>
         </div>
         <div class="form-group row">
+          <%= f.label :is_license, "ライセンス", class: 'col-4' %>
+          <%= f.radio_button :is_license, false %>
+          <%= f.label :is_license_false, "非認証", class: 'col-2' %>
+          <%= f.radio_button :is_license, true %>
+          <%= f.label :is_license_true, "認証", class: 'col-2' %>
+        </div>
+        <div class="form-group row">
           <%= f.label :is_deleted, "ステータス", class: 'col-4' %>
           <%= f.radio_button :is_deleted, false %>
           <%= f.label :is_deleted_false, "有効", class: 'col-2' %>

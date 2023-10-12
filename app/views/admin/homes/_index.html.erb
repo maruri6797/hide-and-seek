@@ -1,10 +1,12 @@
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th class="col-2">ユーザーID</th>
-      <th class="col-4">ユーザー名</th>
-      <th class="col-4">メールアドレス</th>
-      <th class="col-2">ステータス</th>
+      <th>ユーザーID</th>
+      <th>ユーザー名</th>
+      <th>メールアドレス</th>
+      <th>ステータス</th>
+      <th>いいねされた数</th>
+      <th>ライセンス</th>
     </tr>
   </thead>
   <tbody>
@@ -17,6 +19,17 @@
           <td class="text-success">有効</td>
         <% else %>
           <td class="text-secondary">退会</td>
+        <% end %>
+        <% user_posts = user.posts %>
+        <% favorites = 0 %>
+        <% user_posts.each do |user_post| %>
+          <% favorites += user_post.favorites.count %>
+        <% end %>
+        <td><%= favorites %></td>
+        <% if user.is_license == false %>
+          <td>なし</td>
+        <% else %>
+          <td>認証済み</td>
         <% end %>
       </tr>
     <% end %>

@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :chats, dependent: :destroy
   has_many :view_count, dependent: :destroy
   has_many :stars, dependent: :destroy
+  has_many :actions, dependent: :destroy
   # フォロー機能
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
@@ -114,13 +115,13 @@ class User < ApplicationRecord
   # adminのuser検索
   def self.looks(search, word)
     if search == "perfect_match"
-      @user = User.where("name like or id like", "#{@word}")
+      @user = User.where(["name like(?) or id like(?)", "#{word}", "#{word}"])
     elsif search == "forward_match"
-      @user = User.where("name like", "#{word}%")
+      @user = User.where("name like(?)", "#{word}%")
     elsif search == "backward_match"
-      @user = User.where("name like", "%#{word}")
+      @user = User.where("name like(?)", "%#{word}")
     elsif search == "partical_match"
-      @user = User.where("name like", "%#{word}%")
+      @user = User.where("name like(?)", "%#{word}%")
     end
   end
 
