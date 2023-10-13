@@ -1,76 +1,77 @@
 module Public::ActionsHelper
   def stamp(action)
-    if params[:a]
+    case face
+    when "a" then
       tag.i class: 'fa-regular fa-face-smile'
-    elsif params[:b]
+    when "b" then
       tag.i class: 'fa-regular fa-face-laugh'
-    elsif params[:c]
+    when "c" then
       tag.i class: 'fa-regular fa-face-laugh-beam'
-    elsif params[:d]
+    when "d" then
       tag.i class: 'fa-regular fa-face-grin-wide'
-    elsif params[:e]
+    when "e" then
       tag.i class: 'fa-regular fa-face-grin'
-    elsif params[:f]
+    when "f" then
       tag.i class: 'fa-regular fa-face-grin-beam'
-    elsif params[:g]
+    when "g" then
       tag.i class: 'fa-regular fa-face-grin-wink'
-    elsif params[:h]
+    when "h" then
       tag.i class: 'fa-regular fa-face-smile-wink'
-    elsif params[:i]
+    when "i" then
       tag.i class: 'fa-regular fa-face-smile-beam'
-    elsif params[:j]
+    when "j" then
       tag.i class: 'fa-regular fa-face-laugh-wink'
-    elsif params[:k]
+    when "k" then
       tag.i class: 'fa-regular fa-face-laugh-squint'
-    elsif params[:l]
+    when "l" then
       tag.i class: 'fa-regular fa-face-grin-squint'
-    elsif params[:m]
+    when "m" then
       tag.i class: 'fa-regular fa-face-grin-tongue-squint'
-    elsif params[:n]
+    when "n" then
       tag.i class: 'fa-regular fa-face-grin-tongue'
-    elsif params[:o]
+    when "o" then
       tag.i class: 'fa-regular fa-face-grin-tongue-wink'
-    elsif params[:p]
+    when "p" then
       tag.i class: 'fa-regular fa-face-grin-tears'
-    elsif params[:q]
+    when "q" then
       tag.i class: 'fa-regular fa-face-grin-stars'
-    elsif params[:r]
+    when "r" then
       tag.i class: 'fa-regular fa-face-grin-squint-tears'
-    elsif params[:s]
+    when "s" then
       tag.i class: 'fa-regular fa-face-rolling-eyes'
-    elsif params[:t]
+    when "t" then
       tag.i class: 'fa-regular fa-face-sad-cry'
-    elsif params[:u]
+    when "u" then
       tag.i class: 'fa-regular fa-face-sad-tear'
-    elsif params[:v]
+    when "v" then
       tag.i class: 'fa-regular ffa-face-surprise'
-    elsif params[:w]
+    when "w" then
       tag.i class: 'fa-regular fa-face-tired'
-    elsif params[:x]
+    when "x" then
       tag.i class: 'fa-regular fa-face-meh-blank'
-    elsif params[:y]
+    when "y" then
       tag.i class: 'fa-regular fa-face-meh'
-    elsif params[:z]
+    when "z" then
       tag.i class: 'fa-regular fa-face-grin-beam-sweat'
-    elsif params[:ab]
+    when "ab" then
       tag.i class: 'fa-regular fa-face-grimace'
-    elsif params[:cd]
+    when "cd" then
       tag.i class: 'fa-regular fa-face-frown-open'
-    elsif params[:ef]
+    when "ef" then
       tag.i class: 'fa-regular fa-face-frown'
-    elsif params[:gh]
+    when "gh" then
       tag.i class: 'fa-regular fa-face-flushed'
-    elsif params[:ij]
+    when "ij" then
       tag.i class: 'fa-regular fa-face-dizzy'
-    elsif params[:kl]
+    when "kl" then
       tag.i class: 'fa-regular fa-face-angry'
-    elsif params[:mn]
+    when "mn" then
       tag.i class: 'fa-regular fa-face-grin-hearts'
-    elsif params[:op]
+    when "op" then
       tag.i class: 'fa-regular fa-face-kiss'
-    elsif params[:qr]
+    when "qr" then
       tag.i class: 'fa-regular fa-face-kiss-beam'
-    elsif params[:st]
+    when "st" then
       tag.i class: 'fa-regular fa-face-kiss-wink-heart'
     end
   end

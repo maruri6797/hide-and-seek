@@ -1,9 +1,11 @@
 <% if put.favorited_by?(current_user) %>
   <%= link_to post_favorites_path(put), method: :delete, remote: true do %>
-    <i class="fa-solid fa-heart text-danger"></i><%= put.favorites.count %>
+    <i class="fa-solid fa-heart text-danger text-decoration-none"></i>
   <% end %>
+  <%= put.favorites.count %>
 <% else %>
   <%= link_to post_favorites_path(put), method: :post, remote: true do %>
-    <i class="fa-regular fa-heart"></i><%= put.favorites.count %>
+    <i class="fa-regular fa-heart text-danger text-decoration-none"></i>
   <% end %>
+  <%= put.favorites.count %>
 <% end %>

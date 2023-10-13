@@ -5,6 +5,15 @@ ja:
         active: "公開中"
         edited: "編集済み"
         deleted: "削除済み"
+    report:
+      reason:
+        spam: "商業目的やスパム"
+        pornography: "ポルノや性的コンテンツ"
+        malicious: "悪意のある表現"
+        terrorism: "テロリズムの助長"
+        harassment: "嫌がらせ、いじめ"
+        harm: "自殺や自傷行為"
+        misinformation: "誤った情報"
 
   time:
     formats:

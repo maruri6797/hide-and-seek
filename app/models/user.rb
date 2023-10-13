@@ -24,6 +24,9 @@ class User < ApplicationRecord
   # 通知機能
   has_many :active_notifications, class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
+  # 通報機能
+  has_many :reporters, class_name: "Report", foreign_key: "reporter_id", dependent: :destroy
+  has_many :reporteds, class_name: "Report", foreign_key: "reported_id", dependent: :destroy
 
   has_one_attached :profile_image
 

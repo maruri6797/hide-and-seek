@@ -1,9 +1,11 @@
 <% if put.stared_by?(current_user) %>
   <%= link_to post_stars_path(put), method: :delete, remote: true do %>
-    <i class="fa-solid fa-star text-warning"></i><%= put.stars.count %>
+    <i class="fa-solid fa-star text-warning text-decoration-none"></i>
   <% end %>
+  <%= put.stars.count %>
 <% else %>
   <%= link_to post_stars_path(put), method: :post, remote: true do %>
-    <i class="fa-regular fa-star"></i><%= put.stars.count %>
+    <i class="fa-regular fa-star text-warning text-decoration-none"></i>
   <% end %>
+  <%= put.stars.count %>
 <% end %>
