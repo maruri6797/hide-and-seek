@@ -1,112 +1,110 @@
-<%= form_with model: action, url: post_post_comment_actions_path(pos, post_comment), method: :post, local: false do |f| %>
-  <%= f.button name: 'a' do %>
+<%= form_with model: action, url: post_post_comment_actions_path(pos, post_comment), method: :post do |f| %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-smile', class: 'btn' do %>
     <i class="fa-regular fa-face-smile"></i>
   <% end %>
-  <%= f.button name: 'b' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-laugh', class: 'btn' do %>
     <i class="fa-regular fa-face-laugh"></i>
   <% end %>
-  <%= f.button name: 'c' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-laugh', class: 'btn' do %>
     <i class="fa-regular fa-face-laugh-beam"></i>
   <% end %>
-  <%= f.button name: 'd' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-grin-wide', class: 'btn' do %>
     <i class="fa-regular fa-face-grin-wide"></i>
   <% end %>
-  <%= f.button name: 'e' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-grin', class: 'btn' do %>
     <i class="fa-regular fa-face-grin"></i>
   <% end %>
-  <%= f.button name: 'f' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-grin-beam', class: 'btn' do %>
     <i class="fa-regular fa-face-grin-beam"></i>
   <% end %>
-  <%= f.button name: 'g' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-grin-wink', class: 'btn' do %>
     <i class="fa-regular fa-face-grin-wink"></i>
   <% end %>
-  <%= f.button name: 'h' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-smile-wink', class: 'btn' do %>
     <i class="fa-regular fa-face-smile-wink"></i>
   <% end %>
-  <%= f.button name: 'i' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-smile-beam', class: 'btn' do %>
     <i class="fa-regular fa-face-smile-beam"></i>
   <% end %>
-  <%= f.button name: 'j' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-laugh-wink', class: 'btn' do %>
     <i class="fa-regular fa-face-laugh-wink"></i>
   <% end %>
-  <%= f.button name: 'k' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-laugh-squint', class: 'btn' do %>
     <i class="fa-regular fa-face-laugh-squint"></i>
   <% end %>
-  <%= f.button name: 'l' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-grin-squint', class: 'btn' do %>
     <i class="fa-regular fa-face-grin-squint"></i>
   <% end %>
-  <%= f.button name: 'm' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-grin-tongue-squint', class: 'btn' do %>
     <i class="fa-regular fa-face-grin-tongue-squint"></i>
   <% end %>
-  <%= f.button name: 'n' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-grin-tongue', class: 'btn' do %>
     <i class="fa-regular fa-face-grin-tongue"></i>
   <% end %>
-  <%= f.button name: 'o' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-grin-tongue-wink', class: 'btn' do %>
     <i class="fa-regular fa-face-grin-tongue-wink"></i>
   <% end %>
-  <%= f.button name: 'p' do %>
-    <i class="fa-regular fa-regular fa-face-grin-tears"></i>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-grin-tears', class: 'btn' do %>
+    <i class="fa-regular fa-face-grin-tears"></i>
   <% end %>
-  <%= f.button name: 'q' do %>
-    <i class="fa-regular fa-regular fa-face-grin-stars"></i>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-grin-stars', class: 'btn' do %>
+    <i class="fa-regular fa-face-grin-stars"></i>
   <% end %>
-  <%= f.button name: 'r' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-grin-squint-tears', class: 'btn' do %>
     <i class="fa-regular fa-face-grin-squint-tears"></i>
   <% end %>
-  <%= f.button name: 's' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-rolling-eyes', class: 'btn' do %>
     <i class="fa-regular fa-face-rolling-eyes"></i>
   <% end %>
-  <%= f.button name: 't' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-sad-cry', class: 'btn' do %>
     <i class="fa-regular fa-face-sad-cry"></i>
   <% end %>
-  <%= f.button name: 'u' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-sad-tear', class: 'btn' do %>
     <i class="fa-regular fa-face-sad-tear"></i>
   <% end %>
-  <%= f.button name: 'v' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-surprise', class: 'btn' do %>
     <i class="fa-regular fa-face-surprise"></i>
   <% end %>
-  <%= f.button name: 'w' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-tired', class: 'btn' do %>
     <i class="fa-regular fa-face-tired"></i>
   <% end %>
-  <%= f.button name: 'x' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-meh-blank', class: 'btn' do %>
     <i class="fa-regular fa-face-meh-blank"></i>
   <% end %>
-  <%= f.button name: 'y' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-meh', class: 'btn' do %>
     <i class="fa-regular fa-face-meh"></i>
   <% end %>
-  <%= f.button name: 'z' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-grin-beam-sweat', class: 'btn' do %>
     <i class="fa-regular fa-face-grin-beam-sweat"></i>
   <% end %>
-  <%= f.button name: 'ab' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-grimace', class: 'btn' do %>
     <i class="fa-regular fa-face-grimace"></i>
   <% end %>
-  <%= f.button name: 'cd' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-frown-open', class: 'btn' do %>
     <i class="fa-regular fa-face-frown-open"></i>
   <% end %>
-  <%= f.button name: 'ef' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-frown', class: 'btn' do %>
     <i class="fa-regular fa-face-frown"></i>
   <% end %>
-  <%= f.button name: 'gh' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-flushed', class: 'btn' do %>
     <i class="fa-regular fa-face-flushed"></i>
   <% end %>
-  <%= f.button name: 'ij' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-dizzy', class: 'btn' do %>
     <i class="fa-regular fa-face-dizzy"></i>
   <% end %>
-  <%= f.button name: 'kl' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-angry', class: 'btn' do %>
     <i class="fa-regular fa-face-angry"></i>
   <% end %>
-  <%= f.button name: 'mn' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-grin-hearts', class: 'btn' do %>
     <i class="fa-regular fa-face-grin-hearts"></i>
   <% end %>
-  <%= f.button name: 'op' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-kiss', class: 'btn' do %>
     <i class="fa-regular fa-face-kiss"></i>
   <% end %>
-  <%= f.button name: 'qr' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-kiss-beam', class: 'btn' do %>
     <i class="fa-regular fa-face-kiss-beam"></i>
   <% end %>
-  <%= f.button name: 'st' do %>
+  <%= button_tag type: "submit", name: 'face_type', value: 'fa-face-kiss-wink-heart', class: 'btn' do %>
     <i class="fa-regular fa-face-kiss-wink-heart"></i>
   <% end %>
 <% end %>
-
-<%#= link_to "", post_post_comment_actions_path(pos, post_comment), method: :post, class: 'fa-regular fa-face-kiss-wink-heart' %>

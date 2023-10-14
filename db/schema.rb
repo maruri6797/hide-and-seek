@@ -10,14 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_13_081118) do
+ActiveRecord::Schema.define(version: 2023_10_14_052837) do
 
   create_table "actions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "post_comment_id", null: false
+    t.integer "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "face_type"
     t.index ["post_comment_id"], name: "index_actions_on_post_comment_id"
+    t.index ["post_id"], name: "index_actions_on_post_id"
     t.index ["user_id"], name: "index_actions_on_user_id"
   end
 
@@ -213,6 +216,7 @@ ActiveRecord::Schema.define(version: 2023_10_13_081118) do
   end
 
   add_foreign_key "actions", "post_comments"
+  add_foreign_key "actions", "posts"
   add_foreign_key "actions", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"

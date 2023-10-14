@@ -11,6 +11,8 @@ class Post < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :view_counts, dependent: :destroy
   has_many :stars, dependent: :destroy
+  has_many :actions, dependent: :destroy
+  has_many :reports, as: :target
 
   enum status: { active: 0, edited: 1, deleted: 2 }
 
