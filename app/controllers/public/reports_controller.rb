@@ -2,23 +2,24 @@ class Public::ReportsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @report = Report.new
+
   end
 
   def create
-    target_id = params[:report][:target_id]
-    target_type = params[:report][:target_type]
-    @target = target_type.constantize.find(target_id)
-
-    if @target
-      @report = Report.new(report_params)
-      @report.reporter = current_user
-      @report.reported = @target.user
-      if @report.save
-        redirect_to request.referer
-      else
-        redirect_to posts_path
-      end
+    @report = Report.new(report_params)
+    @report.target_id = params[:report][:target_id]
+    @report.target_type = params[:report][:target_type]
+    @report.reporter_id = current_user
+    if @report.save
+      redirect_to posts_path
+    else
+      redirect_to root_path
     end
+  end
+
+  private
+
+  def report_params
+    params.require(:report).permit(:target_id, :target_type, :reason)
   end
 end

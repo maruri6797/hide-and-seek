@@ -12,12 +12,15 @@
       </div>
       <div class="row m-3">
         <p class="h3"><%= @post.title %></p>
-        <p class="three-point h3 ml-auto">⋮</p>
         <% if @post.user.id == current_user.id %>
+          <div class="three-point h3 ml-auto"><i class="fa-solid fa-ellipsis-vertical"></i></div>
           <div class="border three-point-content is-active">
             <%= link_to "編集する", edit_post_path(@post), class: 'btn btn-default border-bottom' %><br>
             <%= link_to "削除する", delete_post_path(@post), method: :patch, class: 'btn btn-default', data: {confirm: "削除してもよろしいですか？"} %>
           </div>
+        <% else %>
+          <div class="three-points h3 ml-auto"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+          <%= link_to "報告する", new_report_path, class: 'btn btn-danger' %>
         <% end %>
       </div>
       <%= simple_format(h(@post.text)) %>

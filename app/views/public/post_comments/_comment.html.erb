@@ -6,9 +6,13 @@
         <p class="text-right">
           <small>
             <%= l post_comment.created_at, format: :short %>
-            <%= link_to "", post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true, class: 'fa-solid fa-trash-can', data: {confirm: "削除してもよろしいですか？" } %>
+            <%= link_to "", post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true, class: 'fa-solid fa-trash-can', data: {confirm: "削除してもよろしいですか？" } %><br>
           </small>
         </p>
+        <% post_comment.actions.each do |action| %>
+          <% action %>
+          <i class="text-warning fa-regular <%= action.face_type %>"></i>
+        <% end %>
       </div>
       <%= link_to user_path(post_comment.user) do %>
         <%= image_tag post_comment.user.get_profile_image(100, 100), class: 'rounded-circle' %>
@@ -32,21 +36,19 @@
         <p class="text-right"><small><%= l post_comment.created_at, format: :short %></small></p>
         <% post_comment.actions.each do |action| %>
           <% action %>
-          <%= link_to "", post_post_comment_action_path(pos, post_comment), method: :delete, class: "text-warning fa-regular "+action.face_type %>
+          <%= link_to "", post_post_comment_action_path(pos, post_comment, action), method: :delete, class: "text-warning fa-regular "+action.face_type %>
         <% end %>
         <div id="open<%=post_comment.id%>" class="modal-open text-right"><i class="fa-solid fa-heart-circle-plus"></i></div>
       </div>
       <section id="info<%=post_comment.id%>" class="is-active">
-        <%= render 'public/posts/action', action: action, pos: pos, post_comment: post_comment %>
+        <%= render 'public/posts/action', pos: pos, post_comment: post_comment %>
       </section>
     </div>
     <script>
-      $(document).on('turbolinks:load', function(){
         $('#open<%=post_comment.id%>').on('click', function(event) {
           $('#info<%=post_comment.id%>').toggleClass('is-active');
           event.preventDefault();
         });
-      });
     </script>
   <% end %>
 <% end %>

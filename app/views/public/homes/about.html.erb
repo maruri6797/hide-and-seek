@@ -1,11 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-10 col-md-8">
-      <h2>About</h2>
+      <h2 class="text-center">About</h2>
       <p class="text-center">
         「16Personalities性格診断テスト」は93の質問に答えることで、<br>
         興味の方向性や外界への接し方などから16種類の性格に分類されます。<br>
-        16種類の性格については以下をご確認ください。
+        詳しい性格タイプについては以下をご確認ください。<br>
+        ※イラストは海苔尾様のフリーイラストを使用させていただいております。<br>
+        <a href="https://www.tiktok.com/@sclpter_nori?_t=8gX1pO9ZDPD&_r=1" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-tiktok">海苔尾様のTikTok</i></a>
       </p>
       <p class="text-center">
         また、「16Personalities性格診断テスト」は実際にはMBTIではありませんが、<br>
@@ -16,10 +18,400 @@
         心理機能診断<br>
         を試してみると良いかもしれません。
       </p>
-      <%= image_tag 'analyst.png', width: '100%', height: '500', style: "object-fit: contain;" %>
-      <%= image_tag 'diplomat.png', width: '100%', height: '500', style: "object-fit: contain;" %>
-      <%= image_tag 'watchman.png', width: '100%', height: '500', style: "object-fit: contain;" %>
-      <%= image_tag 'explorer.png', width: '100%', height: '500', style: "object-fit: contain;" %>
+      <!--スライド-->
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="row">
+              <div class="col-6">
+                <%= image_tag "INTJ.jpg", class: 'slide-jpg' %>
+              </div>
+              <div class="col-6">
+                <h4 class="m-5 text-center">INTJ（建築家）</h4>
+                <p class="ml-3">
+                  Mind（心）：内向型（I）<br>
+                  Energy（エネルギー）：直感型（N）<br>
+                  Nature（自然）：思考型（T）<br>
+                  Tactics（戦術）：判断型（J）
+                </p>
+                <p>
+                  ・人に心開くまで時間がかかる<br>
+                  ・THE コミュ障 THE個人主義<br>
+                  ・興味あることはとことん調べる<br>
+                  ・実は自信家<br>
+                  ・生きづらさを感じる
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="row">
+              <div class="col-6">
+                <%= image_tag "INTP.jpg", class: 'slide-jpg' %>
+              </div>
+              <div class="col-6">
+                <h4 class="m-5 text-center">INTP（論理学者）</h4>
+                <p class="ml-3">
+                  Mind（心）：内向型（I）<br>
+                  Energy（エネルギー）：直感型（N）<br>
+                  Nature（自然）：思考型（T）<br>
+                  Tactics（戦術）：知覚型（P）
+                </p>
+                <p>
+                  ・他人に興味がない<br>
+                  ・オタク気質で賢い<br>
+                  ・自分の興味あることしか興味ない<br>
+                  ・一人行動が好き<br>
+                  ・冷静で完璧主義
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="row">
+              <div class="col-6">
+                <%= image_tag "ENTJ.jpg", class: 'slide-jpg' %>
+              </div>
+              <div class="col-6">
+                <h4 class="m-5 text-center">ENTJ（指揮官）</h4>
+                <p class="ml-3">
+                  Mind（心）：外向型（E）<br>
+                  Energy（エネルギー）：直感型（N）<br>
+                  Nature（自然）：思考型（T）<br>
+                  Tactics（戦術）：判断型（J）
+                </p>
+                <p>
+                  ・自分にも他人にも厳しい<br>
+                  ・人に依存しない<br>
+                  ・仕事でも恋愛でも主導権を握りたい<br>
+                  ・野心のある自信家<br>
+                  ・別に誰に嫌われようと関係ない
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="row">
+              <div class="col-6">
+                <%= image_tag "ENTP.jpg", class: 'slide-jpg' %>
+              </div>
+              <div class="col-6">
+                <h4 class="m-5 text-center">ENTP（討論者）</h4>
+                <p class="ml-3">
+                  Mind（心）：外向型（E）<br>
+                  Energy（エネルギー）：直感型（N）<br>
+                  Nature（自然）：思考型（T）<br>
+                  Tactics（戦術）：知覚型（P）
+                </p>
+                <p>
+                  ・めっちゃ頭の良い陽キャ<br>
+                  ・仕事も恋愛も安定より刺激を求める<br>
+                  ・目立ちたがり屋の変わり者<br>
+                  ・プライドが高い<br>
+                  ・熱しやすく冷めやすい飽き性
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="row">
+              <div class="col-6">
+                <%= image_tag "INFJ.jpg", class: 'slide-jpg' %>
+              </div>
+              <div class="col-6">
+                <h4 class="m-5 text-center">INFJ（提唱者）</h4>
+                <p class="ml-3">
+                  Mind（心）：内向型（I）<br>
+                  Energy（エネルギー）：直感型（N）<br>
+                  Nature（自然）：感情型（F）<br>
+                  Tactics（戦術）：判断型（J）
+                </p>
+                <p>
+                  ・こだわりや独自の価値観が強め<br>
+                  ・ストレスを抱え込みがち<br>
+                  ・いつもは優しく穏やかだけど怒らせると怖い<br>
+                  ・人に尽くしたい助けてあげたい欲強い<br>
+                  ・不思議なオーラを放ってる
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="row">
+              <div class="col-6">
+                <%= image_tag "INFP.jpg", class: 'slide-jpg' %>
+              </div>
+              <div class="col-6">
+                <h4 class="m-5 text-center">INFP（仲介者）</h4>
+                <p class="ml-3">
+                  Mind（心）：内向型（I）<br>
+                  Energy（エネルギー）：直感型（N）<br>
+                  Nature（自然）：感情型（F）<br>
+                  Tactics（戦術）：知覚型（P）
+                </p>
+                <p>
+                  ・繊細で傷つきやすい心の持ち主<br>
+                  ・人に尽くすことに喜びを感じるタイプ<br>
+                  ・情深い平和主義者<br>
+                  ・自己肯定感が低め<br>
+                  ・メンタルが安定しない
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="row">
+              <div class="col-6">
+                <%= image_tag "ENFJ.jpg", class: 'slide-jpg' %>
+              </div>
+              <div class="col-6">
+                <h4 class="m-5 text-center">ENFJ（主人公）</h4>
+                <p class="ml-3">
+                  Mind（心）：外向型（E）<br>
+                  Energy（エネルギー）：直感型（N）<br>
+                  Nature（自然）：感情型（F）<br>
+                  Tactics（戦術）：判断型（J）
+                </p>
+                <p>
+                  ・人当たりがいいから周りに好かれる<br>
+                  ・平和主義で情に厚い<br>
+                  ・褒められると伸びるタイプ<br>
+                  ・どちらかというと陽キャ<br>
+                  ・意外とナイーブで傷つきやすいところも
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="row">
+              <div class="col-6">
+                <%= image_tag "ENFP.jpg", class: 'slide-jpg' %>
+              </div>
+              <div class="col-6">
+                <h4 class="m-5 text-center">ENFP（広報運動家）</h4>
+                <p class="ml-3">
+                  Mind（心）：外向型（E）<br>
+                  Energy（エネルギー）：直感型（N）<br>
+                  Nature（自然）：感情型（F）<br>
+                  Tactics（戦術）：知覚型（P）
+                </p>
+                <p>
+                  ・好奇心旺盛な楽観主義者<br>
+                  ・目立つこと好きな八方美人<br>
+                  ・人気者になりたい人<br>
+                  ・実は陽キャぶってるだけ<br>
+                  ・知り合いは多いけど友達は少ない
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="row">
+              <div class="col-6">
+                <%= image_tag "ISTJ.jpg", class: 'slide-jpg' %>
+              </div>
+              <div class="col-6">
+                <h4 class="m-5 text-center">ISTJ（管理者）</h4>
+                <p class="ml-3">
+                  Mind（心）：内向型（I）<br>
+                  Energy（エネルギー）：感覚型（S）<br>
+                  Nature（自然）：思考型（T）<br>
+                  Tactics（戦術）：判断型（J）
+                </p>
+                <p>
+                  ・真面目で正義感が強い<br>
+                  ・何事もコツコツ努力する<br>
+                  ・大人数でワイワイするのが苦手<br>
+                  ・ルールや約束などを重んじる<br>
+                  ・急な変化や予定変更にすごくストレスを感じる
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="row">
+              <div class="col-6">
+                <%= image_tag "ISFJ.jpg", class: 'slide-jpg' %>
+              </div>
+              <div class="col-6">
+                <h4 class="m-5 text-center">ISFJ（擁護者）</h4>
+                <p class="ml-3">
+                  Mind（心）：内向型（I）<br>
+                  Energy（エネルギー）：感覚型（S）<br>
+                  Nature（自然）：感情型（F）<br>
+                  Tactics（戦術）：判断型（J）
+                </p>
+                <p>
+                  ・真面目で思いやりに溢れている<br>
+                  ・人に尽くすことに喜びを感じる<br>
+                  ・繊細な心の持ち主<br>
+                  ・嫌なこと断れない、自己犠牲<br>
+                  ・場の空気読むの得意！だけど気疲れする
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="row">
+              <div class="col-6">
+                <%= image_tag "ESTJ.jpg", class: 'slide-jpg' %>
+              </div>
+              <div class="col-6">
+                <h4 class="m-5 text-center">ESTJ（幹部）</h4>
+                <p class="ml-3">
+                  Mind（心）：外向型（E）<br>
+                  Energy（エネルギー）：感覚型（S）<br>
+                  Nature（自然）：思考型（T）<br>
+                  Tactics（戦術）：判断型（J）
+                </p>
+                <p>
+                  ・現実主義で常に冷静沈着<br>
+                  ・ストイックな負けず嫌い<br>
+                  ・後輩キャラに慕われる存在<br>
+                  ・即断即決！決断は早い<br>
+                  ・自分の時間を邪魔されたくない
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="row">
+              <div class="col-6">
+                <%= image_tag "ESFJ.jpg", class: 'slide-jpg' %>
+              </div>
+              <div class="col-6">
+                <h4 class="m-5 text-center">ESFJ（領事官）</h4>
+                <p class="ml-3">
+                  Mind（心）：外向型（E）<br>
+                  Energy（エネルギー）：感覚型（S）<br>
+                  Nature（自然）：感情型（F）<br>
+                  Tactics（戦術）：判断型（J）
+                </p>
+                <p>
+                  ・人に優しくて協調性がある<br>
+                  ・自分よりも他人を優先する<br>
+                  ・争いごと嫌いな平和主義<br>
+                  ・嫌なことがあってもはっきり嫌と言えない<br>
+                  ・目立つ人やキラキラしたリーダー的存在の人に実は憧れを持ってる
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="row">
+              <div class="col-6">
+                <%= image_tag "ISTP.jpg", class: 'slide-jpg' %>
+              </div>
+              <div class="col-6">
+                <h4 class="m-5 text-center">ISTP（巨匠）</h4>
+                <p class="ml-3">
+                  Mind（心）：内向型（I）<br>
+                  Energy（エネルギー）：感覚型（S）<br>
+                  Nature（自然）：思考型（T）<br>
+                  Tactics（戦術）：知覚型（P）
+                </p>
+                <p>
+                  ・好奇心旺盛の自由人<br>
+                  ・喜怒哀楽少なめ<br>
+                  ・自分が興味あることには一直線になりがち<br>
+                  ・約束ごとや束縛が嫌い<br>
+                  ・個人主義で人と群れない
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="row">
+              <div class="col-6">
+                <%= image_tag "ISFP.jpg", class: 'slide-jpg' %>
+              </div>
+              <div class="col-6">
+                <h4 class="m-5 text-center">ISFP（冒険家）</h4>
+                <p class="ml-3">
+                  Mind（心）：内向型（I）<br>
+                  Energy（エネルギー）：感覚型（S）<br>
+                  Nature（自然）：感情型（F）<br>
+                  Tactics（戦術）：知覚型（P）
+                </p>
+                <p>
+                  ・声かけやすい雰囲気<br>
+                  ・人からの評価に敏感<br>
+                  ・褒め言葉に弱い<br>
+                  ・平和主義の自由人<br>
+                  ・計画性がなく、今を生きるタイプ
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="row">
+              <div class="col-6">
+                <%= image_tag "ESTP.jpg", class: 'slide-jpg' %>
+              </div>
+              <div class="col-6">
+                <h4 class="m-5 text-center">ESTP（起業家）</h4>
+                <p class="ml-3">
+                  Mind（心）：外向型（E）<br>
+                  Energy（エネルギー）：感覚型（S）<br>
+                  Nature（自然）：思考型（T）<br>
+                  Tactics（戦術）：知覚型（P）
+                </p>
+                <p>
+                  ・活発でエネルギッシュ<br>
+                  ・逆境に強く常にポジティブ！<br>
+                  ・考えるより行動が先なタイプ<br>
+                  ・めちゃくちゃ飽き性<br>
+                  ・熱しやすく冷めやすい
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="row">
+              <div class="col-6">
+                <%= image_tag "ESFP.jpg", class: 'slide-jpg' %>
+              </div>
+              <div class="col-6">
+                <h4 class="m-5 text-center">ESFP（エンターテイナー）</h4>
+                <p class="ml-3">
+                  Mind（心）：外向型（E）<br>
+                  Energy（エネルギー）：感覚型（S）<br>
+                  Nature（自然）：感情型（F）<br>
+                  Tactics（戦術）：知覚型（P）
+                </p>
+                <p>
+                  ・とにかく楽しいこと大好き<br>
+                  ・嫌なものや嫌なことには蓋をするタイプ<br>
+                  ・人を喜ばせたり人前に立ったりするの好き<br>
+                  ・飽きっぽいし何事も続かない<br>
+                  ・ひとりになることや人に嫌われるのが怖い
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
     </div>
   </div>
 </div>
+
+<script>
+  const swiper = new Swiper('.swiper',{
+    loop: true,
+    speed: 1500,
+    autoplay: {
+      delay: 1500,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    }
+  });
+</script>

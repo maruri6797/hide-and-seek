@@ -6,6 +6,17 @@
   box-sizing: border-box;
 }
 
+.slide-jpg{
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+}
+
+:root {
+  --swiper-navigation-color: #000;
+  --swiper-pagination-color: #000;
+}
+
 .button{
   position: fixed;
   right: 50px;
