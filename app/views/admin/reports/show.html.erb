@@ -12,18 +12,20 @@
       </div>
       <div class="row">
         <p class="col-4">非通報者</p>
-        <%= @report.reported.name %>
+        <%= link_to @report.reported.name, admin_user_path(@report.reported) %>
       </div>
       <div class="row">
         <p class="col-4">通報者</p>
-        <%= @report.reporter.name %>
+        <%= link_to @report.reporter.name, admin_user_path(@report.reporter) %>
       </div>
       <div class="row">
         <p class="col-4">確認</p>
-        <% if @report.is_checked %>
-        
-        <% end %>
         <%= form_with model: @report, url: admin_report_path(@report), method: :patch do |f| %>
+          <%= f.radio_button :is_checked, false %>
+          <%= f.label :is_checked_false, "未確認", class: 'mr-3' %>
+          <%= f.radio_button :is_checked, true %>
+          <%= f.label :is_checked_true, "確認済み", class: 'mr-3' %>
+          <%= f.submit "保存", class: 'btn btn-success' %>
         <% end %>
       </div>
     </div>

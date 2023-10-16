@@ -2,37 +2,35 @@
   <div class="row">
     <div class="col-lg-10 col-md-8">
       <h3 class="mx-5"><%= @user.name %>さんのユーザー詳細</h3>
-      <table class="mx-auto">
-        <tr>
-          <th class="col-4">ユーザーID</th>
-          <td><%= @user.id %></td>
-        </tr>
-        <tr>
-          <th class="col-4">ユーザー名</th>
-          <td><%= @user.name %></td>
-        </tr>
-        <tr>
-          <th class="col-4">メールアドレス</th>
-          <td><%= @user.email %></td>
-        </tr>
-        <tr>
-          <th class="col-4">ライセンス</th>
+        <div class="row justify-content-start">
+          <p class="col-4">ユーザーID</p>
+          <%= @user.id %>
+        </div>
+        <div class="row justify-content-start">
+          <p class="col-4">ユーザー名</p>
+          <%= @user.name %>
+        </div>
+        <div class="row justify-content-start">
+          <p class="col-4">メールアドレス</p>
+          <%= @user.email %>
+        </div>
+        <div class="row justify-content-start">
+          <p class="col-4">ライセンス</p>
           <% if @user.is_license == false %>
-            <td>なし</td>
+            <p>なし</p>
           <% else %>
-            <td>認証済み</td>
+            <p>認証済み</p>
           <% end %>
-        </tr>
-        <tr>
-          <th class="col-4">ステータス</th>
+        </div>
+        <div class="row justify-content-start">
+          <p class="col-4">ステータス</p>
           <% if @user.is_deleted == false %>
-            <td class="text-success">有効</td>
+            <p class="text-success">有効</p>
           <% else %>
-            <td class="text-secondary">退会</td>
+            <p class="text-secondary">退会</p>
           <% end %>
-        </tr>
-      </table>
-      <div class="text-center">
+        </div>
+      <div class="mx-5">
         <%= link_to "編集する", edit_admin_user_path(@user), class: 'btn btn-success mr-5' %>
         <%= link_to "投稿一覧を見る", posts_admin_user_path(@user), class: 'btn btn-primary' %>
       </div>
