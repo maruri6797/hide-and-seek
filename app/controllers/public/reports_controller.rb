@@ -2,24 +2,25 @@ class Public::ReportsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-
+    @report = Report.new
+    @user = User.find(params[:user_id])
   end
 
   def create
+    @user = User.find(params[:user_id])
     @report = Report.new(report_params)
-    @report.target_id = params[:report][:target_id]
-    @report.target_type = params[:report][:target_type]
-    @report.reporter_id = current_user
+    @report.reporter_id = current_user.id
+    @report.reported_id = @user.id
     if @report.save
-      redirect_to posts_path
+      redirect_to user_path(@user), notice: "ご報告ありがとうございます。"
     else
-      redirect_to root_path
+      render :new
     end
   end
 
   private
 
   def report_params
-    params.require(:report).permit(:target_id, :target_type, :reason)
+    params.require(:report).permit(:content, :reason)
   end
 end

@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 col-md-8">
+      <h3>通報詳細</h3>
+      <div class="row">
+        <p class="col-4">通報ID</p>
+        <%= @report.id %>
+      </div>
+      <div class="row">
+        <p class="col-4">コンテンツ</p>
+        <%= @report.content_i18n %>
+      </div>
+      <div class="row">
+        <p class="col-4">非通報者</p>
+        <%= @report.reported.name %>
+      </div>
+      <div class="row">
+        <p class="col-4">通報者</p>
+        <%= @report.reporter.name %>
+      </div>
+      <div class="row">
+        <p class="col-4">確認</p>
+        <% if @report.is_checked %>
+        
+        <% end %>
+        <%= form_with model: @report, url: admin_report_path(@report), method: :patch do |f| %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

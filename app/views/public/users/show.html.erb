@@ -14,7 +14,7 @@
           </div>
         <% else %>
           <div class="border three-point-contents is-active">
-            通報する
+            <%= link_to "通報する", new_user_report_path(@user), class: 'btn btn-default text-danger' %>
           </div>
           <% if current_user.following?(@user) %>
             <%= link_to "フォロー解除", user_relationships_path(@user), method: :delete, class: 'btn btn-danger ml-auto' %>

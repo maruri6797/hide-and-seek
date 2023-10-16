@@ -150,13 +150,11 @@ ActiveRecord::Schema.define(version: 2023_10_14_052837) do
   create_table "reports", force: :cascade do |t|
     t.integer "reporter_id", null: false
     t.integer "reported_id", null: false
-    t.string "target_type"
-    t.integer "target_id"
+    t.integer "content", null: false
     t.integer "reason", null: false
     t.boolean "is_checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["target_type", "target_id"], name: "index_reports_on_target"
   end
 
   create_table "rooms", force: :cascade do |t|

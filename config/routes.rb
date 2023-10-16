@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :show, :destroy] do
       resources :post_comments, only: [:destroy]
     end
+    resources :reports, only: [:index, :show, :update]
     get 'search' => 'searches#search'
     get 'result' => 'searches#result'
   end
@@ -40,6 +41,7 @@ Rails.application.routes.draw do
         patch 'leave'
       end
       resource :relationships, only: [:create, :destroy]
+      resources :reports, only: [:new, :create]
     end
     resources :posts, except: [:destroy] do
       member do
@@ -66,7 +68,6 @@ Rails.application.routes.draw do
         get 'done'
       end
     end
-    resources :reports, only: [:new, :create]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

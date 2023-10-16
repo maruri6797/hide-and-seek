@@ -14,6 +14,10 @@ ja:
         harassment: "嫌がらせ、いじめ"
         harm: "自殺や自傷行為"
         misinformation: "誤った情報"
+      content:
+        user: "ユーザー"
+        post: "投稿"
+        post_comment: "コメント"
 
   time:
     formats:

@@ -35,8 +35,13 @@
         <%= simple_format(h(post_comment.comment)) %>
         <p class="text-right"><small><%= l post_comment.created_at, format: :short %></small></p>
         <% post_comment.actions.each do |action| %>
-          <% action %>
-          <%= link_to "", post_post_comment_action_path(pos, post_comment, action), method: :delete, class: "text-warning fa-regular "+action.face_type %>
+          <% if action.user == current_user %>
+            <% action %>
+            <%= link_to "", post_post_comment_action_path(pos, post_comment, action), method: :delete, class: "text-warning fa-regular "+action.face_type %>
+          <% else %>
+            <% action %>
+            <i class="text-warning fa-regular <%= action.face_type %>"></i>
+          <% end %>
         <% end %>
         <div id="open<%=post_comment.id%>" class="modal-open text-right"><i class="fa-solid fa-heart-circle-plus"></i></div>
       </div>

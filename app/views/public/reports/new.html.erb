@@ -1,8 +1,42 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <h3>報告</h3>
-      <%= render 'public/reports/report', report: @report %>
+      <h3 class="text-center mb-5">報告</h3>
+      <%= form_with model: [@user, @report], url: user_reports_path, method: :post do |f| %>
+        <div class="row justify-content-center">
+          <p class="col-4">コンテンツ</p>
+          <div class="form-group">
+            <%= f.radio_button :content, Report.contents.key(0) %>
+            <%= f.label :content_user, Report.contents_i18n[:user], class: 'mr-3' %>
+            <%= f.radio_button :content, Report.contents.key(1) %>
+            <%= f.label :content_post, Report.contents_i18n[:post], class: 'mr-3' %>
+            <%= f.radio_button :content, Report.contents.key(2) %>
+            <%= f.label :content_post_comment, Report.contents_i18n[:post_comment] %>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <p class="col-4">理由</p>
+          <div class="form-group">
+            <%= f.radio_button :reason, Report.reasons.key(0) %>
+            <%= f.label :reason_spam, Report.reasons_i18n[:spam] %><br>
+            <%= f.radio_button :reason, Report.reasons.key(1) %>
+            <%= f.label :reason_pornography, Report.reasons_i18n[:pornography] %><br>
+            <%= f.radio_button :reason, Report.reasons.key(2) %>
+            <%= f.label :reason_malicious, Report.reasons_i18n[:malicious] %><br>
+            <%= f.radio_button :reason, Report.reasons.key(3) %>
+            <%= f.label :reason_terrorism, Report.reasons_i18n[:terrorism] %><br>
+            <%= f.radio_button :reason, Report.reasons.key(4) %>
+            <%= f.label :reason_harassment, Report.reasons_i18n[:harassment] %><br>
+            <%= f.radio_button :reason, Report.reasons.key(5) %>
+            <%= f.label :reason_harm, Report.reasons_i18n[:harm] %><br>
+            <%= f.radio_button :reason, Report.reasons.key(6) %>
+            <%= f.label :reason_misinformation, Report.reasons_i18n[:misinformation] %>
+          </div>
+        </div>
+        <div class="action text-center">
+          <%= f.submit "報告", class: 'btn btn-danger' %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

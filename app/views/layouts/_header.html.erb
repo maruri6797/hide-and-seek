@@ -12,6 +12,7 @@
     <%= link_to "ユーザー一覧", admin_root_path, class: 'flex-fill' %>
     <%= link_to "検索", admin_search_path, class: 'flex-fill' %>
     <%= link_to "投稿一覧", admin_posts_path, class: 'flex-fill' %>
+    <%= link_to "通報一覧", admin_reports_path, class: 'flex-fill' %>
     <%= link_to "タグ一覧", admin_tags_path, class: 'flex-fill' %>
     <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'flex-fill' %>
   <% elsif user_signed_in? %><!--ユーザー用-->
