@@ -55,7 +55,7 @@ class User < ApplicationRecord
         file_path = Rails.root.join('app/assets/images/INFP.jpg')
         profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
       when "ENFJ" then
-        file_path = Rails.root.join('app/assets/images/ENTJ.jpg')
+        file_path = Rails.root.join('app/assets/images/ENFJ.jpg')
         profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
       when "ENFP" then
         file_path = Rails.root.join('app/assets/images/ENFP.jpg')

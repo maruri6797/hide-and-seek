@@ -58,7 +58,9 @@ Rails.application.routes.draw do
          get 'lists'
       end
     end
-    resources :chats, only: [:show, :create]
+    resources :chats, only: [:show, :create] do
+      
+    end
     resources :notifications, only: [:index]
     devise_scope :user do
       post "users/guest_sign_in", to: "sessions#guest_sign_in"

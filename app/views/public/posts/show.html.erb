@@ -27,8 +27,8 @@
         <% end %>
       <% end %>
       <div class="tag">
-        <i class="fa-solid fa-tag"></i>
         <% @post.tags.each do |tag| %>
+          <i class="fa-solid fa-tag"></i>
           <%= link_to tag.name, result_path(tag_id: tag.id) %>
         <% end %>
       </div>
@@ -48,6 +48,15 @@
         </div>
         <div class="comment_count">
           <%= render 'public/post_comments/comment_count', pos: @post %>
+        </div>
+        <div class="sns_share">
+          <i class="fa-solid fa-share"></i>
+          <%= link_to "//twitter.com/intent/tweet?text=#{ @post.title }&url=#{ post_url(@post) }", target: "_blank", rel: "nofollow noopener noreferrer" do %>
+            <i class="fa-solid fa-x text-decoration-none text-dark"></i>
+          <% end %>
+          <%= link_to "//timeline.line.me/social-plugin/share?url=#{ post_url(@post) }&text=#{ @post.title }", target: "_blank", rel: "nofollow noopener noreferrer" do %>
+            <i class="fa-brands fa-line text-decoration-none text-success"></i>
+          <% end %>
         </div>
       </div>
       <!--コメント機能-->

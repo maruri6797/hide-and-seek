@@ -21,9 +21,9 @@
       <% if pos.images.attached? %>
         <%= image_tag pos.images[0], size: "600x300", class: 'card-img-bottom' %>
       <% end %>
-      <div class="tag">
-        <i class="fa-solid fa-tag"></i>
+      <div class="tag ml-3">
         <% pos.tags.each do |tag| %>
+          <i class="fa-solid fa-tag"></i>
           <%= link_to tag.name, result_path(tag_id: tag.id) %>
         <% end %>
       </div>

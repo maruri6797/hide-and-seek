@@ -30,6 +30,7 @@
       <p class="m-1">MBTI: <strong><%= @user.mbti %></strong></p>
       <%= simple_format(h(@user.introduction)) %>
       <div class="d-flex">
+        <div class="mr-3"><%= @user.posts.count { |user_posts| user_posts.status != "deleted" } %>投稿</div>
         <div class="mr-3"><%= link_to @user.followers.count, followings_user_path(@user) %>フォロー中</div>
         <div class="mr-3"><%= link_to @user.followeds.count, followers_user_path(@user) %>フォロワー</div>
         <div class="mr-3"><%= link_to @favorite_posts.count { |favorite_posts| favorite_posts.status != "deleted" }, favorites_user_path(@user) %>いいね</div>
