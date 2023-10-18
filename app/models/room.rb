@@ -2,6 +2,7 @@ class Room < ApplicationRecord
   has_many :chats, dependent: :destroy
   has_many :user_rooms, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :reactions, dependent: :destroy
 
     # DM通知
   def create_notification_message(current_user, chat_id)

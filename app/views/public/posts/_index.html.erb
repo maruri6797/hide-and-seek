@@ -19,7 +19,7 @@
         </small></p>
       </div>
       <% if pos.images.attached? %>
-        <%= image_tag pos.images[0], size: "600x300", class: 'card-img-bottom' %>
+        <%= image_tag pos.images[0], size: "600x300", class: 'card-img-bottom zoom' %>
       <% end %>
       <div class="tag ml-3">
         <% pos.tags.each do |tag| %>
@@ -42,3 +42,7 @@
     </div>
   <% end %>
 <% end %>
+
+  <% if pos.images.attached? %>
+    <%= image_tag pos.images[0], size: "600x300", class: 'card-img-bottom' %>
+  <% end %>

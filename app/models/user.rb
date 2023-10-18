@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :stars, dependent: :destroy
   has_many :actions, dependent: :destroy
   has_many :reports, as: :target
+  has_many :reactions, dependent: :destroy
   # フォロー機能
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
