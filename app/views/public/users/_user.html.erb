@@ -1,5 +1,5 @@
 <% users.each do |user| %>
-  <div class="d-flex">
+  <div class="d-flex justify-content-between">
     <%= link_to user_path(user) do %>
       <%= image_tag user.get_profile_image(100, 100), class: 'rounded-circle' %>
     <% end %>
@@ -19,7 +19,7 @@
       <% end %>
     <% end %>
     <% if current_user.following?(user) && user.following?(current_user) %>
-      <%= link_to "",chat_path(user), class: 'fa-solid fa-envelope h4' %>
+      <%= link_to "",chat_path(user), class: 'ml-3 fa-solid fa-envelope h4 text-decoration-none' %>
     <% end %>
   </div>
 <% end %>

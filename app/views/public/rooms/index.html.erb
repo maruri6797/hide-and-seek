@@ -2,9 +2,10 @@
   <div class="row">
     <div class="col-lg-10 col-md-8">
       <div class="rooms">
+        <h4 class="text-center">メッセージ</h4>
         <% if @user_rooms.present? %>
           <% @user_rooms.each do |room| %>
-            <div class="row align-items-center">
+            <div class="row align-items-center border-bottom">
               <%= link_to user_path(room.user) do %>
                 <%= image_tag room.user.get_profile_image(100, 100), class: 'rounded-circle' %>
               <% end %>

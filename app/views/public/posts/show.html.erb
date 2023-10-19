@@ -1,66 +1,72 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-10 col-md-8">
-      <div class="d-flex align-items-center">
-        <%= link_to user_path(@post.user) do %>
-          <%= image_tag @post.user.get_profile_image(150, 150), class: 'rounded-circle mr-3' %>
+      <div class="border-bottom">
+        <div class="d-flex align-items-center">
+          <%= link_to user_path(@post.user) do %>
+            <%= image_tag @post.user.get_profile_image(150, 150), class: 'rounded-circle mr-3' %>
+          <% end %>
+          <%= link_to @post.user.name, user_path(@post.user), class: 'h4 mr-1' %>
+          <% if @post.user.is_license == true %>
+            <i class="fa-solid fa-award text-warning"></i>
+          <% end %>
+        </div>
+        <div class="row m-3">
+          <p class="h3"><%= @post.title %></p>
+          <% if @post.user.id == current_user.id %>
+            <div class="three-point h3 ml-auto">⋮</div>
+            <div class="border three-point-content is-active">
+              <%= link_to "編集する", edit_post_path(@post), class: 'btn btn-default border-bottom' %><br>
+              <%= link_to "削除する", delete_post_path(@post), method: :patch, class: 'btn btn-default', data: {confirm: "削除してもよろしいですか？"} %>
+            </div>
+          <% end %>
+        </div>
+        <%= simple_format(h(@post.text)) %>
+        <% if @post.images.attached? %>
+          <% @post.images.each do |image| %>
+            <%= image_tag image.variant(resize: '920x300'), class: 'zoom' %>
+          <% end %>
         <% end %>
-        <%= link_to @post.user.name, user_path(@post.user), class: 'h4 mr-1' %>
-        <% if @post.user.is_license == true %>
-          <i class="fa-solid fa-award text-warning"></i>
-        <% end %>
-      </div>
-      <div class="row m-3">
-        <p class="h3"><%= @post.title %></p>
-        <% if @post.user.id == current_user.id %>
-          <div class="three-point h3 ml-auto">⋮</div>
-          <div class="border three-point-content is-active">
-            <%= link_to "編集する", edit_post_path(@post), class: 'btn btn-default border-bottom' %><br>
-            <%= link_to "削除する", delete_post_path(@post), method: :patch, class: 'btn btn-default', data: {confirm: "削除してもよろしいですか？"} %>
+        <div class="tag">
+          <% @post.tags.each do |tag| %>
+            <i class="fa-solid fa-tag"></i>
+            <%= link_to tag.name, result_path(tag_id: tag.id) %>
+          <% end %>
+        </div>
+        <p class="text-right">
+          <%= l @post.created_at %>
+          <% if @post.status == "edited" %>
+            <%= @post.status_i18n %>
+          <% end %>
+        </p>
+        <div class="d-flex justify-content-around mb-3">
+          <i class="fa-solid fa-eye"><%= @post.view_counts.count %></i>
+          <div class="favorite<%= @post.id %>">
+            <%= render 'public/favorites/favorite', put: @post %>
           </div>
-        <% end %>
-      </div>
-      <%= simple_format(h(@post.text)) %>
-      <% if @post.images.attached? %>
-        <% @post.images.each do |image| %>
-          <%= image_tag image.variant(resize: '920x300'), class: 'zoom' %>
-        <% end %>
-      <% end %>
-      <div class="tag">
-        <% @post.tags.each do |tag| %>
-          <i class="fa-solid fa-tag"></i>
-          <%= link_to tag.name, result_path(tag_id: tag.id) %>
-        <% end %>
-      </div>
-      <p class="text-right">
-        <%= l @post.created_at %>
-        <% if @post.status == "edited" %>
-          <%= @post.status_i18n %>
-        <% end %>
-      </p>
-      <div class="d-flex justify-content-around">
-        <i class="fa-solid fa-eye"><%= @post.view_counts.count %></i>
-        <div class="favorite<%= @post.id %>">
-          <%= render 'public/favorites/favorite', put: @post %>
-        </div>
-        <div class="star<%= @post.id %>">
-          <%= render 'public/stars/star', put: @post %>
-        </div>
-        <div class="comment_count">
-          <%= render 'public/post_comments/comment_count', pos: @post %>
-        </div>
-        <div class="sns_share">
-          <i class="fa-solid fa-share"></i>
-          <%= link_to "//twitter.com/intent/tweet?text=#{ @post.title }&url=#{ post_url(@post) }", target: "_blank", rel: "nofollow noopener noreferrer" do %>
-            <i class="fa-solid fa-x text-decoration-none text-dark"></i>
-          <% end %>
-          <%= link_to "//timeline.line.me/social-plugin/share?url=#{ post_url(@post) }&text=#{ @post.title }", target: "_blank", rel: "nofollow noopener noreferrer" do %>
-            <i class="fa-brands fa-line text-decoration-none text-success"></i>
-          <% end %>
+          <div class="star<%= @post.id %>">
+            <%= render 'public/stars/star', put: @post %>
+          </div>
+          <div class="comment_count">
+            <%= render 'public/post_comments/comment_count', pos: @post %>
+          </div>
+          <div class="sns_share">
+            <i class="fa-solid fa-share"></i>
+            <%= link_to "//twitter.com/intent/tweet?text=#{ @post.title }&url=#{ post_url(@post) }", target: "_blank", rel: "nofollow noopener noreferrer" do %>
+              <i class="fa-solid fa-x text-decoration-none text-dark mr-1"></i>
+            <% end %>
+            <%= link_to "//www.facebook.com/sharer/sharer.php?u=#{ post_url(@post) }&t=#{ @post.title }", target: "_blank", rel: "nofollow noopener noreferrer" do %>
+              <i class="fa-brands fa-square-facebook text-decoration-none text-primary mr-1"></i>
+            <% end %>
+            <%= link_to "//timeline.line.me/social-plugin/share?url=#{ post_url(@post) }&text=#{ @post.title }", target: "_blank", rel: "nofollow noopener noreferrer" do %>
+              <i class="fa-brands fa-line text-decoration-none text-success"></i>
+            <% end %>
+          </div>
         </div>
       </div>
       <!--コメント機能-->
-      <div class="post_comments my-5">
+      <div class="post_comments my-3">
+        <p>コメント</p>
         <%= render 'public/post_comments/comment', pos: @post, action: @acction %>
       </div>
       <%= form_with model: [@post, @post_comment], method: :post, local: false do |f| %>

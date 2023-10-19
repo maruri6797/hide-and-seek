@@ -1,5 +1,5 @@
 <% notification.each do |notification| %>
-  <div class="my-3">
+  <div class="my-3 border-bottom">
     <%= link_to user_path(notification.visitor) do %>
       <%= image_tag notification.visitor.get_profile_image(50, 50), class: 'rounded-circle' %>
       <%= notification.visitor.name %>
