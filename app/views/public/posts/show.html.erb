@@ -24,7 +24,9 @@
         <%= simple_format(h(@post.text)) %>
         <% if @post.images.attached? %>
           <% @post.images.each do |image| %>
-            <%= image_tag image.variant(resize: '920x300'), class: 'zoom' %>
+            <%= link_to image, "data-lightbox": image do %>
+              <%= image_tag image.variant(resize: '920x300'), class: 'img' %>
+            <% end %>
           <% end %>
         <% end %>
         <div class="tag">
@@ -80,14 +82,6 @@
     </div>
   </div>
 </div>
-<% if @post.images.attached? %>
-  <% @post.images.each do |image| %>
-  <div id="zoomback">
-    <%= image_tag image, class: 'zooming' %>
-  </div>
-  <% end %>
-<% end %>
-
 <!--三点リーダー-->
 <script>
   $(document).on('turbolinks:load', function(){
@@ -96,23 +90,4 @@
       event.preventDefault();
     });
   });
-</script>
-<!--画像拡大-->
-<script>
-  $(document).on('turbolinks:load', function(){
-    const zoom = document.querySelectorAll(".zoom");
-    const zoomback = document.getElementById("zoomback");
-    const zooming = document.getElementsByClassName(".zooming")
-    zoom.forEach(function(value){
-      value.addEventListener("click", kakudai);
-    });
-    function kakudai(e){
-      zoomback.style.display = "flex";
-    }
-  });
-
-  zoomback.addEventListener("click", modosu);
-  function modosu(){
-    zoomback.style.display = "none";
-  }
 </script>

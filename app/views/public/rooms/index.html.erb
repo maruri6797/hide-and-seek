@@ -13,11 +13,17 @@
               <% if room.user.is_license == true %>
                 <i class="fa-solid fa-award text-warning"></i>
               <% end %>
-              <div class="ml-auto">
-                <%= link_to chat_path(room.user) do %>
-                  <%= Chat.find_by(id: room.room.chat_ids.last).message %>
-                <% end %>
-              </div>
+              <% unless Chat.find_by(id: room.room.chat_ids).present? %>
+                 <div class="ml-auto">
+                  <%= link_to "チャット", chat_path(room.user) %>
+                </div>
+              <% else %>
+                <div class="ml-auto">
+                  <%= link_to chat_path(room.user) do %>
+                    <%= Chat.find_by(id: room.room.chat_ids.last).message %>
+                  <% end %>
+                </div>
+              <% end %>
             </div>
           <% end %>
         <% else %>

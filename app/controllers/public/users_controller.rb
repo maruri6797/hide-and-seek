@@ -4,7 +4,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.where.not(status: 2)
+    @posts = @user.posts.where.not(status: 2).order(created_at: :desc)
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
     @favorite_posts = Post.find(favorites)
     stars = Star.where(user_id: @user.id).pluck(:post_id)

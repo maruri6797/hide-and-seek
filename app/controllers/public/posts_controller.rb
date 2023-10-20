@@ -32,7 +32,7 @@ class Public::PostsController < ApplicationController
     end
     if @post.update(post_params)
       @post.update(status: 1)
-      redirect_to posts_path, notice: "投稿を編集しました。"
+      redirect_to post_path(@post), notice: "投稿を編集しました。"
     else
       flash.now[:alert] = "編集に失敗しました。"
       render :edit
@@ -41,7 +41,7 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.where.not(status: 2).page(params[:page]).per(10).order(created_at: :desc)
-    @follow_posts = @posts.where(user_id: [*current_user.follower_ids])
+    @follow_posts = @posts.where(user_id: [current_user.id, *current_user.follower_ids])
   end
 
   def show

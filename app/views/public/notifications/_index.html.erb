@@ -9,9 +9,9 @@
     <% when 'follow' then %>
       あなたをフォローしました
     <% when 'like' then %>
-      <%= link_to "あなたの投稿", post_path(notification.visited) %>にいいねしました
+      <%= link_to "あなたの投稿", post_path(notification.post) %>にいいねしました
     <% when 'comment' then %>
-      <%= link_to "あなたの投稿", post_path(notification.visited) %>にコメントしました
+      <%= link_to "あなたの投稿", post_path(notification.post) %>にコメントしました
     <% when 'dm' then %>
       あなたに<%= link_to "メッセージ", chat_path(notification.visitor) %>
       <%= truncate(notification.chat.message) %>を送りました

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_18_074021) do
+ActiveRecord::Schema.define(version: 2023_10_14_052837) do
 
   create_table "actions", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -140,18 +140,6 @@ ActiveRecord::Schema.define(version: 2023_10_18_074021) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "reactions", force: :cascade do |t|
-    t.integer "user_id_id", null: false
-    t.integer "room_id_id", null: false
-    t.integer "chat_id_id", null: false
-    t.string "face_type", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["chat_id_id"], name: "index_reactions_on_chat_id_id"
-    t.index ["room_id_id"], name: "index_reactions_on_room_id_id"
-    t.index ["user_id_id"], name: "index_reactions_on_user_id_id"
-  end
-
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id", null: false
     t.integer "followed_id", null: false
@@ -239,9 +227,6 @@ ActiveRecord::Schema.define(version: 2023_10_18_074021) do
   add_foreign_key "post_tags", "posts"
   add_foreign_key "post_tags", "tags"
   add_foreign_key "posts", "users"
-  add_foreign_key "reactions", "chat_ids"
-  add_foreign_key "reactions", "room_ids"
-  add_foreign_key "reactions", "user_ids"
   add_foreign_key "stars", "posts"
   add_foreign_key "stars", "users"
   add_foreign_key "user_rooms", "rooms"

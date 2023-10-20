@@ -19,7 +19,9 @@
         </small></p>
       </div>
       <% if pos.images.attached? %>
-        <%= image_tag pos.images[0], size: "600x300", class: 'card-img-bottom' %>
+        <%= link_to pos.images[0], "data-lightbox": pos.images do %>
+          <%= image_tag pos.images[0], size: "600x300", class: 'card-img-bottom img' %>
+        <% end %>
       <% end %>
       <div class="tag ml-3">
         <% pos.tags.each do |tag| %>

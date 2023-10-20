@@ -1,11 +1,11 @@
 <%= form_with model: put do |f| %>
   <div class="form-group">
     <%= f.label :title, " タイトル" %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: 'form-control' %>
   </div>
   <div class="form-group">
     <%= f.label :text, "テキスト" %><br>
-    <%= f.text_area :text %>
+    <%= f.text_area :text, class: 'form-control' %>
   </div>
   <div class="form-group">
     <%= f.label :images, "※任意　画像(複数選択可)" %><br>
@@ -28,7 +28,7 @@
   <div class="form-group">
     <%= f.hidden_field :status %>
   </div>
-  <div class="action">
+  <div class="action text-center">
     <% if put.new_record? %>
       <%= f.submit "投稿する", class: 'btn btn-success' %>
     <% else %>

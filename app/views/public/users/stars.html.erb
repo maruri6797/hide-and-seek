@@ -4,7 +4,6 @@
       <h3>お気に入り</h3>
       <% if @posts.present? %>
         <%= render 'public/posts/index', posts: @posts %>
-        <%= paginate @posts %>
       <% else %>
         <p>お気に入りした投稿はありません</p>
       <% end %>
