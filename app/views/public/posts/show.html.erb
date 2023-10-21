@@ -6,7 +6,7 @@
           <%= link_to user_path(@post.user) do %>
             <%= image_tag @post.user.get_profile_image(150, 150), class: 'rounded-circle mr-3' %>
           <% end %>
-          <%= link_to @post.user.name, user_path(@post.user), class: 'h4 mr-1' %>
+          <%= link_to @post.user.name, user_path(@post.user), class: 'h4 mr-1 text-decoration-none' %>
           <% if @post.user.is_license == true %>
             <i class="fa-solid fa-award text-warning"></i>
           <% end %>
@@ -32,7 +32,7 @@
         <div class="tag">
           <% @post.tags.each do |tag| %>
             <i class="fa-solid fa-tag"></i>
-            <%= link_to tag.name, result_path(tag_id: tag.id) %>
+            <%= link_to tag.name, result_path(tag_id: tag.id), class: 'text-decoration-none' %>
           <% end %>
         </div>
         <p class="text-right">

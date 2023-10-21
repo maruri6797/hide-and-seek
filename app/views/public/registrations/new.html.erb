@@ -3,13 +3,11 @@
     <div class="col-md-9">
       <h2>新規会員登録</h2>
       <%= form_with model: @user, url: user_registration_path do |f| %>
-        <%= render "public/shared/error_messages", resource: resource %>
-
+      <%= render "public/shared/error_messages", resource: resource %>
         <div class="form-group row">
           <%= f.label :name, "ユーザー名", class: 'col-4' %>
           <%= f.text_field :name %>
         </div>
-
         <div class="form-group row">
           <%= f.label :mbti, "MBTI", class: 'col-4' %>
           <div class="col-5">
@@ -18,12 +16,10 @@
             <% end %>
           </div>
         </div>
-
         <div class="form-group row">
           <%= f.label :email, "メールアドレス", class: 'col-4' %>
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
         </div>
-
         <div class="form-group row">
           <div class="col-4">
             <%= f.label :password, "パスワード" %>
@@ -33,17 +29,14 @@
           </div>
           <%= f.password_field :password, autocomplete: "new-password" %>
         </div>
-
         <div class="form-group row">
           <%= f.label :password_confirmation, "パスワード確認", class: 'col-4' %>
           <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
         </div>
-
         <div class="actions text-center">
           <%= f.submit "新規会員登録", class: 'btn btn-success' %>
         </div>
       <% end %>
-
       ログインは<%= render "public/shared/links" %>から
     </div>
   </div>

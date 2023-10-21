@@ -11,7 +11,7 @@
         <% @tags.each do |tag| %>
           <li class="list-group-item col-8">
             <i class="fa-solid fa-tag"></i>
-            <%= link_to tag.name, result_path(tag_id: tag.id) %>
+            <%= link_to tag.name, result_path(tag_id: tag.id), class: 'text-decoration-none' %>
             <% @tags_posts = tag.posts %>
             (<%= @tags_posts.count { |tags_posts| tags_posts.status != "deleted" } %>)
           </li>

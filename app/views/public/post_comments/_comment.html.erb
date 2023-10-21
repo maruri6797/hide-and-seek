@@ -14,20 +14,20 @@
           <i class="text-warning fa-regular <%= action.face_type %>"></i>
         <% end %>
       </div>
-      <%= link_to user_path(post_comment.user) do %>
+      <%= link_to user_path(post_comment.user), class: 'text-decoration-none' do %>
         <%= image_tag post_comment.user.get_profile_image(100, 100), class: 'rounded-circle' %>
+        <%= post_comment.user.name %>
       <% end %>
-      <%= link_to post_comment.user.name, user_path(post_comment.user) %>
       <% if post_comment.user.is_license == true %>
         <i class="fa-solid fa-award text-warning"></i>
       <% end %>
     </div>
   <% else %>
     <div class="row justify-content-start">
-      <%= link_to user_path(post_comment.user) do %>
+      <%= link_to user_path(post_comment.user), class: 'text-decoration-none' do %>
         <%= image_tag post_comment.user.get_profile_image(100, 100), class: 'rounded-circle' %>
+        <%= post_comment.user.name %>
       <% end %>
-      <%= link_to post_comment.user.name, user_path(post_comment.user) %>
       <% if post_comment.user.is_license == true %>
         <i class="fa-solid fa-award text-warning"></i>
       <% end %>

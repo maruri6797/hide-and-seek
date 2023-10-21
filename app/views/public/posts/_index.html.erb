@@ -5,7 +5,7 @@
         <%= link_to user_path(pos.user) do %>
           <%= image_tag pos.user.get_profile_image(130, 130), class: 'rounded-circle' %>
         <% end %>
-        <%= link_to pos.user.name, user_path(pos.user), class: 'h4' %>
+        <%= link_to pos.user.name, user_path(pos.user), class: 'h4 text-decoration-none' %>
         <% if pos.user.is_license == true %>
           <i class="fa-solid fa-award text-warning"></i>
         <% end %>

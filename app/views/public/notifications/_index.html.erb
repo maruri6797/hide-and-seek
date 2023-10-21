@@ -1,6 +1,6 @@
 <% notification.each do |notification| %>
   <div class="my-3 border-bottom">
-    <%= link_to user_path(notification.visitor) do %>
+    <%= link_to user_path(notification.visitor), class: 'text-decoration-none' do %>
       <%= image_tag notification.visitor.get_profile_image(50, 50), class: 'rounded-circle' %>
       <%= notification.visitor.name %>
     <% end %>
@@ -9,11 +9,11 @@
     <% when 'follow' then %>
       あなたをフォローしました
     <% when 'like' then %>
-      <%= link_to "あなたの投稿", post_path(notification.post) %>にいいねしました
+      <%= link_to "あなたの投稿", post_path(notification.post), class: 'text-decoration-none' %>にいいねしました
     <% when 'comment' then %>
-      <%= link_to "あなたの投稿", post_path(notification.post) %>にコメントしました
+      <%= link_to "あなたの投稿", post_path(notification.post), class: 'text-decoration-none' %>にコメントしました
     <% when 'dm' then %>
-      あなたに<%= link_to "メッセージ", chat_path(notification.visitor) %>
+      あなたに<%= link_to "メッセージ", chat_path(notification.visitor), class: 'text-decoration-none' %>
       <%= truncate(notification.chat.message) %>を送りました
     <% end %>
     <small class="text-secondary"><%= time_ago_in_words(notification.created_at) %>前</small>
