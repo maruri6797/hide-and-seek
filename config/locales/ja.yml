@@ -49,5 +49,5 @@ ja:
     errors:
       messages:
         invalid: "%{attribute}が正しくありません。"
-        blank: "必須項目です。"
+        blank: "は必須項目です。"
         too_short: "は%{count}文字以上で入力して下さい。"
