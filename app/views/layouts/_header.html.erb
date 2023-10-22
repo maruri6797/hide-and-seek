@@ -30,8 +30,6 @@
     <% end %>
     <%= link_to '', rooms_path, class: 'fa-solid fa-envelope flex-fill text-decoration-none' %>
   <% else %>
-    <%= link_to '', posts_path, class: 'fa-solid fa-house flex-fill text-decoration-none' %>
-    <%= link_to '', search_path, class: 'fa-solid fa-magnifying-glass flex-fill text-decoration-none' %>
     <%= link_to '', new_user_registration_path, class: 'fa-solid fa-user-plus flex-fill text-decoration-none' %>
     <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'fa-solid fa-house-user flex-fill text-decoration-none' %>
   <% end %>

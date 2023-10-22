@@ -7,9 +7,9 @@
         同じユーザー名、メールアドレスでログインすることができなくなります。<br>
         退会する場合は、「退会する」をクリックしてください。
       </p>
-      <div class="button text-center">
-        <%= link_to "退会しない", user_path(@user), class: 'btn btn-primary' %>
-        <%= link_to "退会する", leave_user_path(@user), class: 'btn btn-danger' %>
+      <div class="text-center">
+        <%= link_to "退会しない", user_path(@user), class: 'btn btn-primary mr-3' %>
+        <%= link_to "退会する", leave_user_path(@user), method: :patch, class: 'btn btn-danger' %>
       </div>
     </div>
   </div>
