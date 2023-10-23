@@ -1,4 +1,6 @@
 class Public::StarsController < ApplicationController
+  before_action :authenticate_user!
+  
   def create
     @post = Post.find(params[:post_id])
     star = current_user.stars.new(post_id: @post.id)

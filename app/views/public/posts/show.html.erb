@@ -73,7 +73,7 @@
       </div>
       <%= form_with model: [@post, @post_comment], method: :post, local: false do |f| %>
         <div class="form-group">
-          <%= f.text_area :comment, class: 'col-10' %>
+          <%= f.text_area :comment, required: true, class: 'col-10' %>
           <%= button_tag type: "submit", class: 'btn btn-default' do %>
             <i class="fa-regular fa-paper-plane"></i>
           <% end %>

@@ -1,7 +1,6 @@
 class Admin::SearchesController < ApplicationController
   def search
     @tags = Tag.all
-
   end
 
   def result

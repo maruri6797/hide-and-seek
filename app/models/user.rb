@@ -130,6 +130,7 @@ class User < ApplicationRecord
     end
   end
 
+# ゲストログイン
   GUEST_USER_EMAIL = "guest@example.com"
   GUEST_USER_MBTI = "unknown"
 

@@ -1,4 +1,6 @@
 class Public::RoomsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @current_user_rooms = current_user.rooms
     myRoomIds= []
