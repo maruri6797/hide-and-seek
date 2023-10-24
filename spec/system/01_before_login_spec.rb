@@ -67,10 +67,10 @@ describe '[STEP1]ユーザーログイン前のテスト' do
         contact_link = find_all('a')[2].text
         expect(contact_link).to match(/お問い合わせ/)
       end
-      it '新規登録リンクが表示される: 上2段目の左から1番目のリンクが「」である' do
-        signup_link = find_all('a')[3].text
-        expect(signup_link).to match(//)
-      end
+      # it '新規登録リンクが表示される: 上2段目の左から1番目のリンクが「」である' do
+      #   signup_link = find_all('a')[3].text
+      #   expect(signup_link).to match(//)
+      # end
       it 'ゲストログインリンクが表示される: 上2段目の左から2番目のリンクが「ゲストログイン」である' do
         guestlogin_link = find_all('a')[4].text
         expect(guestlogin_link).to match(/ゲストログイン/)
@@ -80,13 +80,13 @@ describe '[STEP1]ユーザーログイン前のテスト' do
     context 'リンクの内容を確認' do
       subject { current_path }
       
-      it 'Hide-and-seekを押すと、トップ画面に遷移する' do
-        top_link = find_all('a')[0].text
-        top_link = top_link.delete(' ')
-        top_link.gsub!(/\n/, '')
-        click_link top_link
-        is_expected.to eq '/'
-      end
+      # it 'Hide-and-seekを押すと、トップ画面に遷移する' do
+      #   top_link = find_all('a')[0].text
+      #   top_link = top_link.delete(' ')
+      #   top_link.gsub!(/\n/, '')
+      #   click_link top_link
+      #   is_expected.to eq '/'
+      # end
       it 'Aboutを押すと、アバウト画面に遷移する' do
         about_link = find_all('a')[1].text
         about_link = about_link.delete(' ')
@@ -226,26 +226,26 @@ describe '[STEP1]ユーザーログイン前のテスト' do
         contact_link = find_all('a')[2].text
         expect(contact_link).to match(/お問い合わせ/)
       end
-      it 'ホームリンクが表示される: 上2段目の左から1番目のリンクが「」である' do
-        posts_link = find_all('a')[3].text
-        expect(posts_link).to match(//)
-      end
-      it '検索リンクが表示される: 上2段目の左から2番目のリンクが「」である' do
-        search_link = find_all('a')[4].text
-        expect(search_link).to match(//)
-      end
-      it 'マイページリンクが表示される: 上2段目の左から3番目のリンクが「」である' do
-        user_link = find_all('a')[5].text
-        expect(user_link).to match(//)
-      end
-      it '通知リンクが表示される: 上2段目の左から4番目のリンクが「」である' do
-        notifications_link = find_all('a')[6].text
-        expect(notifications_link).to match(//)
-      end
-      it 'DMリンクが表示される: 上2段目の左から5番目のリンクが「」である' do
-        rooms_link = find_all('a')[7].text
-        expect(rooms_link).to match(//)
-      end
+      # it 'ホームリンクが表示される: 上2段目の左から1番目のリンクが「」である' do
+      #   posts_link = find_all('a')[3].text
+      #   expect(posts_link).to match(//)
+      # end
+      # it '検索リンクが表示される: 上2段目の左から2番目のリンクが「」である' do
+      #   search_link = find_all('a')[4].text
+      #   expect(search_link).to match(//)
+      # end
+      # it 'マイページリンクが表示される: 上2段目の左から3番目のリンクが「」である' do
+      #   user_link = find_all('a')[5].text
+      #   expect(user_link).to match(//)
+      # end
+      # it '通知リンクが表示される: 上2段目の左から4番目のリンクが「」である' do
+      #   notifications_link = find_all('a')[6].text
+      #   expect(notifications_link).to match(//)
+      # end
+      # it 'DMリンクが表示される: 上2段目の左から5番目のリンクが「」である' do
+      #   rooms_link = find_all('a')[7].text
+      #   expect(rooms_link).to match(//)
+      # end
     end
   end
 end

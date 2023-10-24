@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-10 col-md-8">
       <h3 class="text-center">お問い合わせ（ご意見・ご感想）</h3>
-      <%= form_with model: @contact, url: contacts_path, method: :post do |f| %>
+      <%= form_with(model: @contact, url: contacts_path, method: :post, id: 'c-form') do |f| %>
       <%= render 'layouts/errors', obj: @contact %>
         <div class="form-group">
           <%= f.label :name, "お名前" %>

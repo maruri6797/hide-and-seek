@@ -61,7 +61,7 @@ class Public::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :mbti, :introduction, :is_deleted, :profile_image)
+    params.require(:user).permit(:name, :email, :mbti, :introduction, :is_deleted, :profile_image, :favorie)
   end
 
   def ensure_user

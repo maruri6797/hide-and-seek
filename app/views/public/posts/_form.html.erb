@@ -1,4 +1,4 @@
-<%= form_with model: put do |f| %>
+<%= form_with(model: put, id: 'p-form' )do |f| %>
   <div class="form-group">
     <%= f.label :title, " タイトル" %><br>
     <%= f.text_field :title, class: 'form-control' %>

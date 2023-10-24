@@ -24,7 +24,7 @@ class Public::ChatsController < ApplicationController
       @chat = Chat.create(params.require(:chat).permit(:user_id, :message, :room_id).merge(user_id: current_user.id))
       @room = @chat.room
       @room.create_notification_message(current_user, @chat.id)
-    redirect_to request.referer
+      redirect_to request.referer
     else
       redirect_back
     end
