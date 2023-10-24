@@ -1,30 +1,38 @@
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>投稿日時</th>
-    <%- if controller_name != 'users' %>
-      <th>ユーザー名</th>
-    <% end %>
-      <th>タイトル</th>
-      <th>ステータス</th>
-      <th>閲覧数</th>
-      <th>いいね数</th>
-      <th>コメント数</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% posts.each do |po| %>
+<% if posts.present? %>
+  <table class="table table-bordered">
+    <thead>
       <tr>
-        <td><%= l po.created_at %></td>
+        <th>投稿日時</th>
       <%- if controller_name != 'users' %>
-        <td><%= link_to po.user.name, admin_user_path(po.user) %></td>
+        <th>ユーザー名</th>
       <% end %>
-        <td><%= link_to po.title, admin_post_path(po) %></td>
-        <td class="text-danger"><%= po.status_i18n %></td>
-        <td><%= po.view_counts.count %>回</td>
-        <td><i class="fa-regular fa-heart"></i><%= po.favorites.count %></td>
-        <td><%= po.post_comments.count %>コメント</td>
+        <th>タイトル</th>
+      <%- if controller_name != 'users' %>
+        <th>ステータス</th>
+      <% end %>
+        <th>閲覧数</th>
+        <th>いいね数</th>
+        <th>コメント数</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% posts.each do |po| %>
+        <tr>
+          <td><%= l po.created_at %></td>
+        <%- if controller_name != 'users' %>
+          <td><%= link_to po.user.name, admin_user_path(po.user) %></td>
+        <% end %>
+          <td><%= link_to po.title, admin_post_path(po) %></td>
+        <%- if controller_name != 'users' %>
+          <td class="text-danger"><%= po.status_i18n %></td>
+        <% end %>
+          <td><%= po.view_counts.count %>回</td>
+          <td><i class="fa-regular fa-heart"></i><%= po.favorites.count %></td>
+          <td><%= po.post_comments.count %>コメント</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>投稿はありません</p>
+<% end %>

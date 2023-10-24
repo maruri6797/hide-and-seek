@@ -1,6 +1,9 @@
 class Admin::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+    @active_posts = @user.posts.where(status: 0)
+    @edited_posts = @user.posts.where(status: 1)
+    @deleted_posts = @user.posts.where(status: 2)
   end
 
   def posts
