@@ -45,7 +45,7 @@
         <% end %>
         <div id="open<%=post_comment.id%>" class="modal-open text-right"><i class="fa-solid fa-heart-circle-plus"></i></div>
       </div>
-      <section id="info<%=post_comment.id%>" class="is-active">
+      <section id="info<%=post_comment.id%>" class="is-active border">
         <%= render 'public/posts/action', pos: pos, post_comment: post_comment %>
       </section>
     </div>
