@@ -1,3 +1,45 @@
-<div class="button h1">
-  <%= link_to "", new_post_path, class: 'fa-solid fa-circle-plus text-decoration-none' %>
+<button type="button" class="btn btn-primary button" data-toggle="modal" data-target="#exampleModal">
+  <i class="fa-solid fa-circle-plus"></i>
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">投稿</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_with(model: post, url: posts_path, id: 'p-form' )do |f| %>
+        <div class="modal-body">
+          <div class="form-group">
+            <%= f.label :title, " タイトル" %><br>
+            <%= f.text_field :title, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :text, "テキスト" %><br>
+            <%= f.text_area :text, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :images, "※任意　画像(複数選択可)" %><br>
+            <%= f.file_field :images, multiple: true %><br>
+          </div>
+          <div class="form-group">
+            <%= f.label :tag_ids, "タグ" %><br>
+            <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |t| %>
+              <%= t.check_box + t.label %>
+            <% end %>
+          </div>
+          <div class="form-group">
+            <%= f.hidden_field :status %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+          <%= f.submit "投稿する", class: 'btn btn-success' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

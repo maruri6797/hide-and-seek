@@ -29,12 +29,8 @@
     <%= f.hidden_field :status %>
   </div>
   <div class="action text-center">
-    <% if put.new_record? %>
-      <%= f.submit "投稿する", class: 'btn btn-success' %>
-    <% else %>
       <%= link_to "戻る", post_path(put), class: 'btn btn-primary' %>
       <%= f.submit "変更して投稿する", class: 'btn btn-success' %>
       <p>※編集は一度のみ可能です</p>
-    <% end %>
   </div>
 <% end %>

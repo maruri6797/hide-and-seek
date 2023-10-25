@@ -42,6 +42,7 @@ class Public::PostsController < ApplicationController
   def index
     @posts = Post.where.not(status: 2).page(params[:page]).per(10).order(created_at: :desc)
     @follow_posts = @posts.where(user_id: [current_user.id, *current_user.follower_ids])
+    @post = Post.new
   end
 
   def show

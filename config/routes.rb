@@ -39,7 +39,7 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
       resources :reports, only: [:new, :create]
     end
-    resources :posts, except: [:destroy] do
+    resources :posts, except: [:new, :destroy] do
       member do
         patch 'delete'
       end

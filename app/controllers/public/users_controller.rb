@@ -9,6 +9,7 @@ class Public::UsersController < ApplicationController
     @favorite_posts = Post.find(favorites)
     stars = Star.where(user_id: @user.id).pluck(:post_id)
     @star_posts = Post.find(stars)
+    @post = Post.new
   end
 
   def edit
@@ -66,7 +67,7 @@ class Public::UsersController < ApplicationController
 
   def ensure_user
     @user = User.find(params[:id])
-    if @user.guest_user? || @user.id != current_user.id
+    if @user.id != current_user.id
       redirect_to user_path(current_user), notice: "このユーザーでは画面遷移できません。"
     end
   end

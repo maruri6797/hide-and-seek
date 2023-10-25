@@ -12,16 +12,16 @@
         </ul>
       </div>
       <div class="tab-content">
-        <div id="timeline" class="tab-pane fade show active">
+        <div id="timeline" class="tab-pane fade show active tl">
           <%= render 'public/posts/index', posts: @follow_posts %>
           <%= paginate @follow_posts %>
         </div>
-        <div id="all" class="tab-pane fade">
+        <div id="all" class="tab-pane fade al">
           <%= render 'public/posts/index', posts: @posts %>
           <%= paginate @posts %>
         </div>
       </div>
-      <%= render 'public/posts/post_button' %>
+      <%= render 'public/posts/post_button', post: @post %>
     </div>
   </div>
 </div>

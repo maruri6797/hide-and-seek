@@ -4,6 +4,7 @@ class SearchesController < ApplicationController
   def search
     @tags = Tag.all
     @posts = Post.where.not(status: 2).page(params[:page]).order(created_at: :desc)
+    @post = Post.new
   end
 
   def result
