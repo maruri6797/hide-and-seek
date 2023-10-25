@@ -36,6 +36,6 @@ https://docs.google.com/spreadsheets/d/1kebQ7VXHcrKpNLPykARFNMUiV511woy25Cf0mOjc
 ​
 ## 使用素材
 画像素材として以下を使用
-https://www.16personalities.com/ja/%E6%80%A7%E6%A0%BC%E3%82%BF%E3%82%A4%E3%83%97
+https://www.16personalities.com/ja/%E6%80%A7%E6%A0%BC%E3%82%BF%E3%82%A4%E3%83%97  
 海苔尾様のフリーイラスト
 https://www.tiktok.com/@sclpter_nori?_t=8gX1pO9ZDPD&_r=1
