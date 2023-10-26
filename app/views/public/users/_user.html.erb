@@ -1,16 +1,15 @@
 <% users.each do |user| %>
-  <div class="row border-bottom">
-    <%= link_to user_path(user), class: 'text-decoration-none col-4' do %>
+  <div class="d-flex border-bottom">
+    <%= link_to user_path(user), class: 'text-decoration-none col-3' do %>
       <%= image_tag user.get_profile_image(100, 100), class: 'rounded-circle' %>
       <%= user.name %>
       <% if user.is_license == true %>
-        <i class="fa-solid fa-award text-warning mr-5"></i>
+        <i class="fa-solid fa-award text-warning"></i>
       <% end %>
     <% end %>
     <%- if controller_name != 'rooms' %>
-      <p class="col-1 mt-4"><%= user.mbti %></p>
-      <p class="col-3 mt-4"><%= truncate(user.introduction) %></p>
-      <div class="col-3 mt-4">
+      <p class="col-2 mt-4"><%= user.mbti %></p>
+      <div class="col-6 mt-4">
         <% if current_user != user %>
           <% if current_user.following?(user) %>
             <%= link_to "フォロー解除", user_relationships_path(user), method: :delete, class: 'btn btn-danger' %>
@@ -21,7 +20,7 @@
       </div>
     <% end %>
     <% if current_user.following?(user) && user.following?(current_user) %>
-      <%= link_to "",chat_path(user), class: 'fa-solid fa-envelope h4 text-decoration-none col  mt-4' %>
+      <%= link_to "",chat_path(user), class: 'fa-solid fa-envelope h4 text-decoration-none mt-4' %>
     <% end %>
   </div>
 <% end %>

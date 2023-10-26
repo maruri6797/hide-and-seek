@@ -1,15 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-8 col-md-9">
+    <div class="col-lg-9 col-md-10">
       <%= render 'searches/form' %>
       <%= render 'public/posts/index', posts: @posts %>
       <%= paginate @posts %>
     </div>
-    <div class="col-lg-4 col-md-3">
+    <div class="col-lg-3 col-md-8 mb-5">
       <h4>タグ</h4>
-      <ul class="d-flex flex-row flex-wrap list-group">
+      <ul class="d-flex flex-row flex-wrap list-group border-top">
         <% @tags.each do |tag| %>
-          <li class="list-group-item col-8">
+          <li class="list-group-item col-lg-12 col-md-3">
             <i class="fa-solid fa-tag"></i>
             <%= link_to tag.name, result_path(tag_id: tag.id), class: 'text-decoration-none' %>
             <% @tags_posts = tag.posts %>
@@ -17,7 +17,7 @@
           </li>
         <% end %>
       </ul>
-      <%= render 'public/posts/post_button', post: @post %>
     </div>
+    <%= render 'public/posts/post_button', post: @post %>
   </div>
 </div>

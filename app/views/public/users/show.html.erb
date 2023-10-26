@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-10 col-md-8">
+    <div class="col-lg-10 col-md-10">
       <div class="d-flex align-items-center justify-content-between">
         <%= image_tag @user.get_profile_image(150, 150), class: 'rounded-circle' %>
         <p class="h3"><%= @user.name %></p>
@@ -39,7 +39,7 @@
         <% end %>
       </div>
 
-      <div class="posts m-5">
+      <div class="posts my-5">
         <%= render 'public/posts/index', posts: @posts %>
       </div>
       <%= render 'public/posts/post_button', post: @post %>

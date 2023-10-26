@@ -1,37 +1,43 @@
-<div class="container-fulid">
-  <div class="d-flex justify-content-between">
-    <%= link_to root_path do %>
-      <%= image_tag 'logo.jpg', class: 'col-md-3' %>
-    <% end %>
-    <%= link_to "About", about_path, class: 'text-decoration-none text-dark' %>
-    <%= link_to "お問い合わせ", new_contact_path, class: 'btn btn-secondary' %>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <%= link_to root_path do %>
+          <%= image_tag 'logo.jpg', class: 'col-lg-4 col-md-4 mr-auto' %>
+        <% end %>
+        <%= link_to "About", about_path, class: 'text-decoration-none text-dark text-center col-lg-3 col-md-4' %>
+        <%= link_to "お問い合わせ", new_contact_path, class: 'btn btn-secondary h-25 col-lg-3 col-md-4 mx-3' %>
+      </div>
+    </div>
   </div>
 </div>
-<div class="sticky-top d-flex text-center mt-3">
-  <% if admin_signed_in? %><!--管理者用-->
-    <%= link_to "ユーザー一覧", admin_root_path, class: 'flex-fill text-decoration-none' %>
-    <%= link_to "検索", admin_search_path, class: 'flex-fill text-decoration-none' %>
-    <%= link_to "投稿一覧", admin_posts_path, class: 'flex-fill text-decoration-none' %>
-    <%= link_to "通報一覧", admin_reports_path, class: 'flex-fill text-decoration-none' %>
-    <%= link_to "タグ一覧", admin_tags_path, class: 'flex-fill text-decoration-none' %>
-    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'flex-fill text-decoration-none' %>
-  <% elsif user_signed_in? %><!--ユーザー用-->
-    <%= link_to '', posts_path, class: 'fa-solid fa-house flex-fill text-decoration-none' %>
-    <%= link_to '', search_path, class: 'fa-solid fa-magnifying-glass flex-fill text-decoration-none' %>
-    <%= link_to '', user_path(current_user), class: 'fa-solid fa-user flex-fill text-decoration-none' %>
-    <%= link_to notifications_path, class: 'flex-fill text-decoration-none' do %>
-      <% if unchecked_notifications.any? %>
-        <i class="fa-solid fa-bell position-relative">
-          <span class="position-absolute top-0 end-100 translate-middle badge border border-light rounded-circle bg-danger p-1"><span class="visually-hidden"></span></span>
-        </i>
-      <% else %>
-        <i class="fa-solid fa-bell"></i>
+<div class="container-fulid">
+  <div class="sticky-top d-flex text-center mt-3">
+    <% if admin_signed_in? %><!--管理者用-->
+      <%= link_to "ユーザー一覧", admin_root_path, class: 'flex-fill text-decoration-none' %>
+      <%= link_to "検索", admin_search_path, class: 'flex-fill text-decoration-none' %>
+      <%= link_to "投稿一覧", admin_posts_path, class: 'flex-fill text-decoration-none' %>
+      <%= link_to "通報一覧", admin_reports_path, class: 'flex-fill text-decoration-none' %>
+      <%= link_to "タグ一覧", admin_tags_path, class: 'flex-fill text-decoration-none' %>
+      <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'flex-fill text-decoration-none' %>
+    <% elsif user_signed_in? %><!--ユーザー用-->
+      <%= link_to '', posts_path, class: 'fa-solid fa-house flex-fill text-decoration-none' %>
+      <%= link_to '', search_path, class: 'fa-solid fa-magnifying-glass flex-fill text-decoration-none' %>
+      <%= link_to '', user_path(current_user), class: 'fa-solid fa-user flex-fill text-decoration-none' %>
+      <%= link_to notifications_path, class: 'flex-fill text-decoration-none' do %>
+        <% if unchecked_notifications.any? %>
+          <i class="fa-solid fa-bell position-relative">
+            <span class="position-absolute top-0 end-100 translate-middle badge border border-light rounded-circle bg-danger p-1"><span class="visually-hidden"></span></span>
+          </i>
+        <% else %>
+          <i class="fa-solid fa-bell"></i>
+        <% end %>
       <% end %>
+      <%= link_to '', rooms_path, class: 'fa-solid fa-envelope flex-fill text-decoration-none' %>
+    <% else %>
+      <%= link_to '新規会員登録', new_user_registration_path, class: 'fa-solid fa-user-plus flex-fill text-decoration-none' %>
+      <%= link_to 'ログイン', new_user_session_path, class: 'fa-solid fa-user-check flex-fill text-decoration-none' %>
+      <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'fa-solid fa-house-user flex-fill text-decoration-none' %>
     <% end %>
-    <%= link_to '', rooms_path, class: 'fa-solid fa-envelope flex-fill text-decoration-none' %>
-  <% else %>
-    <%= link_to '新規会員登録', new_user_registration_path, class: 'fa-solid fa-user-plus flex-fill text-decoration-none' %>
-    <%= link_to 'ログイン', new_user_session_path, class: 'fa-solid fa-user-check flex-fill text-decoration-none' %>
-    <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'fa-solid fa-house-user flex-fill text-decoration-none' %>
-  <% end %>
+  </div>
 </div>
