@@ -11,6 +11,10 @@
         <%= @report.content_i18n %>
       </div>
       <div class="row">
+        <p class="col-4">理由</p>
+        <%= @report.reason_i18n %>
+      </div>
+      <div class="row">
         <p class="col-4">非通報者</p>
         <%= link_to @report.reported.name, admin_user_path(@report.reported) %>
       </div>

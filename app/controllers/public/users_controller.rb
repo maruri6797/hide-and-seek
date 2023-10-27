@@ -4,6 +4,9 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    if @user.is_deleted == true
+      redirect_to posts_path, notice: "このユーザーは退会しています"
+    end
     @posts = @user.posts.where.not(status: 2).order(created_at: :desc)
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
     @favorite_posts = Post.find(favorites)
@@ -53,8 +56,9 @@ class Public::UsersController < ApplicationController
   end
 
   def leave
-    user = User.find(params[:id])
-    user.update(is_deleted: true)
+    @user = User.find(params[:id])
+    @user.update(is_deleted: true)
+    @user.posts.update(status: 2)
     reset_session
     redirect_to root_path, notice: "退会しました。"
   end

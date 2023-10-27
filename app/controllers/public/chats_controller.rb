@@ -42,5 +42,8 @@ class Public::ChatsController < ApplicationController
     unless current_user.following?(user) && user.following?(current_user)
       redirect_to posts_path
     end
+    if user.is_deleted == true
+      redirect_to posts_path, notice: "このユーザーは退会済みです"
+    end
   end
 end
