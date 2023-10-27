@@ -27,14 +27,13 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: "homes#top"
     get 'about' => "homes#about"
-    resources :users, only: [:show, :edit, :update] do
+    resources :users, only: [:show, :edit, :update, :destroy] do
       member do
         get 'followings'
         get 'followers'
         get 'favorites'
         get 'stars'
         get 'check'
-        patch 'leave'
       end
       resource :relationships, only: [:create, :destroy]
       resources :reports, only: [:new, :create]
