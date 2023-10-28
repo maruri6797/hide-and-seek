@@ -17,7 +17,7 @@
       <%= link_to user_path(post_comment.user), class: 'text-decoration-none' do %>
         <%= image_tag post_comment.user.get_profile_image(100, 100), class: 'rounded-circle' %>
         <%= post_comment.user.name %>
-         <% if post_comment.user.is_license == true %>
+        <% if post_comment.user.is_license == true %>
           <i class="fa-solid fa-award text-warning"></i>
         <% end %>
       <% end %>
