@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get 'about' => "homes#about"
     resources :users, only: [:show, :edit, :update, :destroy] do
-      get '/logout', to: 'devise/sessions#destroy', as: :logout
+      get '/logout', to: 'sessions#destroy', as: :logout
       member do
         get 'followings'
         get 'followers'

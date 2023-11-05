@@ -73,6 +73,6 @@ class Public::UsersController < ApplicationController
   end
 
   def check_login
-    redirect_to logout_path if current_user && current_user.is_deleted != 'false'
+    redirect_to user_logout_path(current_user) if current_user && current_user.is_deleted == 'true'
   end
 end
