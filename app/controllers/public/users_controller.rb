@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :active_for_authentication?
   before_action :ensure_user, only: [:edit, :update, :check, :stars]
 
   def show
@@ -69,5 +70,9 @@ class Public::UsersController < ApplicationController
     if @user.id != current_user.id
       redirect_to user_path(current_user), notice: "このユーザーでは画面遷移できません。"
     end
+  end
+
+  def active_for_authentication?
+    current_user.is_deleted == 'false'
   end
 end

@@ -143,8 +143,4 @@ class User < ApplicationRecord
   def guest_user?
     email == GUEST_USER_EMAIL
   end
-
-  def active_for_authentication?
-    true
-  end
 end
