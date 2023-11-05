@@ -1,5 +1,5 @@
 class Admin::HomesController < ApplicationController
   def top
-    @users = User.page(params[:page]).per(10).order(created_at: :asc)
+    @users = User.page(params[:page]).per(10).order(created_at: :desc)
   end
 end

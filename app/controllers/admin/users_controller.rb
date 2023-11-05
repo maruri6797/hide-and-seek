@@ -17,9 +17,11 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    if @user.update(is_deleted: true)
-      @user.posts.update(status: 2)
+    if @user.update(user_params)
+      if @user.is_deleted == true
+        @user.posts.update(status: 2)
+        reset_session
+      end
       redirect_to admin_user_path(@user), notice: "ユーザー情報を編集しました。"
     else
       flash.now[:alert] = "ユーザー情報の編集に失敗しました。"

@@ -1,6 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :delete_post, only: [:show, :edit]
+  before_action :delete_post, only: [:show]
   before_action :ensure_user, only: [:edit, :update]
 
   def new
@@ -19,7 +19,6 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
-    @post = @posts.find(params[:id])
   end
 
   def update
