@@ -20,7 +20,6 @@ class Admin::UsersController < ApplicationController
     if @user.update(user_params)
       if @user.is_deleted == true
         @user.posts.update(status: 2)
-        reset_session
       end
       redirect_to admin_user_path(@user), notice: "ユーザー情報を編集しました。"
     else
