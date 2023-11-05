@@ -1,6 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :active_for_authentication?
+  before_action :check_login
   before_action :ensure_user, only: [:edit, :update, :check, :stars]
 
   def show
@@ -72,7 +72,7 @@ class Public::UsersController < ApplicationController
     end
   end
 
-  def active_for_authentication?
-    current_user.is_deleted == 'false'
+  def check_login
+    redirect_to logout_path if current_user && current_user.is_deleted != 'false'
   end
 end
