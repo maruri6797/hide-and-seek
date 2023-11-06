@@ -74,8 +74,7 @@ class Public::UsersController < ApplicationController
 
   def user_active?
     if current_user.is_deleted == true
-      sign_out_and_redirect(current_user)
+      redirect_to user_logout_path(current_user)
     end
-    redirect_to root_path
   end
 end
