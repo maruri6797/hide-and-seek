@@ -47,4 +47,11 @@ class Public::ChatsController < ApplicationController
       redirect_to posts_path, notice: "このユーザーは退会済みです"
     end
   end
+  
+  def user_active?
+    if current_user.is_deleted == true
+      reset_session
+      redirect_to root_path, notice: "退会されているため操作できません。"
+    end
+  end
 end
