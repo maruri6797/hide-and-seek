@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :active_for_authentication?
+  before_action :user_active?
   before_action :authenticate_user!
   before_action :ensure_user, only: [:edit, :update, :check, :stars]
 
