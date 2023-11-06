@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!
+  before_action :active_for_authentication?
   before_action :delete_post, only: [:show]
   before_action :ensure_user, only: [:edit, :update]
 

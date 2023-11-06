@@ -196,7 +196,7 @@ post4 = Post.find_or_create_by!(title: "討論者") do |post|
   post.text = "討論者は頭の回転が速い上に大胆な気質の持ち主で、迷わず現状に異議を唱えるタイプの人たちです。
   それどころか相手が誰であっても、またどんな内容であっても、反対意見を述べることに躊躇しません。
   議論することが何よりも大好きで、賛否の分かれるトピックに会話が進めば進むほど、面白いと感じるタイプです。"
-  post.tag_ids = Tag.find_by(name: 'ENTP').id
+  post.tag_ids = [Tag.find_by(name: 'ENTP').id, Tag.find_by(name: '偏見').id]
   post.status = 0
 end
 
