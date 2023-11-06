@@ -83,7 +83,8 @@ class Public::PostsController < ApplicationController
 
   def user_active?
     if current_user.is_deleted == true
-      redirect_to destroy_user_session_path, method: :delete
+      log_out
+      redirect_to root_path
     end
   end
 end
