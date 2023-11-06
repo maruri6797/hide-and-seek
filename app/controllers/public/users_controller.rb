@@ -74,8 +74,8 @@ class Public::UsersController < ApplicationController
 
   def user_active?
     if current_user.is_deleted == true
-      log_out
-      redirect_to root_path
+      reset_session
+      redirect_to root_path, notice: "退会されているため操作できません。"
     end
   end
 end
