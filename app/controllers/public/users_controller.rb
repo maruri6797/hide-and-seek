@@ -71,10 +71,11 @@ class Public::UsersController < ApplicationController
       redirect_to user_path(current_user), notice: "このユーザーでは画面遷移できません。"
     end
   end
-  
+
   def user_active?
     if current_user.is_deleted == true
-      redirect_to new_user_registration_path
+      sign_out_and_redirect(current_user)
     end
+    redirect_to root_path
   end
 end
