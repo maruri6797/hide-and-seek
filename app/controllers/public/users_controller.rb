@@ -71,11 +71,4 @@ class Public::UsersController < ApplicationController
       redirect_to user_path(current_user), notice: "このユーザーでは画面遷移できません。"
     end
   end
-
-  def user_active?
-    if current_user.is_deleted == true
-      reset_session
-      redirect_to root_path, notice: "退会されているため操作できません。"
-    end
-  end
 end

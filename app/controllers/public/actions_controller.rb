@@ -1,4 +1,5 @@
 class Public::ActionsController < ApplicationController
+  before_action :user_active?
   before_action :authenticate_user!
 
   def create

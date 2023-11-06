@@ -1,5 +1,6 @@
 class Public::ReportsController < ApplicationController
   before_action :authenticate_user!
+  before_action :user_active?
 
   def new
     @report = Report.new

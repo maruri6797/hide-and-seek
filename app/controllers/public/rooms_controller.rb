@@ -1,5 +1,6 @@
 class Public::RoomsController < ApplicationController
   before_action :authenticate_user!
+  before_action :user_active?
 
   def index
     @current_user_rooms = current_user.rooms
