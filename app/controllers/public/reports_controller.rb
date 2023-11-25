@@ -15,6 +15,7 @@ class Public::ReportsController < ApplicationController
     if @report.save
       redirect_to user_path(@user), notice: "ご報告ありがとうございます。"
     else
+      flash.now[:alert] = "報告できませんでした。もう一度やり直してください"
       render :new
     end
   end
