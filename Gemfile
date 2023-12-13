@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.1.2'
+ruby '3.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.7', '>= 6.1.7.6'
@@ -9,7 +9,6 @@ gem 'rails', '~> 6.1.7', '>= 6.1.7.6'
 gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
-# Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
@@ -66,7 +65,7 @@ gem 'enum_help'
 gem 'rails-i18n'
 gem 'jquery-rails'
 gem 'dotenv-rails'
-gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
+gem 'selenium-webdriver', '~> 4.16'

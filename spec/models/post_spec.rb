@@ -21,7 +21,7 @@ RSpec.describe 'Postモデルのテスト', type: :model do
       end
       it '500文字以下であること: 500文字は〇' do
         post.text = Faker::Lorem.characters(number: 500)
-        is_expeccted.to eq true
+        is_expected.to eq true
       end
       it '500文字以下であること: 501文字は×' do
         post.text = Faker::Lorem.characters(number: 501)

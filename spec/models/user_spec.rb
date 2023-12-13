@@ -30,6 +30,17 @@ RSpec.describe 'Userモデルのテスト', type: :model do
       end
     end
 
+    context 'emailカラム' do
+      it '空欄でないこと' do
+        user.email = ''
+        is_expected.to eq false
+      end
+      it '重複したemailが存在する場合登録できない' do
+        user.email = other_user.email
+        is_expected.to eq false
+      end
+    end
+
     context 'introductionカラム' do
       it '200文字以下であること: 200文字は〇' do
         user.introduction = Faker::Lorem.characters(number: 200)
@@ -37,6 +48,24 @@ RSpec.describe 'Userモデルのテスト', type: :model do
       end
       it '200文字以下であること: 201文字は×' do
         user.introduction = Faker::Lorem.characters(number: 201)
+        is_expected.to eq false
+      end
+    end
+
+    context 'passwordカラム' do
+      it '空欄でないこと' do
+        user.password = ''
+        is_expected.to eq false
+      end
+      it 'passwordが5文字以下でないこと' do
+        user.password = '123ab'
+        is_expected.to eq false
+      end
+    end
+
+    context 'password_confirmationカラム' do
+      it '空欄でないこと' do
+        user.password_confirmation = ''
         is_expected.to eq false
       end
     end
