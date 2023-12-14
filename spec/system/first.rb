@@ -1,72 +1,62 @@
 require 'rails_helper'
-require 'selenium-webdriver'
 
-describe '[STEP1]ユーザーログイン前のテスト' do
+RSpec.describe "[STEP1]ユーザーログイン前のテスト", type: :system do
   describe 'トップ画面のテスト' do
     before do
       visit root_path
     end
 
     context '表示内容の確認' do
+      it 'renders the top page' do
+        expect(page.status_code).to eq(200)
+      end
       it 'URLが正しい' do
         expect(current_path).to eq '/'
       end
-      it '新規登録リンクが表示される: 青色のボタンの表示が「新規登録」である' do
-        expect(page).to have_button("新規登録")
+      it 'Hide-and-seekリンクが表示される' do
+        expect(page).to have_link 'Logo', href: "/"
       end
-  #     it '新規登録リンクの内容が正しい' do
-  #       sign_up_link = find_all('a')[4].text
-  #       expect(page).to have_link sign_up_link, href: new_user_registration_path
-  #     end
-  #     it 'ゲストログインリンクが表示される: 灰色のボタンの表示が「ゲストログイン」である' do
-  #       guest_sign_in_link = find_all('a')[7].text
-  #       expect(guest_sign_in_link).to match(/ゲストログイン/)
-  #     end
-  #     it 'ゲストログインリンクの内容が正しい' do
-  #       guest_sign_in_link = find_all('a')[7].text
-  #       expect(page).to have_link guest_sign_in_link, href: users_guest_sign_in_path
-  #     end
-  #     it 'ログインリンクが表示される: 緑色のボタンの表示が「ログイン」である' do
-  #       log_in_link = find_all('a')[4].text
-  #       expect(log_in_link).to match(/ログイン/)
-  #     end
-  #     it 'ログインリンクの内容が正しい' do
-  #       log_in_link = find_all('a')[4].text
-  #       expect(page).to have_link log_in_link, href: new_user_session_path
-  #     end
-  #   end
-  # end
+      it 'Aboutリンクが表示される' do
+        expect(page).to have_link 'About', href: "/about"
+      end
+      it 'お問い合わせリンクが表示される' do
+        expect(page).to have_link 'お問い合わせ', href: "/contacts/new"
+      end
+      it '新規登録リンクが表示される：青色のボタンの表示が新規登録である' do
+        expect(page).to have_link '新規登録', href: "/users/sign_up"#new_user_registration_pathも可
+      end
+      it 'ゲストログインリンクが表示される：灰色のボタン表示がゲストログインである' do
+        expect(page).to have_link 'ゲストログイン', href: "/users/guest_sign_in"
+      end
+      it 'ログインリンクが表示される：緑色のボタンの表示がログインである' do
+        expect(page).to have_link 'ログイン', href: "/users/sign_in"
+      end
+    end
+  end
 
-  # describe 'About画面のテスト' do
-  #   before do
-  #     visit '/about'
-  #   end
+  describe 'About画面のテスト' do
+    before do
+      visit about_path
+    end
 
-  #   context '表示内容の確認' do
-  #     it 'URLが正しい' do
-  #       expect(current_path).to eq '/abount'
-  #     end
-  #   end
-  # end
+    context '表示内容の確認' do
+      it 'URLが正しい' do
+        expect(current_path).to eq '/about'
+      end
+    end
+  end
 
-  # describe 'ヘッダーのテスト: ログインしていない場合' do
-  #   before do
-  #     visit root_path
-  #   end
+  describe 'ログインしていない場合' do
+    before do
+      visit root_path
+    end
 
-  #   context '表示内容の確認' do
-  #     it 'Hide-and-seekリンクが表示される: 左上から1番目のリンクが「Hide-and-seek」である' do
-  #       top_link = find_all('a')[0].text
-  #       expect(top_link).to match(/'logo.jpg'/)
-  #     end
-  #     it 'Aboutリンクが表示される: 左上から2番目のリンクが「About」である' do
-  #       about_link = find_all('a')[1].text
-  #       expect(about_link).to match(/About/)
-  #     end
-  #     it 'お問い合わせリンクが表示される: 左上から3番目のリンクが「お問い合わせ」である' do
-  #       contact_link = find_all('a')[2].text
-  #       expect(contact_link).to match(/お問い合わせ/)
-  #     end
+    context '表示内容の確認' do
+      
+    end
+  end
+end
+
   #     # it '新規登録リンクが表示される: 上2段目の左から1番目のリンクが「」である' do
   #     #   signup_link = find_all('a')[3].text
   #     #   expect(signup_link).to match(//)
@@ -246,6 +236,6 @@ describe '[STEP1]ユーザーログイン前のテスト' do
       #   rooms_link = find_all('a')[7].text
       #   expect(rooms_link).to match(//)
       # end
-    end
-  end
-end
+#     end
+#   end
+# end
