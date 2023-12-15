@@ -61,7 +61,22 @@ RSpec.describe "[STEP1]ユーザーログイン前のテスト", type: :system d
         guest_user_link = find_all('a')[5].text
         expect(guest_user_link).to match(/ゲストログイン/)
       end
-      # リンクの内容を確認　リンクを押すと、画面に遷移する
+    end
+
+    context 'リンクの内容を確認' do
+      subject { current_path }
+      it '新規会員登録リンクを押すと、新規会員登録画面に遷移する' do
+        find_all('a')[3].click
+        is_expected.to eq '/users/sign_up'
+      end
+      it 'ログインリンクを押すと、ログイン画面に遷移する' do
+        find_all('a')[4].click
+        is_expected.to eq '/users/sign_in'
+      end
+      it 'ゲストログインを押すと、ホーム画面に遷移する' do
+        find_all('a')[5].click
+        is_expected.to eq '/posts'
+      end
     end
   end
 
@@ -190,4 +205,26 @@ RSpec.describe "[STEP1]ユーザーログイン前のテスト", type: :system d
       end
     end
   end
+
+  # ログアウトのテスト、JavaScript有
+
+  # describe 'ユーザーログアウトのテスト' do
+  #   let(:user) { create(:user) }
+
+  #   before do
+  #     visit new_user_session_path
+  #     fill_in 'user[email]', with: user.email
+  #     fill_in 'user[password]', with: user.password
+  #     click_button 'ログイン'
+  #     mypage_link = find_all('a')[5]
+  #     click_link mypage_link
+
+  #   end
+
+    # context 'ログアウト機能のテスト' do
+    #   it 'ログアウト後のリダイレクト先が、トップになっている' do
+    #     expect(current_path).to eq '/'
+    #   end
+    # end
+  # end
 end
