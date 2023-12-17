@@ -4,10 +4,6 @@ class Public::PostsController < ApplicationController
   before_action :delete_post, only: [:show]
   before_action :ensure_user, only: [:edit, :update]
 
-  def new
-    @post = Post.new
-  end
-
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
@@ -15,7 +11,6 @@ class Public::PostsController < ApplicationController
       redirect_to posts_path, notice: "投稿しました。"
     else
       flash.now[:alert] = "投稿に失敗しました。"
-      render :new
     end
   end
 

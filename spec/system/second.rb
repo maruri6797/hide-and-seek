@@ -210,9 +210,10 @@ RSpec.describe "[STEP1]ユーザーログイン前のテスト", type: :system d
         expect(page).to have_content user.mbti
         expect(page).to have_content user.introduction
       end
-      it '自分のユーザー編集画面へのシンクが存在する' do
+      it '自分のユーザー編集、ログアウトへのリンクが存在する' do
         find(".three-point-contents").click
         expect(page).to have_link '編集', href: edit_user_path(user)
+        expect(page).to have_link 'ログアウト', href: destroy_user_session_path
       end
       it '自分の投稿数が表示される' do
         expect(page).to have_content user.posts.count
