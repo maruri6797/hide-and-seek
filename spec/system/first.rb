@@ -49,17 +49,21 @@ RSpec.describe "[STEP1]ユーザーログイン前のテスト", type: :system d
     end
 
     context '表示内容の確認' do
+      subject { page }
       it '新規会員登録リンクが表示される' do
         new_user_link = find_all('a')[3].text
         expect(new_user_link).to match(/新規会員登録/)
+        is_expected.to have_selector '.fa-solid.fa-user-plus'
       end
       it 'ログインリンクが表示される' do
         user_link = find_all('a')[4].text
         expect(user_link).to match(/ログイン/)
+        is_expected.to have_selector '.fa-solid.fa-user-check'
       end
       it 'ゲストログインリンクが表示される' do
         guest_user_link = find_all('a')[5].text
         expect(guest_user_link).to match(/ゲストログイン/)
+        is_expected.to have_selector '.fa-solid.fa-house-user'
       end
     end
 
@@ -188,43 +192,47 @@ RSpec.describe "[STEP1]ユーザーログイン前のテスト", type: :system d
     end
 
     context 'ヘッダーの表示を確認' do
+      subject { page }
       it 'ホームリンクが表示される' do
         expect(page).to have_link "", href: "/posts"
+        is_expected.to have_selector '.fa-solid.fa-house'
       end
       it '検索リンクが表示される' do
         expect(page).to have_link "", href: "/search"
+        is_expected.to have_selector '.fa-solid.fa-magnifying-glass'
       end
       it 'マイページリンクが表示される' do
         expect(page).to have_link "", href: "/users/" + user.id.to_s
+        is_expected.to have_selector '.fa-solid.fa-user'
       end
       it '通知リンクが表示される' do
         expect(page).to have_link "", href: "/notifications"
+        is_expected.to have_selector '.fa-solid.fa-bell'
       end
       it 'DMリンクが表示される' do
         expect(page).to have_link "", href: "/rooms"
+        is_expected.to have_selector '.fa-solid.fa-bell'
       end
     end
   end
 
-  # ログアウトのテスト、JavaScript有
+  describe 'ユーザーログアウトのテスト' do
+    let(:user) { create(:user) }
 
-  # describe 'ユーザーログアウトのテスト' do
-  #   let(:user) { create(:user) }
+    before do
+      visit new_user_session_path
+      fill_in 'user[email]', with: user.email
+      fill_in 'user[password]', with: user.password
+      click_button 'ログイン'
+      visit user_path(user)
+      find('.three-point').click
+      click_link 'ログアウト'
+    end
 
-  #   before do
-  #     visit new_user_session_path
-  #     fill_in 'user[email]', with: user.email
-  #     fill_in 'user[password]', with: user.password
-  #     click_button 'ログイン'
-  #     mypage_link = find_all('a')[5]
-  #     click_link mypage_link
-
-  #   end
-
-    # context 'ログアウト機能のテスト' do
-    #   it 'ログアウト後のリダイレクト先が、トップになっている' do
-    #     expect(current_path).to eq '/'
-    #   end
-    # end
-  # end
+    context 'ログアウト機能のテスト' do
+      it 'ログアウト後のリダイレクト先が、トップになっている' do
+        expect(current_path).to eq '/'
+      end
+    end
+  end
 end
