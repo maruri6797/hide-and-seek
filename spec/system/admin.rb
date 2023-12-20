@@ -9,10 +9,7 @@ RSpec.describe "adminのテスト", type: :system do
 
   before do
     @admin = FactoryBot.create(:admin)
-    visit '/admin/sign_in'
-    fill_in 'admin[email]', with: @admin.email
-    fill_in 'admin[password]', with: @admin.password
-    click_button 'ログイン'
+    admin_sign_in(@admin)
   end
 
   describe 'ログイン後のテスト' do
@@ -172,6 +169,7 @@ RSpec.describe "adminのテスト", type: :system do
       end
       it 'タグが表示される' do
         expect(page).to have_content 'タグ'
+        expect(page).to have_content tag.name
       end
     end
 
@@ -195,6 +193,10 @@ RSpec.describe "adminのテスト", type: :system do
         expect(page).to have_link other_post.title, href: admin_post_path(other_post)
         expect(page).to have_content other_user.name
         expect(page).not_to have_link post.title, href: admin_post_path(post)
+      end
+      it 'tagのテスト' do
+        click_link tag.name
+        expect(current_path).to eq '/admin/result'
       end
       it '検索失敗のテスト' do
         fill_in 'word', with: ""
@@ -262,10 +264,7 @@ RSpec.describe "adminのテスト", type: :system do
     before do
       click_link 'ログアウト'
 
-      visit new_user_session_path
-      fill_in 'user[email]', with: user.email
-      fill_in 'user[password]', with: user.password
-      click_button 'ログイン'
+      sign_in(user)
       visit user_path(other_user)
       find(".three-point-contents").click
       click_link '通報する'
@@ -277,10 +276,7 @@ RSpec.describe "adminのテスト", type: :system do
       find('.three-point').click
       click_link 'ログアウト'
 
-      visit '/admin/sign_in'
-      fill_in 'admin[email]', with: @admin.email
-      fill_in 'admin[password]', with: @admin.password
-      click_button 'ログイン'
+      admin_sign_in(@admin)
       visit admin_reports_path
     end
 

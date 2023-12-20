@@ -185,10 +185,7 @@ RSpec.describe "[STEP1]ユーザーログイン前のテスト", type: :system d
     let(:user) { create(:user) }
 
     before do
-      visit new_user_session_path
-      fill_in 'user[email]', with: user.email
-      fill_in 'user[password]', with: user.password
-      click_button 'ログイン'
+      sign_in(user)
     end
 
     context 'ヘッダーの表示を確認' do
@@ -220,10 +217,7 @@ RSpec.describe "[STEP1]ユーザーログイン前のテスト", type: :system d
     let(:user) { create(:user) }
 
     before do
-      visit new_user_session_path
-      fill_in 'user[email]', with: user.email
-      fill_in 'user[password]', with: user.password
-      click_button 'ログイン'
+      sign_in(user)
       visit user_path(user)
       find('.three-point').click
       click_link 'ログアウト'
