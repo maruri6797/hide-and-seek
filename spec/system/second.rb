@@ -60,9 +60,9 @@ RSpec.describe "[STEP1]ユーザーログイン前のテスト", type: :system d
         expect(page).to have_content post.text
         expect(page).to have_content other_post.text
       end
-        it 'タグが表示される' do
-          expect(page).to have_content tag.name
-        end
+      it 'タグが表示される' do
+        expect(page).to have_content tag.name
+      end
     end
   end
 
@@ -132,7 +132,12 @@ RSpec.describe "[STEP1]ユーザーログイン前のテスト", type: :system d
       it '投稿のtextが表示される' do
         expect(page).to have_content post.text
       end
-
+      it 'いいねリンクが表示される' do
+        expect(page).to have_link "", href: post_favorites_path(post)
+      end
+      it 'お気に入りリンクが表示される' do
+        expect(page).to have_link "", href: post_stars_path(post)
+      end
     end
 
     context '編集リンクのテスト' do
@@ -201,6 +206,11 @@ RSpec.describe "[STEP1]ユーザーログイン前のテスト", type: :system d
       it 'リダイレクト先が、更新した投稿の詳細画面になっている' do
         expect(current_path).to eq '/posts/' + post.id.to_s
       end
+      it '2度目の編集はできない' do
+        visit edit_post_path(post)
+        expect(current_path).to eq '/posts/' + post.id.to_s
+        expect(page).to have_content '編集済みのため画面遷移できません'
+      end
     end
   end
 
@@ -217,6 +227,9 @@ RSpec.describe "[STEP1]ユーザーログイン前のテスト", type: :system d
         expect(page).to have_content user.name
         expect(page).to have_content user.mbti
         expect(page).to have_content user.introduction
+      end
+      it '自分へのフォローリンクは表示されない' do
+        expect(page).not_to have_link 'フォロー', href: user_relationships_path(user)
       end
       it '自分のユーザー編集、ログアウトへのリンクが存在する' do
         find(".three-point-contents").click

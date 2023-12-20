@@ -20,36 +20,24 @@ RSpec.describe "[STEP3] 仕上げのテスト", type: :system do
       is_expected.to have_content 'アカウント'
     end
     it 'ユーザーログイン成功時' do
-      visit new_user_session_path
-      fill_in 'user[email]', with: user.email
-      fill_in 'user[password]', with: user.password
-      click_button 'ログイン'
+      sign_in(user)
       is_expected.to have_content 'ログイン'
     end
     it 'ユーザーログアウト成功時' do
-      visit new_user_session_path
-      fill_in 'user[email]', with: user.email
-      fill_in 'user[password]', with: user.password
-      click_button 'ログイン'
+      sign_in(user)
       visit user_path(user)
       find(".three-point-contents").click
       click_link 'ログアウト'
       is_expected.to have_content 'ログアウト'
     end
     it 'ユーザーのプロフィール情報更新成功時' do
-      visit new_user_session_path
-      fill_in 'user[email]', with: user.email
-      fill_in 'user[password]', with: user.password
-      click_button 'ログイン'
+      sign_in(user)
       visit edit_user_path(user)
       click_button '保存'
       is_expected.to have_content '編集しました'
     end
     it '投稿データの新規登録成功時' do
-      visit new_user_session_path
-      fill_in 'user[email]', with: user.email
-      fill_in 'user[password]', with: user.password
-      click_button 'ログイン'
+      sign_in(user)
       find(".expansion").click
       fill_in 'post[title]', with: Faker::Lorem.characters(number: 10)
       fill_in 'post[text]', with: Faker::Lorem.characters(number: 30)
@@ -92,10 +80,7 @@ RSpec.describe "[STEP3] 仕上げのテスト", type: :system do
       before do
         @user_old_name = user.name
         @name = ''
-        visit new_user_session_path
-        fill_in 'user[email]', with: user.email
-        fill_in 'user[password]', with: user.password
-        click_button 'ログイン'
+        sign_in(user)
         visit edit_user_path(user)
         fill_in 'user[name]', with: @name
         click_button '保存'
@@ -114,10 +99,7 @@ RSpec.describe "[STEP3] 仕上げのテスト", type: :system do
 
     context '登録データの新規投稿失敗：titleを空にする' do
       before do
-        visit new_user_session_path
-        fill_in 'user[email]', with: user.email
-        fill_in 'user[password]', with: user.password
-        click_button 'ログイン'
+        sign_in(user)
         find(".expansion").click
         @text = Faker::Lorem.characters(number: 29)
         fill_in 'post[text]', with: @text
@@ -130,10 +112,7 @@ RSpec.describe "[STEP3] 仕上げのテスト", type: :system do
 
     context '投稿データの更新失敗: titleを空にする' do
       before do
-        visit new_user_session_path
-        fill_in 'user[email]', with: user.email
-        fill_in 'user[password]', with: user.password
-        click_button 'ログイン'
+        sign_in(user)
         visit edit_post_path(post)
         @title = ''
         @post_old_title = post.title
@@ -178,10 +157,7 @@ RSpec.describe "[STEP3] 仕上げのテスト", type: :system do
 
   describe '他人の投稿詳細画面のテスト' do
     before do
-      visit new_user_session_path
-      fill_in 'user[email]', with: user.email
-      fill_in 'user[password]', with: user.password
-      click_button 'ログイン'
+      sign_in(user)
       visit post_path(other_post)
     end
 
@@ -209,6 +185,9 @@ RSpec.describe "[STEP3] 仕上げのテスト", type: :system do
         expect(page).to have_content other_user.name
         expect(page).to have_content other_user.mbti
         expect(page).to have_content other_user.introduction
+      end
+      it 'フォローリンクが表示される' do
+        expect(page).to have_link 'フォロー', href: user_relationships_path(other_user)
       end
       it '他人のユーザー編集画面へのリンクは存在しない、他人のユーザーの通報リンクが表示される' do
         find(".three-point-contents").click
