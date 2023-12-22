@@ -58,6 +58,16 @@ RSpec.describe "[STEP4]各機能のテスト", type: :system do
       click_link 'フォロー'
     end
 
+    it 'フォロー一覧に相手が表示される' do
+      visit followings_user_path(other_user)
+      expect(page).to have_link user.name, href: user_path(user)
+      expect(page).to have_link 'フォロー解除', href: user_relationships_path(user)
+    end
+    it 'フォロワー一覧に相手が表示される' do
+      visit followers_user_path(other_user)
+      expect(page).to have_link user.name, href: user_path(user)
+      expect(page).to have_link 'フォロー解除', href: user_relationships_path(user)
+    end
     it '通知画面に通知が表示される' do
       visit notifications_path
       expect(page).to have_link user.name, href: user_path(user)
