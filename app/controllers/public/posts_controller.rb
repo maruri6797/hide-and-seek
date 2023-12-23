@@ -35,7 +35,8 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.where.not(status: 2).page(params[:page]).per(10).order(created_at: :desc)
+    @posts = Post.where.not(status: 2).page(params[:page]).per(10)
+    @post_like_ranks = @posts.includes(:favorites).sort {|a,b| b.favorites.size <=> a.favorites.size}
     @follow_posts = @posts.where(user_id: [current_user.id, *current_user.follower_ids])
     @post = Post.new
   end

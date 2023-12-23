@@ -7,19 +7,18 @@
             <a class="nav-link active" data-toggle="tab" href="#timeline">フォロー中</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#all">全体</a>
+            <a class="nav-link" data-toggle="tab" href="#all">おすすめ</a>
           </li>
         </ul>
       </div>
       <div class="tab-content">
         <div id="timeline" class="tab-pane fade show active tl">
           <%= render 'public/posts/index', posts: @follow_posts %>
-          <%= paginate @follow_posts %>
         </div>
         <div id="all" class="tab-pane fade al">
-          <%= render 'public/posts/index', posts: @posts %>
-          <%= paginate @posts %>
+          <%= render 'public/posts/index', posts: @post_like_ranks %>
         </div>
+        <%= paginate @posts %>
       </div>
       <%= render 'public/posts/post_button', post: @post %>
     </div>
