@@ -4,7 +4,7 @@
       <% if @tag.present? %>
         "<%= @tag.name %>"の投稿
       <% else %>
-        "<%= @keyword %>"の投稿一覧
+        <%= @keywords %>の投稿一覧
       <% end %>
       (<%= @posts.count %>件)
       <%= render 'public/posts/index', posts: @posts %>

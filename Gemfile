@@ -65,7 +65,7 @@ gem 'enum_help'
 gem 'rails-i18n'
 gem 'jquery-rails'
 gem 'dotenv-rails'
-group :production do
-  gem 'mysql2'
-end
-gem 'selenium-webdriver', '~> 4.16'
+gem 'ransack'
+# group :production do
+#   gem 'mysql2'
+# end

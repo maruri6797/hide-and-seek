@@ -17,6 +17,14 @@ class Post < ApplicationRecord
 
   has_many_attached :images
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["text", "title"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["actions", "favorites", "images_attachments", "images_blobs", "notifications", "post_comments", "post_tags", "stars", "tags", "user", "view_counts"]
+  end
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
