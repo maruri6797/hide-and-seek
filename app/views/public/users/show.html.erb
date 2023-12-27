@@ -33,14 +33,37 @@
         <div class="mr-3"><%= @user.posts.count { |user_posts| user_posts.status != "deleted" } %>投稿</div>
         <div class="mr-3"><%= link_to @user.followers.count, followings_user_path(@user), class: 'text-decoration-none' %>フォロー中</div>
         <div class="mr-3"><%= link_to @user.followeds.count, followers_user_path(@user), class: 'text-decoration-none' %>フォロワー</div>
-        <div class="mr-3"><%= link_to @favorite_posts.count { |favorite_posts| favorite_posts.status != "deleted" }, favorites_user_path(@user), class: 'text-decoration-none' %>いいね</div>
-        <% if @user == current_user %>
-          <%= link_to @star_posts.count { |star_posts| star_posts.status != "deleted" }, stars_user_path(@user), class: 'text-decoration-none' %>お気に入り
-        <% end %>
+        <div class="mr-3"><%= @favorite_posts.count { |favorite_posts| favorite_posts.status != "deleted" } %>いいね</div>
+        <%= @star_posts.count { |star_posts| star_posts.status != "deleted" } %>お気に入り
       </div>
 
-      <div class="posts my-5">
-        <%= render 'public/posts/index', posts: @posts %>
+      <div class="tabs d-flex justify-content-between align-items-center mt-3">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#posts">投稿</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#favorites">いいね</a>
+          </li>
+          <% if @user == current_user %>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#stars">お気に入り</a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="tab-content">
+        <div id="posts" class="tab-pane fade show active tl">
+          <%= render 'public/posts/index', posts: @posts %>
+        </div>
+        <div id="favorites" class="tab-pane fade al">
+          <%= render 'public/posts/index', posts: @favorite_posts %>
+        </div>
+        <% if @user == current_user %>
+          <div id="stars" class="tab-pane fade al">
+            <%= render 'public/posts/index', posts: @star_posts %>
+          </div>
+        <% end %>
       </div>
       <%= render 'public/posts/post_button', post: @post %>
     </div>

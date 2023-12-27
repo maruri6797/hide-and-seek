@@ -31,8 +31,6 @@ Rails.application.routes.draw do
       member do
         get 'followings'
         get 'followers'
-        get 'favorites'
-        get 'stars'
         get 'check'
       end
       resource :relationships, only: [:create, :destroy]
