@@ -1,0 +1,28 @@
+%table.table.table-bordered
+  %thead
+    %tr
+      %th ユーザーID
+      %th ユーザー名
+      %th メールアドレス
+      %th ステータス
+      %th いいねされた数
+      %th ライセンス
+  %tbody
+    - users.each do |user|
+      %tr
+        %td= user.id
+        %td= link_to user.name, admin_user_path(user)
+        %td= user.email
+        - if user.is_deleted == false
+          %td.text-success 有効
+        - else
+          %td.text-secondary 退会
+        - user_posts = user.posts
+        - favorites = 0
+        - user_posts.each do |user_post|
+          - favorites += user_post.favorites.count
+        %td= favorites
+        - if user.is_license == false
+          %td なし
+        - else
+          %td 認証済み

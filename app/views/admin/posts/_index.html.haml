@@ -1,0 +1,31 @@
+- if posts.present?
+  %table.table.table-bordered
+    %thead
+      %tr
+        %th 投稿日時
+        %th タイトル
+        - if controller_name != 'users'
+          %th ユーザー名
+          %th ステータス
+        %th 閲覧数
+        %th いいね数
+        %th コメント数
+    %tbody
+      - posts.each do |post|
+        %tr
+          %td= l post.created_at
+          %td= link_to post.title, admin_post_path(post)
+          - if controller_name != 'users'
+            %td= link_to post.user.name, admin_user_path(post.user)
+            %td.text-danger= post.status_i18n
+          %td
+            = post.view_counts.count
+            %span 回
+          %td
+            %i.fa-regular.fa-heart
+            = post.favorites.count
+          %td
+            = post.post_comments.count
+            %span コメント
+- else
+  %p 投稿はありません

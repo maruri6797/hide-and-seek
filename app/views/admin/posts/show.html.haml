@@ -1,0 +1,49 @@
+.container
+  .row
+    .col-lg-10.col-md-8
+      .d-flex
+        %h3 投稿詳細
+        = link_to '削除する', admin_post_path(@post), method: :delete, class: 'btn btn-danger ml-auto', data: {confirm: "削除してもよろしいですか？" }
+      - if @post.images.attached?
+        - @post.images.each do |image|
+          = image_tag image.variant(resize: '375x667')
+      .row
+        %p.col-4 ユーザー名
+        = link_to @post.user.name, admin_user_path(@post.user)
+      .row
+        %p.col-4 タイトル
+        = @post.title
+      .row
+        %p.col-4 ステータス
+        %p.text-danger= @post.status_i18n
+      .row
+        %p.col-4 テキスト
+        = simple_format(h(@post.text))
+      .row
+        %p.col-4 タグ
+        - @post.tags.each do |tag|
+          = tag.name
+      .row
+        %p.col-4 投稿日時
+        = l @post.created_at
+      .row
+        %p.col-4 閲覧数
+        = @post.view_counts.count
+        %span 回
+      .row
+        %P.col-4 いいね数
+        %i.fa-regular.fa-heart= @post.favorites.count
+      - if @post_comments.present?
+        .row
+          %h4 コメント
+          (
+          = @post_comments.count
+          )
+        %table
+          - @post_comments.each do |post_comment|
+            %tr
+              %td.col-3= post_comment.user.name
+              %td.col-8= post_comment.comment
+              %td.col= link_to "", admin_post_post_comment_path(@post, post_comment), method: :delete, class: 'fa-solid fa-trash-can', data: {confirm: "削除してもよろしいですか？" }
+      - else
+        %p.col-4 コメントはありません
