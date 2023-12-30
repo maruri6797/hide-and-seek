@@ -1,0 +1,14 @@
+.container
+  .row
+    .col-lg-10.col-md-8
+      = render 'layouts/errors', obj: @tag
+      = form_with model: @tag, url: admin_tags_path, method: :post do |f|
+        .form-group
+          = f.label :name, "タグ", class: 'col-4'
+          = f.text_field :name
+          = f.submit "登録", class: 'btn btn-success'
+      %ul.d-flex.flex-row.flex-wrap.list-group.border-top
+        - @tags.each do |tag|
+          %li.list-group-item.col-3
+            = tag.name
+            = link_to "", admin_tag_path(tag), method: :delete, class: 'fa-solid fa-trash-can', data: {confirm: "削除してもよろしいですか？"

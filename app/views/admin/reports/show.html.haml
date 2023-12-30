@@ -1,0 +1,27 @@
+.container
+  .row
+    .col-lg-10.col-md-8
+      %h3 通報詳細
+      .row
+        %p.col-4 通報ID
+        = @report.id
+      .row
+        %p.col-4 コンテンツ
+        = @report.content_i18n
+      .row
+        %p.col-4 理由
+        = @report.reason_i18n
+      .row
+        %p.col-4 非通報者
+        = link_to @report.reported.name, admin_user_path(@report.reported)
+      .row
+        %p.col-4 通報者
+        = link_to @report.reporter.name, admin_user_path(@report.reporter)
+      .row
+        %p.col-4 確認
+        = form_with model: @report, url: admin_report_path(@report), method: :patch do |f|
+          = f.radio_button :is_checked, false
+          = f.label :is_checked_false, "未確認", class: 'mr-3'
+          = f.radio_button :is_checked, true
+          = f.label :is_checked_true, "確認", class: 'mr-3'
+          = f.submit "保存", class: 'btn btn-success'

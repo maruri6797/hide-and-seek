@@ -1,0 +1,11 @@
+.container
+  .row
+    .col-lg-10.col-md-8
+      .row
+        %h3.mx-5
+          = @user.name
+          さんのユーザー詳細
+        = link_to "編集する", edit_admin_user_path(@user), class: 'btn btn-success mr-5'
+      .row.justify-content-start
+        %p.col-4 ユーザーID
+        = @user.id

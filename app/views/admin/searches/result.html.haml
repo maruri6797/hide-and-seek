@@ -1,0 +1,21 @@
+.container
+  .row
+    .col-lg-10.col-md-8
+      - if @tag.present?
+        %p
+          "
+          = @tag.name
+          "の投稿一覧
+        = render 'admin/posts/index', posts: @posts
+      - elsif @range == 'User'
+        %p
+          "
+          = @word
+          "のユーザー一覧
+        = render 'admin/homes/index', users: @users
+      - elsif @range == 'Post'
+        %p
+          "
+          = @word
+          "の投稿一覧
+        = render 'admin/posts/index', posts: @posts
