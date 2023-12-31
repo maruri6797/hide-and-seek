@@ -9,3 +9,30 @@
       .row.justify-content-start
         %p.col-4 ユーザーID
         = @user.id
+      .row.justify-content-start
+        %p.col-4 ユーザー名
+        = @user.name
+      .row.justify-content-start
+        %p.col-4 メールアドレス
+        = @user.email
+      .row.justify-content-start
+        %p.col-4 ステータス
+        - if @user.is_deleted == false
+          %p.text-success 有効
+        - else
+          %p.text-secondary 退会
+      .tabs.d-flex.justify-content-between.align-items-center
+        %ul.nav.nav-tabs
+          %li.nav-items
+            %a.nav-link.active(data-toggle="tab" href="#active") 公開中
+          %li.nav-items
+            %a.nav-link(data-toggle="tab" href="#edited") 編集済み
+          %li.nav-items
+            %a.nav-link(data-toggle="tab" href="#deleted") 削除済み
+      .tab-content.mt-3
+        #active.tab-pane.fade.show.active
+          = render 'admin/posts/index', posts: @active_posts
+        #edited.tab-pane.fade
+          = render 'admin/posts/index', posts: @edited_posts
+        #deleted.tab-pane.fade
+          = render 'admin/posts/index', posts: @deleted_posts

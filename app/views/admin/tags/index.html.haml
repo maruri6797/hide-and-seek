@@ -11,4 +11,5 @@
         - @tags.each do |tag|
           %li.list-group-item.col-3
             = tag.name
-            = link_to "", admin_tag_path(tag), method: :delete, class: 'fa-solid fa-trash-can', data: {confirm: "削除してもよろしいですか？"
+            = link_to "", admin_tag_path(tag), method: :delete, class: 'fa-solid fa-trash-can', data: {confirm: "削除してもよろしいですか？"}
+
