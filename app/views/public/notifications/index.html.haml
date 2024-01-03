@@ -1,0 +1,8 @@
+.container
+  .row
+    .col-lg-12.col-md-10
+      %h4.text-center 通知
+      - if @notifications.present?
+        = render 'public/notifications/index', notification: @notifications
+      - else
+        %p 通知はありません

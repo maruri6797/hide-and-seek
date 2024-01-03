@@ -1,0 +1,33 @@
+.container
+  .row
+    .col-lg-12.col-md-10
+      %p.popout.text-center
+        %span H
+        %span I
+        %span D
+        %span E
+        %br
+        %span A
+        %span N
+        %span D
+        %br
+        %span S
+        %span E
+        %span E
+        %span K
+      %p.text-center
+        ありのままの自分を知っていますか？
+        %br
+        その行動の理由について発信してみましょう。
+        %br
+        隠れていたあなたの魅力が見つかるかもしれませんし、
+        %br
+        隣人のことをより深く知ることができるかもしれません。
+        %br
+        = link_to "もっと詳しく", about_path, class: 'text-decoration-none'
+      .text-center
+        = link_to "新規登録", new_user_registration_path, class: 'btn btn-primary rounded-pill m-3 expansion'
+        %br
+        = link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: 'btn btn-secondary rounded-pill expansion'
+        %br
+        = link_to "ログイン", new_user_session_path, class: 'btn btn-success rounded-pill m-3 expansion'

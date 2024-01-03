@@ -1,0 +1,29 @@
+.container
+  .row
+    .col-lg-12.col-md-10
+      .text-center.border-bottom
+        = link_to user_path(@user) do
+          = image_tag @user.get_profile_image(100, 100), class: 'rounded-circle'
+        %p= @user.name
+      .message
+        - @chats.each do |chat|
+          - if chat.user_id == current_user.id
+            .row.justify-content-end
+              .ballon-right
+                = simple_format(h(chat.message))
+            %p.text-right
+              %small= l chat.created_at, format: :short
+          - else
+            .row
+              = image_tag @user.get_profile_image(100, 100), class: 'rounded-circle'
+              .ballon-left
+                = simple_format(h(chat.message))
+            %p.text-left
+              %small= l chat.created_at, format: :short
+      = render 'layouts/errors', obj: @chat
+      .field
+        = form_with model: @chat, url: chats_path, method: :post do |f|
+          = f.text_area :message, required: true, class: 'form-control'
+          = f.hidden_field :room_id
+          = button_tag type: "submit", class: 'btn btn-default submit' do
+            %i.fa-regular.fa-paper-plane
