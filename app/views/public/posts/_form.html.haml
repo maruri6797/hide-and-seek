@@ -1,0 +1,32 @@
+= form_with(model: put, id: 'p-form')do |f|
+  .form-group
+    = f.label :title, "タイトル"
+    %br
+    = f.text_field :title, class: 'form-control'
+  .form-group
+    = f.label :text, "テキスト"
+    %br
+    = f.text_area :text, class: 'form-control'
+  .form-group
+    = f.label :images, "※任意　画像（複数選択可）"
+    %br
+    = f.file_field :images, multiple: true
+    %br
+    / 編集時の画像削除
+    - if put.images.present?
+      %p 削除するものはチェックしてください
+      - put.images.each do |image|
+        = f.check_box :image_ids, {multiple: true}, image.id, false
+        = image_tag image, size: "100x100"
+        %br
+  .form-group
+    = f.label :tag_ids, "タグ"
+    %br
+    = f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |t|
+      = t.check_box + t.label
+  .form-group
+    = f.hidden_field :status
+  .action.text-center
+    = link_to "戻る", post_path(put), class: 'btn btn-primary'
+    = f.submit "変更して投稿する", class: 'btn btn-success'
+    %p ※編集は一度のみ

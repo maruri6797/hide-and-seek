@@ -1,0 +1,8 @@
+.container
+  .row
+    .col-lg-10.col-md-8
+      %h3 フォロー中
+      - if @users.present?
+        = render 'public/users/user', users: @users
+      - else
+        %p フォロー中のユーザーはいません

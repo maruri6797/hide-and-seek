@@ -1,0 +1,8 @@
+.container
+  .row
+    .col-lg-10.col-md-8
+      %h4.mb-3 メッセージを送る
+      - if @users.present?
+        = render 'public/users/user', users: @users
+      - else
+        %p フォロー中のユーザーがいません

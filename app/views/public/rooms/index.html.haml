@@ -1,0 +1,24 @@
+.container
+  .row
+    .col-lg-10.col-md-8
+      .rooms
+        %h4.text-center メッセージ
+        - if @user_rooms.present?
+          - @user_rooms.each do |room|
+            .row.align-items-center.border-bottom
+              = link_to user_path(room.user), class: 'text-decoration-none' do
+                = image_tag room.user.get_profile_image(100, 100), class: 'rounded-circle'
+                = room.user.name
+              - if room.user.is_license == true
+                %i.fa-solid.fa-award.text-warning
+              - unless chat.find_by(id: room.room.chat_ids).present?
+                .ml-auto
+                  = link_to "チャット", chat_path(room.user)
+              - else
+                .ml-auto
+                  = link_to chat_path(room.user), class: 'text-decoration-none' do
+                    = Chat.find_by(id: room.room.chat_ids.last).message
+        - else
+          %p メッセージはありません
+        .button.h1
+          = link_to "", lists_rooms_path, class: 'fa-solid fa-circle-plus text-decoration-none'

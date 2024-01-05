@@ -1,0 +1,30 @@
+%button.btn.btn-primary.button.expansion(type="button" data-toggle="modal" data-target="#exampleModal")
+  %i.fa-solid.fa-plus
+
+.modal.fade#exampleModal(tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
+  .modal-dialog(role="document")
+    .modal-content
+      .modal-header
+        %h5.modal-title#exampleModalLabel 投稿
+        %button.close(type="button" data-dismiss="modal" aria-label="Close")
+          %span(aria-hidden="true") &times;
+      = form_with(model: post, url: posts_path, id: 'p-form') do |f|
+        .modal-body
+          .form-group
+            = f.label :title, "タイトル"
+            = f.text_field :title, class: 'form-control'
+          .form-group
+            = f.label :text, "テキスト"
+            = f.text_area :text, class: 'form-control'
+          .form-group
+            = f.label :images, "※任意　画像（複数選択可）"
+            = f.file_field :images, multiple: true
+          .form-group
+            = f.label :tag_ids, "タグ"
+            = f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |t|
+              = t.check_box + t.label
+          .form-group
+            = f.hidden_field :status
+        .modal-footer
+          %button.btn.btn-secondary(type="button" data-dismiss="modal") 閉じる
+          = f.submit "投稿する", class: 'btn btn-success'
