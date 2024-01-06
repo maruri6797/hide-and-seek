@@ -11,7 +11,7 @@
                 = room.user.name
               - if room.user.is_license == true
                 %i.fa-solid.fa-award.text-warning
-              - unless chat.find_by(id: room.room.chat_ids).present?
+              - unless Chat.find_by(id: room.room.chat_ids).present?
                 .ml-auto
                   = link_to "チャット", chat_path(room.user)
               - else

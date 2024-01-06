@@ -1,0 +1,14 @@
+.container
+  .row
+    .col-lg-10.col-md-8
+      - if @tag.present?
+        "
+        = @tag.name
+        "の投稿
+      - else
+        = @keywords
+        の投稿一覧
+      (
+      = @posts.count
+      件)
+      = render 'public/posts/index', posts: @posts

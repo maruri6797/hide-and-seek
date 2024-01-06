@@ -1,0 +1,70 @@
+.container
+  .row
+    .col-lg-10.col-md-8
+      .d-flex.align-items-center.justify-content-between
+        = image_tag @user.get_profile_image(150, 150), class: 'rounded-circle'
+        %p.h3= @user.name
+        - if @user.is_license == true
+          %i.fa-solid.fa-award.text-warning
+        - if @user == current_user
+          .border.three-point-contents.is-active
+            = link_to "編集", edit_user_path(@user), class: 'btn btn-default'
+            %br
+            = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn btn-default border-top'
+        - else
+          .border.three-point-contents.is-active
+            = link_to "通報する", new_user_report_path(@user), class: 'btn btn-default text-danger'
+          - if current_user.following?(@user)
+            = link_to "フォロー解除", user_relationships_path(@user), method: :delete, class: 'btn btn-danger ml-auto mr-3'
+          - else
+            = link_to "フォローする", user_relationships_path(@user), method: :post, class: 'btn btn-success ml-auto mr-3'
+          - if current_user.following?(@user) && @user.following?(current_user)
+            = link_to "", chat_path(@user), class: 'fa-solid fa-envelope h2 tex-decoration-none'
+        .three-point.h3.ml-auto ⋮
+      %p.mt-5
+        MBTI:
+        %strong= @user.mbti
+      = simple_format(h(@user.introduction))
+      .d-flex.border-bottom
+        .mr-3
+          = @user.posts.count { |user_posts| user_posts.status != "deleted" }
+          投稿
+        .mr-3
+          = link_to @user.followers.count, followings_user_path(@user), class: 'text-decoration-none'
+          フォロー中
+        .mr-3
+          = link_to @user.followeds.count, followers_user_path(@user), class: 'text-decoration-none'
+          フォロワー
+        .mr-3
+          = @favorite_posts.count { |favorite_posts| favorite_posts.status != "deleted" }
+          いいね
+        %div
+          = @star_posts.count { |star_posts| star_posts.status != "deleted" }
+          お気に入り
+
+      .tabs.d-flex.justify-content-between.align-items-center.mt-3
+        %ul.nav.nav-tabs
+          %li.nav-item
+            %a.nav-link.active(data-toggle="tab" href="#posts") 投稿
+          %li.nav-item
+            %a.nav-link(data-toggle="tab" href="#favorites") いいね
+          - if @user == current_user
+            %li.nav-item
+              %a.nav-link(data-toggle="tab" href="#stars") お気に入り
+      .tab-content
+        #posts.tab-pane.fade.show.active
+          = render 'public/posts/index', posts: @posts
+        #favorites.tab-pane.fade
+          = render 'public/posts/index', posts: @favorite_posts
+        - if @user == current_user
+          #stars.tab-pane.fade
+            = render 'public/posts/index', posts: @star_posts
+      = render 'public/posts/post_button', post: @post
+
+:javascript
+  $(document).on('turbolinks:load', function(){
+    $('.three-point').on('click', function(event) {
+      $('.three-point-contents').toggleClass('is-active');
+      event.preventDefault();
+    });
+  });

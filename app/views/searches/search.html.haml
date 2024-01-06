@@ -1,0 +1,18 @@
+.container
+  .row
+    .col-lg-9.col-md-10
+      = render 'searches/form'
+      = render 'public/posts/index', posts: @posts
+      = paginate @posts
+    .col-lg-3.col-md-8.mb-5
+      %h4 タグ
+      %ul.d-flex.flex-row.flex-wrap.list-group.border-top
+        - @tags.each do |tag|
+          %li.list-group-item.col-lg-12.col-md-3
+            %i.fa-solid.fa-tag
+            = link_to tag.name, result_path(tag_id: tag.id), class: 'text-decoration-none'
+            - @tags_posts = tag.posts
+            (
+            = @tags_posts.count { |tags_posts| tags_posts.status != "deleted" }
+            )
+    = render 'public/posts/post_button', post: @post
